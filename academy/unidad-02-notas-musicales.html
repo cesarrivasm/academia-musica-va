@@ -53,7 +53,7 @@
           <div class="field"><span class="lbl">Ver nombres</span><div class="seg" id="modeSeg" role="group" aria-label="Sistema de nombres"><button type="button" data-m="es" aria-pressed="true">Do Re Mi</button><button type="button" data-m="en" aria-pressed="false">C D E</button><button type="button" data-m="both" aria-pressed="false">Ambos</button></div></div>
         </div>
         <div class="a-readout"><div class="sym" id="sym" aria-live="polite">Do</div><div class="tones" id="alt"></div></div>
-        <div class="a-viz"><div class="kbd-box" id="kbd"></div><p class="cap">Toca una tecla para escuchar la nota y ver sus nombres. Con teclado: flechas y Enter.</p></div>
+        <div class="a-viz"><div class="viz-head"><div class="tabs" role="group" aria-label="Instrumento"><button type="button" data-inst="piano" aria-pressed="true">Piano</button><button type="button" data-inst="guitar" aria-pressed="false">Guitarra</button></div></div><div class="kbd-box" id="kbd"></div><div id="gfb" hidden></div><p class="cap" id="vcap">Toca una tecla para escuchar la nota y ver sus nombres. Con teclado: flechas y Enter.</p></div>
         <div class="a-explain" id="exp"></div>
       </div>
     </section>
@@ -128,7 +128,7 @@ const ES={C:'Do',D:'Re',E:'Mi',F:'Fa',G:'Sol',A:'La',B:'Si'};
 const es=n=>ES[n[0]]+(n[1]==='#'?'♯':n[1]==='b'?'♭':'');
 const en=n=>n[0]+(n[1]==='#'?'♯':n[1]==='b'?'♭':'');
 const esLong=n=>ES[n[0]]+(n[1]==='#'?' sostenido':n[1]==='b'?' bemol':'');
-let mode='es',sel=0;
+let mode='es',sel=0,inst='piano',fbo=null,fbMode=null;
 const label=n=>mode==='es'?es(n):mode==='en'?en(n):es(n)+' · '+en(n);
 function withNames(svg,octaves,W,H,pad){const vb=svg.getAttribute('viewBox').split(' ').map(Number);svg.setAttribute('viewBox',`0 0 ${vb[2]} ${vb[3]+22}`);
   for(let i=0;i<octaves*7;i++){const n=['C','D','E','F','G','A','B'][i%7];svg.appendChild(svgEl('text',{x:pad+i*W+W/2,y:vb[3]+16,'text-anchor':'middle','font-size':12,'font-family':'JetBrains Mono, monospace',fill:'var(--muted)','pointer-events':'none'},mode==='es'?ES[n]:mode==='en'?n:ES[n]+'/'+n))}}
@@ -143,7 +143,10 @@ function render(){
   $('#sym').style.fontSize='56px';
   $('#alt').innerHTML=mode==='both'?`<span class="tone"><b>${alt?en(s)+' · '+en(f):en(s)}</b><i>cifrado</i></span>`:`<span class="tone"><b>${mode==='es'?(alt?en(s)+' · '+en(f):en(s)):(alt?es(s)+' · '+es(f):es(s))}</b><i>${mode==='es'?'cifrado':'nombre'}</i></span>`;
   $('#exp').innerHTML=alt?`<div class="ex-name"><h3>Nota alterada</h3></div><p>Es la tecla negra entre ${es(SH[sel-1])} y ${es(SH[sel+1])}. Con sostenido se llama ${es(s)}; con bemol, ${es(f)}. Es el mismo sonido con dos nombres.</p>`:`<div class="ex-name"><h3>Nota natural</h3></div><p>Es una de las siete teclas blancas. En el cifrado americano se escribe <b>${s}</b>.</p>`;
-  drawKbd();drawFing()}
+  drawKbd();drawGtr();drawFing()}
+function drawGtr(){if(!fbo||fbMode!==mode){fbMode=mode;fbo=U.fretboard($('#gfb'),{labelFn:n=>mode==='en'?en(n):es(n),label:'Diapasón con las doce notas',onPlay:({pc})=>{sel=pc;render()}})}
+  fbo.setPcs(new Map([[sel,{root:true}]]))}
+document.querySelectorAll('#lab [data-inst]').forEach(b=>b.onclick=()=>{inst=b.dataset.inst;document.querySelectorAll('#lab [data-inst]').forEach(x=>x.setAttribute('aria-pressed',x===b));$('#kbd').hidden=inst!=='piano';$('#gfb').hidden=inst!=='guitar';$('#vcap').textContent=inst==='piano'?'Toca una tecla para escuchar la nota y ver sus nombres. Con teclado: flechas y Enter.':'Toca una nota del diapasón: se iluminan todas las posiciones de esa nota en la guitarra.';window.dispatchEvent(new Event('resize'))});
 document.querySelectorAll('#modeSeg button').forEach(b=>b.onclick=()=>{mode=b.dataset.m;document.querySelectorAll('#modeSeg button').forEach(x=>x.setAttribute('aria-pressed',x===b));render()});
 function drawFing(){const m=new Map();[[0,5],[2,4],[4,3],[5,2],[7,1]].forEach(([a,f])=>m.set(a,{label:es(SH[a%12]),deg:String(f),root:true}));[[12,1],[14,2],[16,3],[17,4],[19,5]].forEach(([a,f])=>m.set(a,{label:es(SH[a%12]),deg:String(f),root:true}));
   const svg=keyboard({octaves:2,marks:m,W:40,H:140});svg.setAttribute('aria-label','Posición de cinco dedos: mano izquierda Do a Sol con dedos 5 a 1, mano derecha Do a Sol con dedos 1 a 5');const b=$('#fing');b.innerHTML='';b.appendChild(svg)}

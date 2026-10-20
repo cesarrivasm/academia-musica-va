@@ -55,7 +55,7 @@
           <div class="field grow"><label class="lbl" for="ii">Intervalo</label><span class="select"><select id="ii"></select><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8l7 8 7-8z"/></svg></span></div>
           <button type="button" class="ibtn solid" id="iplay" aria-label="Escuchar el intervalo"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg></button>
         </div>
-        <div class="pin"><div class="big" id="iout" aria-live="polite"></div><p id="itxt"></p><div class="kbd-box" id="ikb"></div></div>
+        <div class="pin"><div class="big" id="iout" aria-live="polite"></div><p id="itxt"></p><div class="viz-head"><div class="tabs" role="group" aria-label="Instrumento"><button type="button" data-iinst="piano" aria-pressed="true">Piano</button><button type="button" data-iinst="guitar" aria-pressed="false">Guitarra</button></div></div><div class="kbd-box" id="ikb"></div><div id="igb" hidden></div></div>
       </div>
     </section>
 
@@ -128,7 +128,9 @@ const ROOTS=['C','C#','Db','D','D#','Eb','E','F','F#','Gb','G','G#','Ab','A','A#
 IV.forEach(([n],i)=>{const o=document.createElement('option');o.value=i;o.textContent=n;$('#ii').appendChild(o)});$('#ii').value=3;
 function drawIv(){const r=$('#ir').value,[n,num,s]=IV[+$('#ii').value],t=target(r,num,s);
   $('#iout').textContent=`${sp(r)} → ${sp(t.name)}`;$('#itxt').textContent=`Una ${n} desde ${sp(r)} es ${sp(t.name)}: ${s} ${s===1?'semitono':'semitonos'} (${dist(s)}) y ${num} notas contando ambas.`;
-  const m=new Map([[t.rootAbs,{label:sp(r),root:true}],[t.rootAbs+s,{label:sp(t.name),root:false}]]);const svg=keyboard({octaves:2,marks:m,W:34,H:120});svg.setAttribute('aria-label',`Teclado con ${sp(r)} y ${sp(t.name)}`);$('#ikb').innerHTML='';$('#ikb').appendChild(svg)}
+  const m=new Map([[t.rootAbs,{label:sp(r),root:true}],[t.rootAbs+s,{label:sp(t.name),root:false}]]);const svg=keyboard({octaves:2,marks:m,W:34,H:120});svg.setAttribute('aria-label',`Teclado con ${sp(r)} y ${sp(t.name)}`);$('#ikb').innerHTML='';$('#ikb').appendChild(svg);
+  const gm=new Map([[t.pc,{label:t.name,root:false}],[t.rootAbs,{label:r,root:true}]]);U.fretboard($('#igb'),{marks:gm,label:`Diapasón con ${sp(r)} y ${sp(t.name)}`})}
+document.querySelectorAll('[data-iinst]').forEach(b=>b.onclick=()=>{const g=b.dataset.iinst==='guitar';document.querySelectorAll('[data-iinst]').forEach(x=>x.setAttribute('aria-pressed',x===b));$('#ikb').hidden=g;$('#igb').hidden=!g;window.dispatchEvent(new Event('resize'))});
 $('#ir').onchange=$('#ii').onchange=drawIv;
 $('#iplay').onclick=()=>{const r=$('#ir').value,[n,num,s]=IV[+$('#ii').value],t=target(r,num,s),c=actx();if(!c)return;stopAll();const T=c.currentTime+.03;note(t.rootAbs+12,T,.9,.3);note(t.rootAbs+12+s,T+.6,1.2,.3)};drawIv();
 /* Escalas */

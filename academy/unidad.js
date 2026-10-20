@@ -111,21 +111,24 @@ function mcq({root,id,title='Práctica',total=8,make}){
 function keyQuiz({root,id,title='Práctica en el piano',total=8,make,octaves=2}){
   const el=typeof root==='string'?$(root):root,sh=quizShell(el,title),b0=store.get(id+'-best',null);
   if(b0!=null)sh.best.textContent=`Tu mejor resultado: ${b0} de ${total}`;
-  let st;const start=qs=>{st={i:0,score:0,qs:qs||make(total),picked:[],checked:false,missed:[],full:!qs};draw()};
+  let st,inst='piano';const start=qs=>{st={i:0,score:0,qs:qs||make(total),picked:[],checked:false,missed:[],full:!qs};draw()};
   const nmS=pc=>R12S[pc];
   function draw(){
     if(st.i>=st.qs.length){if(st.full)finish(sh,id,st.score,st.qs.length,()=>start(),st.missed.length,()=>start(st.missed.slice()));else{sh.body.innerHTML=`<div class="done"><b>${st.score} de ${st.qs.length} en el repaso</b><div class="qactions"><button type="button" class="btn" id="qagain">Volver a empezar</button></div></div>`;sh.body.querySelector('#qagain').onclick=()=>start()}return}
     const q=st.qs[st.i],tg=new Set(q.targets);
-    sh.body.innerHTML=`<div class="qhead"><div class="cap">Pregunta ${st.i+1} de ${st.qs.length}</div><div class="progress"><span>${st.score} correctas</span><div class="bar"><i style="width:${Math.round(st.i/st.qs.length*100)}%"></i></div></div></div><div class="qtext" tabindex="-1">${q.q}</div><div class="kb" style="max-width:680px;overflow-x:auto"></div><div class="qactions"><button type="button" class="btn" id="qcheck">Revisar</button><button type="button" class="pbtn" id="qclr">Borrar</button><button type="button" class="ibtn solid" id="qhear" aria-label="Escuchar" title="Escuchar">${ICON_SPK}</button><span class="feedback" id="qfb" aria-live="polite"></span></div><p class="cap" id="qhint"></p>`;
-    const kb=sh.body.querySelector('.kb'),chk=sh.body.querySelector('#qcheck'),pcs=()=>[...new Set(st.picked.map(a=>a%12))];
+    sh.body.innerHTML=`<div class="qhead"><div class="cap">Pregunta ${st.i+1} de ${st.qs.length}</div><div class="progress"><span>${st.score} correctas</span><div class="bar"><i style="width:${Math.round(st.i/st.qs.length*100)}%"></i></div></div></div><div class="qtext" tabindex="-1">${q.q}</div><div class="tabs" role="group" aria-label="Instrumento"><button type="button" data-inst="piano" aria-pressed="${inst==='piano'}">Piano</button><button type="button" data-inst="guitar" aria-pressed="${inst==='guitar'}">Guitarra</button></div><div class="kb" style="max-width:680px;overflow-x:auto"></div><div class="qactions"><button type="button" class="btn" id="qcheck">Revisar</button><button type="button" class="pbtn" id="qclr">Borrar</button><button type="button" class="ibtn solid" id="qhear" aria-label="Escuchar" title="Escuchar">${ICON_SPK}</button><span class="feedback" id="qfb" aria-live="polite"></span></div><p class="cap" id="qhint"></p>`;
+    const kb=sh.body.querySelector('.kb'),chk=sh.body.querySelector('#qcheck'),pcs=()=>[...new Set(st.picked.map(a=>((a%12)+12)%12))],upd=()=>{if(!st.checked)chk.disabled=pcs().length!==q.need};
+    sh.body.querySelectorAll('[data-inst]').forEach(b=>b.onclick=()=>{if(b.dataset.inst===inst)return;inst=b.dataset.inst;if(!st.checked)st.picked=[];draw()});
     const marks=new Map();
     if(st.checked)q.targets.forEach(pc=>{marks.set(pc,{label:nmS(pc),root:true});marks.set(pc+12,{label:nmS(pc),root:true})});
     else st.picked.forEach(a=>marks.set(a,{label:nmS(a%12),root:false}));
-    kb.appendChild(keyboard({octaves,marks,clickable:!st.checked,W:26,H:120,minKey:22,ctx:'.kb',onKey:abs=>{const c=actx();if(c)note(abs,c.currentTime+.01,1,.3);const at=st.picked.indexOf(abs);if(at>=0)st.picked.splice(at,1);else st.picked.push(abs);draw()}}));
+    if(inst==='guitar'){const fb=fretboard(kb,{blank:true,label:'Diapasón para responder',onPlay:({midi})=>{if(st.checked)return;const abs=midi-48,at=st.picked.indexOf(abs);if(at>=0)st.picked.splice(at,1);else st.picked.push(abs);fb.setPicked(new Set(st.picked.map(x=>x+48)));upd()}});
+      if(st.checked)fb.setPcs(new Map(q.targets.map(pc=>[pc,{root:true}])));else fb.setPicked(new Set(st.picked.map(x=>x+48)))}
+    else kb.appendChild(keyboard({octaves,marks,clickable:!st.checked,W:26,H:120,minKey:22,ctx:'.kb',onKey:abs=>{const c=actx();if(c)note(abs,c.currentTime+.01,1,.3);const at=st.picked.indexOf(abs);if(at>=0)st.picked.splice(at,1);else st.picked.push(abs);draw()}}));
     const ok=()=>{const p=pcs();return p.length===tg.size&&p.every(x=>tg.has(x))};
     sh.body.querySelector('#qhear').onclick=()=>{const l=(q.play||q.targets.map(p=>p).sort((x,y)=>x-y));playSet(l.slice(),l.length>1)};
     if(st.checked){const good=ok(),fb=sh.body.querySelector('#qfb');fb.className='feedback '+(good?'ok':'err');
-      fb.textContent=good?'¡Correcto!':'Las teclas correctas están en violeta: '+q.targets.map(nmS).join(' – ')+'.';sh.body.querySelector('#qhint').textContent=q.why||'';
+      fb.textContent=good?'¡Correcto!':(inst==='guitar'?'Las notas correctas están en violeta: ':'Las teclas correctas están en violeta: ')+q.targets.map(nmS).join(' – ')+'.';sh.body.querySelector('#qhint').textContent=q.why||'';
       sh.body.querySelector('#qclr').hidden=true;chk.textContent=st.i===st.qs.length-1?'Ver resultado':'Siguiente';chk.onclick=()=>{st.i++;st.picked=[];st.checked=false;draw();const t=sh.body.querySelector('.qtext');if(t)t.focus({preventScroll:true})}}
     else{chk.disabled=pcs().length!==q.need;sh.body.querySelector('#qhint').textContent='';
       chk.onclick=()=>{st.checked=true;if(ok())st.score++;else if(st.full)st.missed.push(q);draw()};sh.body.querySelector('#qclr').onclick=()=>{st.picked=[];draw()}}
@@ -214,34 +217,41 @@ function pluck(midi,when,amp){const c=actx();if(!c)return;U.hold(when-c.currentT
 
 const OPEN_MIDI=[40,45,50,55,59,64];
 const _pluck=pluck;pluck=function(m,w,a){_pluck(m,w,a);if(ac)hold(w-ac.currentTime+2.6)};
-/* Diapasón de guitarra interactivo. marks: Map(pc -> {label, root}) o null para mostrar todas las notas */
-function fretboard(host,{frets=12,flat=false,marks=null,onPlay=null,label='Diapasón de la guitarra'}={}){
+/* Diapasón de guitarra interactivo.
+   marks: Map(pc -> {label, root}) para mostrar solo esas notas; null = todas.
+   blank: círculos vacíos (para prácticas); labelFn: transforma el nombre mostrado.
+   Devuelve {svg, setPcs(Map pc->{root}), setPicked(Set midi)} para resaltar sin reconstruir. */
+function fretboard(host,{frets=12,flat=false,marks=null,onPlay=null,label='Diapasón de la guitarra',blank=false,labelFn=null}={}){
   const X0=46,FW=48,Y0=34,RH=30,W=X0+frets*FW+14,H=Y0+5*RH+40,SHn=['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'],FLn=['C','Db','D','Eb','E','F','Gb','G','Ab','A','Bb','B'];
   const svg=svgEl('svg',{viewBox:`0 0 ${W} ${H}`,role:'group','aria-label':`${label}. Seis cuerdas y ${frets} trastes. Flechas para moverte, Enter para tocar una nota.`});
   svg.style.minWidth=(frets*38+60)+'px';
-  const xf=f=>f===0?X0/2-3:X0+(f-.5)*FW,yr=r=>Y0+r*RH,mono='JetBrains Mono, monospace';
+  const xf=f=>f===0?X0/2-3:X0+(f-.5)*FW,yr=r=>Y0+r*RH,mono='JetBrains Mono, monospace',fmt=labelFn||pretty;
   [3,5,7,9].forEach(f=>svg.appendChild(svgEl('circle',{cx:xf(f),cy:yr(2.5),r:7,fill:'var(--line)'})));
   if(frets>=12)[1.5,3.5].forEach(k=>svg.appendChild(svgEl('circle',{cx:xf(12),cy:yr(k),r:7,fill:'var(--line)'})));
   for(let k=1;k<=frets;k++)svg.appendChild(svgEl('line',{x1:X0+k*FW,y1:yr(0)-6,x2:X0+k*FW,y2:yr(5)+6,stroke:'var(--line-strong)','stroke-width':1.4}));
   svg.appendChild(svgEl('rect',{x:X0-3,y:yr(0)-6,width:5,height:5*RH+12,fill:'var(--ink)'}));
   for(let r=0;r<6;r++)svg.appendChild(svgEl('line',{x1:6,y1:yr(r),x2:W-8,y2:yr(r),stroke:'var(--muted)','stroke-width':[1,1.2,1.6,2,2.4,2.8][r]}));
   for(let f=0;f<=frets;f++)svg.appendChild(svgEl('text',{x:xf(f),y:yr(5)+32,'text-anchor':'middle','font-size':12,'font-family':mono,fill:'var(--muted)'},f===0?'0':String(f)));
-  const cells=[];let first=null;
-  for(let r=0;r<6;r++){cells[r]=[];for(let f=0;f<=frets;f++){const midi=OPEN_MIDI[5-r]+f,pc=midi%12,m=marks&&marks.get(pc);if(marks&&!m){cells[r][f]=null;continue}
-    const name=m?m.label:(flat?FLn:SHn)[pc],root=m&&m.root,alt=!m&&name.length>1,pn=pretty(name);
-    const g=svgEl('g',{class:'fb',role:'button',tabindex:'-1','aria-label':`Cuerda ${r+1}, ${f===0?'al aire':'traste '+f}, ${pn}`});
+  const KINDS={root:['var(--violet)','var(--violet)','var(--on-navy)'],nav:['var(--navy)','var(--navy)','var(--on-navy)'],alt:['var(--navy-soft)','var(--navy)','var(--navy)'],plain:['var(--bg)','var(--navy)','var(--navy)'],blank:['var(--bg)','var(--line-strong)','var(--navy)']};
+  const hl=new Map(),picked=new Set(),cells=[],grid=[];let first=null,rootMidi=null;
+  function paint(c){const h=hl.get(c.pc),pk=picked.has(c.midi);let k=c.base;if(h)k=h.root?'root':'nav';if(pk)k=c.midi===rootMidi?'root':'nav';const [f,s,t]=KINDS[k],show=!blank||k!=='blank';
+    c.circ.setAttribute('fill',f);c.circ.setAttribute('stroke',s);c.txt.setAttribute('fill',t);c.txt.textContent=show?c.pn:''}
+  for(let r=0;r<6;r++){grid[r]=[];for(let f=0;f<=frets;f++){const midi=OPEN_MIDI[5-r]+f,pc=midi%12,m=marks&&marks.get(pc);if(marks&&!m){grid[r][f]=null;continue}
+    const name=m?m.label:(flat?FLn:SHn)[pc],alt=!m&&name.length>1,pn=m?pretty(name):fmt(name);
+    const g=svgEl('g',{class:'fb',role:'button',tabindex:'-1','aria-label':`Cuerda ${r+1}, ${f===0?'al aire':'traste '+f}${blank?'':', '+pn}`});
     g.appendChild(svgEl('rect',{x:f===0?2:X0+(f-1)*FW,y:yr(r)-RH/2,width:f===0?X0-6:FW,height:RH,fill:'transparent',style:'cursor:pointer'}));
-    g.appendChild(svgEl('circle',{cx:xf(f),cy:yr(r),r:11,fill:root?'var(--violet)':marks?'var(--navy)':alt?'var(--navy-soft)':'var(--bg)',stroke:root?'var(--violet)':'var(--navy)','stroke-width':1.6}));
-    g.appendChild(svgEl('text',{x:xf(f),y:yr(r)+3.5,'text-anchor':'middle','font-size':pn.length>2?8.5:10.5,'font-weight':700,'font-family':mono,fill:marks?'var(--on-navy)':'var(--navy)','pointer-events':'none'},pn));
-    const play=()=>{const c=actx();if(!c)return;pluck(midi,c.currentTime+.01,.3);g.classList.add('hit');clearTimeout(g._h);g._h=setTimeout(()=>g.classList.remove('hit'),650);if(onPlay)onPlay({r,f,midi,pc,name:pn})};
-    g.addEventListener('click',play);g._play=play;svg.appendChild(g);cells[r][f]=g;if(!first)first=g}}
+    const circ=svgEl('circle',{cx:xf(f),cy:yr(r),r:11,'stroke-width':1.6}),txt=svgEl('text',{x:xf(f),y:yr(r)+3.5,'text-anchor':'middle','font-size':pn.length>2?8.5:10.5,'font-weight':700,'font-family':mono,'pointer-events':'none'},'');
+    g.append(circ,txt);
+    const c={g,circ,txt,midi,pc,pn,base:blank?'blank':m?(m.root?'root':'nav'):alt?'alt':'plain'};paint(c);cells.push(c);
+    const play=()=>{const ctx=actx();if(!ctx)return;pluck(midi,ctx.currentTime+.01,.3);g.classList.add('hit');clearTimeout(g._h);g._h=setTimeout(()=>g.classList.remove('hit'),650);if(onPlay)onPlay({r,f,midi,pc,name:pn})};
+    g.addEventListener('click',play);g._play=play;svg.appendChild(g);grid[r][f]=g;if(!first)first=g}}
   if(first)first.setAttribute('tabindex','0');
-  svg.addEventListener('keydown',e=>{const t=e.target.closest&&e.target.closest('.fb');if(!t)return;const idx=[...svg.querySelectorAll('.fb')].indexOf(t);let r=-1,f=-1;cells.forEach((row,i)=>row.forEach((c,j)=>{if(c===t){r=i;f=j}}));
+  svg.addEventListener('keydown',e=>{const t=e.target.closest&&e.target.closest('.fb');if(!t)return;let r=-1,f=-1;grid.forEach((row,i)=>row.forEach((c,j)=>{if(c===t){r=i;f=j}}));
     const d={ArrowRight:[0,1],ArrowLeft:[0,-1],ArrowUp:[-1,0],ArrowDown:[1,0]}[e.key];
-    if(d){e.preventDefault();let a=r+d[0],b=f+d[1];while(a>=0&&a<6&&b>=0&&b<=frets&&!cells[a][b]){a+=d[0];b+=d[1]}if(a>=0&&a<6&&b>=0&&b<=frets&&cells[a][b]){t.setAttribute('tabindex','-1');cells[a][b].setAttribute('tabindex','0');cells[a][b].focus()}}
+    if(d){e.preventDefault();let a=r+d[0],b=f+d[1];while(a>=0&&a<6&&b>=0&&b<=frets&&!grid[a][b]){a+=d[0];b+=d[1]}if(a>=0&&a<6&&b>=0&&b<=frets&&grid[a][b]){t.setAttribute('tabindex','-1');grid[a][b].setAttribute('tabindex','0');grid[a][b].focus()}}
     else if(e.key==='Enter'||e.key===' '){e.preventDefault();t._play()}});
   const box=document.createElement('div');box.className='fb-scroll';box.appendChild(svg);const hint=document.createElement('p');hint.className='cap';hint.hidden=true;hint.textContent='Desliza para ver todos los trastes →';
   host.innerHTML='';host.append(box,hint);const upd=()=>{hint.hidden=!(box.scrollWidth>box.clientWidth+2)};requestAnimationFrame(upd);window.addEventListener('resize',upd);
-  return{svg}}
+  return{svg,setPcs(m){hl.clear();if(m)m.forEach((v,k)=>hl.set(k,v));cells.forEach(paint)},setPicked(s,r){rootMidi=r==null?null:r;picked.clear();if(s)s.forEach(x=>picked.add(x));cells.forEach(paint)}}}
 window.U={fretboard,pluck,OPEN_MIDI,setPlaying,hold,reg,carousel,store,$,svgEl,keyboard,actx,note,playSet,stopAll,out:()=>{actx();return master},LET,LPC,nm,ES,esName,pretty,parseNote,scale,triads,ROMAN,DEG_NAMES,shuffle,pick,rnd,R12S,mcq,keyQuiz,course,metro,ICON_SPK,ACC};
 })();

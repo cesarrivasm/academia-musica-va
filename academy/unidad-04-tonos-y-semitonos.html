@@ -59,10 +59,10 @@
 
     <section id="distancias">
       <div class="sec-head"><span class="k">4.2</span><h2>Medir distancias</h2><span class="lvl lvl-2">Intermedio</span></div>
-      <p class="prose">Toca una tecla de partida y luego otra de llegada. Si tocas una tercera vez, empiezas de nuevo.</p>
+      <p class="prose">Toca una nota de partida y luego otra de llegada, en el piano o en la guitarra. Si tocas una tercera vez, empiezas de nuevo.</p>
       <div class="lab" id="lab">
         <div class="a-readout"><div class="sym" id="dsym" aria-live="polite">—</div><p id="dtxt" class="cap" style="min-height:6.4em">Elige la primera tecla.</p></div>
-        <div class="a-viz"><div class="kbd-box" id="dkb"></div></div>
+        <div class="a-viz"><div class="viz-head"><div class="tabs" role="group" aria-label="Instrumento"><button type="button" data-inst="piano" aria-pressed="true">Piano</button><button type="button" data-inst="guitar" aria-pressed="false">Guitarra</button></div></div><div class="kbd-box" id="dkb"></div><div id="dgb" hidden></div></div>
       </div>
     </section>
 
@@ -77,7 +77,7 @@
           <div class="field"><label class="lbl" for="an">Nota</label><span class="select"><select id="an"></select><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8l7 8 7-8z"/></svg></span></div>
           <div class="field"><span class="lbl">Signo</span><div class="seg" id="asg" role="group" aria-label="Signo"><button type="button" data-a="1" aria-pressed="true">♯ sostenido</button><button type="button" data-a="-1" aria-pressed="false">♭ bemol</button><button type="button" data-a="0" aria-pressed="false">♮ becuadro</button></div></div>
         </div>
-        <div class="pin"><div class="big" id="aout" aria-live="polite"></div><p id="atxt"></p><div class="kbd-box" id="akb"></div></div>
+        <div class="pin"><div class="big" id="aout" aria-live="polite"></div><p id="atxt"></p><div class="viz-head"><div class="tabs" role="group" aria-label="Instrumento"><button type="button" data-ainst="piano" aria-pressed="true">Piano</button><button type="button" data-ainst="guitar" aria-pressed="false">Guitarra</button></div></div><div class="kbd-box" id="akb"></div><div id="agb" hidden></div></div>
       </div>
     </section>
 
@@ -116,16 +116,25 @@ function drawFb(){$('#fbCap').textContent='Toca cualquier nota del diapasón: ca
 document.querySelectorAll('#fnSeg button').forEach(b=>b.onclick=()=>{fbFlat=b.dataset.f==='flat';document.querySelectorAll('#fnSeg button').forEach(x=>x.setAttribute('aria-pressed',x===b));drawFb()});
 drawFb();
 /* 4.2 distancias */
-let A=null,B=null;
-function drawD(){const marks=new Map();if(A!=null)marks.set(A,{label:sp(SH[A%12]),root:true});if(B!=null)marks.set(B,{label:sp(SH[B%12]),root:false});
-  const svg=keyboard({octaves:2,marks,clickable:true,W:34,H:130,minKey:30,ctx:'#dkb',onKey:abs=>{const c=actx();if(c)note(abs+12,c.currentTime+.01,1.2,.3);if(A==null||B!=null){A=abs;B=null}else B=abs;drawD()}});
-  const box=$('#dkb');box.innerHTML='';box.appendChild(svg);
-  if(A==null){$('#dsym').textContent='—';$('#dtxt').textContent='Elige la primera tecla.'}
-  else if(B==null){$('#dsym').textContent=sp(SH[A%12]);$('#dtxt').textContent='Ahora elige la tecla de llegada.'}
-  else{const s=Math.abs(B-A);$('#dsym').textContent=distFull(s).split(' (')[0];$('#dtxt').textContent=`De ${sp(SH[A%12])} a ${sp(SH[B%12])}: ${s} ${s===1?'semitono':'semitonos'}, es decir ${dist(s)}. ${B>A?'Subes':B<A?'Bajas':'Es la misma tecla'}${B===A?'.':' hacia '+(B>A?'los sonidos más agudos (derecha).':'los sonidos más graves (izquierda).')}`}}
+let A=null,B=null,dInst='piano',dfb=null;
+const nmOf=a=>sp(SH[((a%12)+12)%12]);
+function pickD(abs){if(A==null||B!=null){A=abs;B=null}else B=abs}
+function updD(){
+  if(A==null){$('#dsym').textContent='—';$('#dtxt').textContent='Elige la primera nota.'}
+  else if(B==null){$('#dsym').textContent=nmOf(A);$('#dtxt').textContent='Ahora elige la nota de llegada.'}
+  else{const s=Math.abs(B-A);$('#dsym').textContent=distFull(s).split(' (')[0];$('#dtxt').textContent=`De ${nmOf(A)} a ${nmOf(B)}: ${s} ${s===1?'semitono':'semitonos'}, es decir ${dist(s)}. ${B>A?'Subes':B<A?'Bajas':'Es la misma nota'}${B===A?'.':' hacia '+(B>A?'los sonidos más agudos'+(dInst==='piano'?' (derecha).':'.'):'los sonidos más graves'+(dInst==='piano'?' (izquierda).':'.'))}`}}
+function drawD(){
+  if(dInst==='piano'){const marks=new Map();if(A!=null)marks.set(A,{label:nmOf(A),root:true});if(B!=null)marks.set(B,{label:nmOf(B),root:false});
+    const svg=keyboard({octaves:2,marks,clickable:true,W:34,H:130,minKey:30,ctx:'#dkb',onKey:abs=>{const c=actx();if(c)note(abs+12,c.currentTime+.01,1.2,.3);pickD(abs);drawD()}});
+    const box=$('#dkb');box.innerHTML='';box.appendChild(svg)}
+  else{if(!dfb)dfb=U.fretboard($('#dgb'),{label:'Diapasón para medir distancias',onPlay:({midi})=>{pickD(midi-48);paintD();updD()}});paintD()}
+  updD()}
+function paintD(){if(dfb)dfb.setPicked(new Set([A,B].filter(x=>x!=null).map(x=>x+48)),A==null?null:A+48)}
+document.querySelectorAll('#lab [data-inst]').forEach(b=>b.onclick=()=>{dInst=b.dataset.inst;A=B=null;document.querySelectorAll('#lab [data-inst]').forEach(x=>x.setAttribute('aria-pressed',x===b));$('#dkb').hidden=dInst!=='piano';$('#dgb').hidden=dInst!=='guitar';drawD();window.dispatchEvent(new Event('resize'))});
 drawD();
 /* 4.3 alteraciones */
 NAT.forEach(n=>{const o=document.createElement('option');o.value=n;o.textContent=n;$('#an').appendChild(o)});$('#an').value='E';let acc=1;
+let afb=null;
 function drawAlt(){const n=$('#an').value,base=PC(n),pc=((base+acc)%12+12)%12,mark=acc===1?'♯':acc===-1?'♭':'♮',name=n+mark;
   const res=NAT.includes(SH[pc])?SH[pc]:null;
   $('#aout').textContent=acc===0?`${n}♮ = ${n}`:`${name} = ${res?res:sp(SH[pc])+(acc===-1?'':'')}`;
@@ -133,7 +142,8 @@ function drawAlt(){const n=$('#an').value,base=PC(n),pc=((base+acc)%12+12)%12,ma
   else if(res)t=`${acc===1?'Sube':'Baja'} un semitono desde ${n} y cae en ${res}: ${acc===1?'no hay tecla negra entre '+n+' y '+res:'no hay tecla negra entre '+res+' y '+n}. Son notas vecinas a un solo semitono.`;
   else t=`${acc===1?'Sube':'Baja'} un semitono desde ${n}: es la tecla negra ${sp(SH[pc])} (que también se llama ${sp(['C','Db','D','Eb','E','F','Gb','G','Ab','A','Bb','B'][pc])}).`;
   $('#atxt').textContent=t;const m=new Map([[base+(acc===0?0:acc),{label:'',root:true}]]);if(acc!==0)m.set(base,{label:sp(n),root:false});
-  const svg=keyboard({octaves:1,marks:new Map([[((base+acc)%12+12)%12,{label:'',root:true}],...(acc?[[base,{label:n,root:false}]]:[])]),W:40,H:120});svg.setAttribute('aria-label',`Teclado: ${$('#aout').textContent}`);$('#akb').innerHTML='';$('#akb').appendChild(svg)}
+  const svg=keyboard({octaves:1,marks:new Map([[((base+acc)%12+12)%12,{label:'',root:true}],...(acc?[[base,{label:n,root:false}]]:[])]),W:40,H:120});svg.setAttribute('aria-label',`Teclado: ${$('#aout').textContent}`);$('#akb').innerHTML='';$('#akb').appendChild(svg);if(!afb)afb=U.fretboard($('#agb'),{label:'Diapasón con la nota resultante'});afb.setPcs(new Map([[pc,{root:true}],...(acc?[[base,{root:false}]]:[])]))}
+document.querySelectorAll('[data-ainst]').forEach(b=>b.onclick=()=>{const g=b.dataset.ainst==='guitar';document.querySelectorAll('[data-ainst]').forEach(x=>x.setAttribute('aria-pressed',x===b));$('#akb').hidden=g;$('#agb').hidden=!g;window.dispatchEvent(new Event('resize'))});
 $('#an').onchange=drawAlt;document.querySelectorAll('#asg button').forEach(b=>b.onclick=()=>{acc=+b.dataset.a;document.querySelectorAll('#asg button').forEach(x=>x.setAttribute('aria-pressed',x===b));drawAlt()});drawAlt();
 /* Práctica */
 const FIX=[['D','F'],['G','A'],['C#','F#'],['E','B'],['Gb','Db']];
