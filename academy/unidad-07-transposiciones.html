@@ -76,7 +76,7 @@
       <div class="panel">
         <div class="pbar"><div class="field"><label class="lbl" for="gk">Tonalidad</label><span class="select"><select id="gk"></select><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8l7 8 7-8z"/></svg></span></div>
         <div class="field"><span class="lbl">Modo</span><div class="seg" id="gm" role="group" aria-label="Modo"><button type="button" data-m="maj" aria-pressed="true">Mayor</button><button type="button" data-m="min" aria-pressed="false">Menor</button></div></div>
-        <div class="field"><span class="lbl">Progresión de ejemplo</span><div class="row" style="align-items:center;flex-wrap:nowrap"><button type="button" class="ibtn solid" id="gplay" aria-label="Escuchar la progresión I – V – VI – IV" title="Escuchar la progresión I – V – VI – IV"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg></button><span class="cap" id="gcap" style="text-align:left"></span></div></div></div>
+        </div>
         <div class="pin"><div class="tblwrap"><table class="tbl" id="gtbl"><thead><tr><th>Grado</th><th>Nombre</th><th>Tríada</th></tr></thead><tbody></tbody></table></div><p class="cap" id="gnote"></p></div>
       </div>
     </section>
@@ -137,7 +137,6 @@ const pcOf=n=>{const p=parseNote(n);return ((LPC[p.l]+p.a)%12+12)%12};
 const tri=(root,minor)=>{const p=parseNote(root);return triads(p.l,p.a,minor)};
 const flatKey=(root,minor)=>{if(root.includes('b'))return true;if(root.includes('#'))return false;return (minor?MIN:MAJ).indexOf(root)>=7};
 const ROOTS=['C','C#','Db','D','D#','Eb','E','F','F#','Gb','G','G#','Ab','A','A#','Bb','B'];
-const rn=t=>t.q===''?t.deg:t.deg.toLowerCase()+(t.q==='dim'?'°':'');
 /* Círculo */
 let ci=0,cmin=false;const nodes={maj:[],min:[]};
 {const W=420,svg=svgEl('svg',{viewBox:`0 0 ${W} ${W}`,role:'group','aria-label':'Círculo de quintas. Flechas para moverte, Enter para elegir.'}),c=W/2;
@@ -159,16 +158,11 @@ function info(){const r=keyName(),rel=cmin?MAJ[ci]:MIN[ci];$('#ckey').textConten
 /* Grados */
 const gk=$('#gk');let gmin=false;
 function fillSel(sel,_m,val){if(!sel.options.length)ROOTS.forEach(r=>{const o=document.createElement('option');o.value=r;o.textContent=sp(r);sel.appendChild(o)});if(val)sel.value=val}
-function triAbs(sc,k){return [k,k+2,k+4].map(i=>sc[i%7].abs+(i>=7?12:0))}
-function drawG(){const r=gk.value,T=tri(r,gmin),ds=gmin?[0,5,2,6]:[0,4,5,3];$('#gtbl tbody').innerHTML=T.map(t=>`<tr><td class="m">${t.deg}</td><td>${t.dname}</td><td><b>${sp(t.sym)}</b></td></tr>`).join('');
-  const degs=ds.map(k=>rn(T[k])).join(' – '),pb=$('#gplay');$('#gcap').textContent=`${degs}  ·  ${ds.map(k=>sp(T[k].sym)).join(' – ')}`;
-  if(!pb.classList.contains('playing')){pb.setAttribute('aria-label','Escuchar la progresión '+degs);pb.title=pb.getAttribute('aria-label')}
+function drawG(){const r=gk.value,T=tri(r,gmin);$('#gtbl tbody').innerHTML=T.map(t=>`<tr><td class="m">${t.deg}</td><td>${t.dname}</td><td><b>${sp(t.sym)}</b></td></tr>`).join('');
   $('#gnote').textContent=T.some(t=>/##|bb/.test(t.name))?'Esta tonalidad usa dobles alteraciones (𝄪 y 𝄫). Es correcta, pero en la práctica se prefiere su nombre equivalente, que es más sencillo de leer.':''}
 gk.onchange=drawG;
 document.querySelectorAll('#gm button').forEach(b=>b.onclick=()=>{gmin=b.dataset.m==='min';document.querySelectorAll('#gm button').forEach(x=>x.setAttribute('aria-pressed',x===b));fillSel(gk,gmin,gk.value);drawG()});
 function playChords(list,gap){const c=actx();if(!c)return;stopAll();const t=c.currentTime+.05;list.forEach((ch,i)=>ch.forEach(a=>note(a+12,t+i*gap,gap*1.05,.22)))}
-$('#gplay').onclick=()=>{const b=$('#gplay'),r=gk.value,p=parseNote(r),sc=scale(p.l,p.a,gmin),ds=gmin?[0,5,2,6]:[0,4,5,3];if(!actx())return;playChords(ds.map(k=>triAbs(sc,k)),1);
-  const rows=[...document.querySelectorAll('#gtbl tbody tr')],T=[];ds.forEach((k,i)=>T.push(setTimeout(()=>{rows.forEach(x=>x.classList.remove('on'));rows[k].classList.add('on')},i*1000+50)));b._end=()=>{T.forEach(clearTimeout);rows.forEach(x=>x.classList.remove('on'))}};
 function pickKey(i,m){ci=i;cmin=m;paintCircle();info();gmin=m;document.querySelectorAll('#gm button').forEach(x=>x.setAttribute('aria-pressed',(x.dataset.m==='min')===m));fillSel(gk,m,keyName());gk.value=keyName();drawG();if(tmode!==(m?'min':'maj')){}}
 /* Transponer */
 let tmode='maj';const tf=$('#tf'),tt=$('#tt'),tin=$('#tin');
