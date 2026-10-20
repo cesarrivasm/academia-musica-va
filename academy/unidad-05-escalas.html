@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Academia de Música · Ministerio de Alabanza, Iglesia Vida Abundante. Unidad 05: Escalas.">
+<title>Unidad 05 · Escalas · Academia de Música</title>
+<link rel="icon" href="logo.png">
+<meta property="og:title" content="Unidad 05 · Escalas">
+<meta property="og:description" content="Intervalos y las escalas mayores y menores.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="unidad.css">
+</head>
+<body>
+<a class="skip" href="#intervalos">Saltar al contenido</a>
+<header class="top">
+  <div class="wrap">
+    <div class="toprow"><div class="brand">
+      <img alt="" src="logo.png">
+      <div><b>Academia de Música</b><span>Ministerio de Alabanza · Iglesia Vida Abundante</span></div>
+    </div>
+    <div class="menu"><button type="button" class="kebab" id="menuBtn" aria-expanded="false" aria-controls="menuList" aria-label="Menú de unidades" title="Unidades del curso"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg></button><div class="menu-list" id="menuList" hidden></div></div></div>
+    <div class="hero">
+      <nav class="crumbs" aria-label="Ruta de navegación"><ol id="crumbs"></ol></nav>
+      <h1>Escalas</h1>
+      <p>Cómo medir la distancia entre notas con intervalos y cómo construir cualquier escala mayor o menor con su fórmula.</p>
+    </div>
+  </div>
+</header>
+
+<div class="wrap page">
+  <nav class="toc" aria-label="En esta unidad">
+    <button type="button" class="toc-toggle" id="tocToggle" aria-expanded="false" aria-label="Mostrar los títulos de los temas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.6 6L15 12l-6.4 6-1.4-1.4 5-4.6-5-4.6z"/></svg><span class="t">Temas</span></button>
+    <a href="#intervalos" aria-label="5.1 Intervalos (Intermedio)" title="Intervalos · Intermedio"><span class="n">5.1</span><span class="t">Intervalos</span></a>
+    <a href="#mayores" aria-label="5.2 Escalas mayores (Intermedio)" title="Escalas mayores · Intermedio"><span class="n">5.2</span><span class="t">Escalas mayores</span></a>
+    <a href="#menores" aria-label="5.3 Escalas menores (Intermedio)" title="Escalas menores · Intermedio"><span class="n">5.3</span><span class="t">Escalas menores</span></a>
+    <a href="#laboratorio" aria-label="5.4 Laboratorio de escalas (Intermedio)" title="Laboratorio de escalas · Intermedio"><span class="n">5.4</span><span class="t">Laboratorio de escalas</span></a>
+    <a href="#practica" aria-label="5.5 Práctica (Avanzado)" title="Práctica · Avanzado"><span class="n">5.5</span><span class="t">Práctica</span></a>
+  </nav>
+
+  <main>
+    <section id="intervalos">
+      <div class="sec-head"><span class="k">5.1</span><h2>Intervalos</h2><span class="lvl lvl-2">Intermedio</span></div>
+      <div class="prose">
+        <p>Un <strong>intervalo</strong> es la distancia entre dos sonidos. Para nombrarlo se dice primero el <strong>número</strong>, que sale de contar las notas entre una y otra (incluyendo ambas), y luego la <strong>clasificación</strong>, que sale de sumar tonos y semitonos.</p>
+        <p>Ejemplos: entre C y E hay tres notas (C – D – E): es una <strong>tercera</strong>. Entre E y A hay cuatro (E – F – G – A): es una <strong>cuarta</strong>.</p>
+      </div>
+      <div class="tblwrap"><table class="tbl" id="ivTbl"><thead><tr><th>Intervalo</th><th>Distancia</th><th>Semitonos</th></tr></thead><tbody></tbody></table></div>
+      <div class="prose"><p>Pruébalo: elige una nota y un intervalo, y mira a dónde llegas.</p></div>
+      <div class="panel">
+        <div class="pbar">
+          <div class="field"><label class="lbl" for="ir">Nota de partida</label><span class="select"><select id="ir"></select><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8l7 8 7-8z"/></svg></span></div>
+          <div class="field grow"><label class="lbl" for="ii">Intervalo</label><span class="select"><select id="ii"></select><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8l7 8 7-8z"/></svg></span></div>
+          <button type="button" class="ibtn solid" id="iplay" aria-label="Escuchar el intervalo"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg></button>
+        </div>
+        <div class="pin"><div class="big" id="iout" aria-live="polite"></div><p id="itxt"></p><div class="kbd-box" id="ikb"></div></div>
+      </div>
+    </section>
+
+    <section id="mayores">
+      <div class="sec-head"><span class="k">5.2</span><h2>Escalas mayores</h2><span class="lvl lvl-2">Intermedio</span></div>
+      <div class="prose">
+        <p>Una <strong>escala</strong> es un grupo de notas ordenadas por altura. La mayoría usa siete notas más la repetición de la primera, que es la <strong>octava</strong>. Cada tipo de escala tiene un patrón propio de tonos y semitonos.</p>
+        <p>Para la escala <strong>mayor</strong> el patrón es:</p>
+      </div>
+      <div class="note"><span class="mono">R – T – T – ½T – T – T – T – ½T</span> &nbsp;·&nbsp; R = raíz · T = 1 tono · ½T = semitono. Es decir, los semitonos caen entre los grados 3–4 y 7–8.</div>
+      <div class="prose"><p>Aplicado a tres raíces:</p></div>
+      <div class="cards" id="exMaj" data-carousel="Escalas mayores de ejemplo"></div>
+    </section>
+
+    <section id="menores">
+      <div class="sec-head"><span class="k">5.3</span><h2>Escalas menores</h2><span class="lvl lvl-2">Intermedio</span></div>
+      <div class="prose"><p>Para la escala <strong>menor natural</strong> el patrón es distinto:</p></div>
+      <div class="note"><span class="mono">R – T – ½T – T – T – ½T – T – T</span> &nbsp;·&nbsp; Los semitonos caen entre los grados 2–3 y 5–6.</div>
+      <div class="prose"><p>Aplicado a las mismas raíces:</p></div>
+      <div class="cards" id="exMin" data-carousel="Escalas menores de ejemplo"></div>
+      <div class="note">Las notas pueden tener dos nombres (por ejemplo D♯ = E♭). La regla es no repetir letras: en cada escala aparece cada letra una sola vez, y por eso a veces se escribe <b>E♭ – F – G – A♭</b> en lugar de <b>D♯ – F – G – G♯</b>.</div>
+    </section>
+
+    <section id="laboratorio">
+      <div class="sec-head"><span class="k">5.4</span><h2>Laboratorio de escalas</h2><span class="lvl lvl-2">Intermedio</span></div>
+      <p class="prose">Elige la raíz y el tipo. Verás las notas, los tonos que las separan y las teclas del piano.</p>
+      <div class="lab" id="lab">
+        <div class="a-controls">
+          <div class="field"><label class="lbl" for="sr">Raíz</label><span class="select"><select id="sr"></select><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8l7 8 7-8z"/></svg></span></div>
+          <div class="field"><span class="lbl">Escala</span><div class="seg" id="sty" role="group" aria-label="Tipo de escala"><button type="button" data-t="maj" aria-pressed="true">Mayor</button><button type="button" data-t="min" aria-pressed="false">Menor</button></div></div>
+          <button type="button" class="ibtn solid" id="splay" aria-label="Escuchar la escala"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg></button>
+        </div>
+        <div class="a-readout"><div class="sym" id="ssym" aria-live="polite">C</div><div class="scale-box" id="sstrip"></div></div>
+        <div class="a-viz"><div class="kbd-box" id="skb"></div></div>
+        <div class="a-explain" id="sexp"></div>
+      </div>
+    </section>
+
+    <section id="practica">
+      <div class="sec-head"><span class="k">5.5</span><h2>Práctica</h2><span class="lvl lvl-3">Avanzado</span></div>
+      <p class="prose">Primero arma escalas en el piano; después identifica intervalos y notas.</p>
+      <div id="kq"></div>
+      <div id="mq"></div>
+    </section>
+  </main>
+</div>
+
+<nav class="pager" aria-label="Navegación del curso"><div class="wrap" id="pager"></div></nav>
+
+<footer>
+  <div class="wrap">
+    <span>Material de la Academia de Música · Ministerio de Alabanza, Iglesia Vida Abundante</span>
+    <span>Unidad 05 · Escalas</span>
+  </div>
+</footer>
+
+<script src="curso.js"></script>
+<script src="unidad.js"></script>
+<script>
+(function(){
+const {$,svgEl,keyboard,actx,note,playSet,stopAll,out,mcq,keyQuiz,shuffle,pick,rnd,R12S,store,metro,ICON_SPK}=U;
+
+const {scale,nm,LPC,parseNote,pretty}=U;
+const sp=pretty;
+const IV=[['segunda menor',2,1],['segunda mayor',2,2],['tercera menor',3,3],['tercera mayor',3,4],['cuarta justa',4,5],['cuarta aumentada',4,6],['quinta disminuida',5,6],['quinta justa',5,7],['quinta aumentada',5,8],['sexta menor',6,8],['sexta mayor',6,9],['séptima menor',7,10],['séptima mayor',7,11],['octava justa',8,12]];
+const dist=s=>s%2===0?`${s/2} ${s/2===1?'tono':'tonos'}`:s===1?'½ tono':`${(s-1)/2} ${(s-1)/2===1?'tono':'tonos'} y ½`;
+function target(root,n,semis){const p=parseNote(root),rpc=((LPC[p.l]+p.a)%12+12)%12,L=(p.l+n-1)%7,tgt=(rpc+semis)%12;let d=((tgt-LPC[L])%12+12)%12;if(d>6)d-=12;return{name:nm(L,d),pc:tgt,abs:rpc+semis,rootAbs:rpc}}
+{const tb=$('#ivTbl tbody');IV.forEach(([n,,s])=>{const tr=document.createElement('tr');tr.innerHTML=`<td><b>${n}</b></td><td>${dist(s)}</td><td class="m">${s}</td>`;tb.appendChild(tr)})}
+const ROOTS=['C','C#','Db','D','D#','Eb','E','F','F#','Gb','G','G#','Ab','A','A#','Bb','B'];
+[$('#ir'),$('#sr')].forEach(sel=>ROOTS.forEach(r=>{const o=document.createElement('option');o.value=r;o.textContent=sp(r);sel.appendChild(o)}));
+IV.forEach(([n],i)=>{const o=document.createElement('option');o.value=i;o.textContent=n;$('#ii').appendChild(o)});$('#ii').value=3;
+function drawIv(){const r=$('#ir').value,[n,num,s]=IV[+$('#ii').value],t=target(r,num,s);
+  $('#iout').textContent=`${sp(r)} → ${sp(t.name)}`;$('#itxt').textContent=`Una ${n} desde ${sp(r)} es ${sp(t.name)}: ${s} ${s===1?'semitono':'semitonos'} (${dist(s)}) y ${num} notas contando ambas.`;
+  const m=new Map([[t.rootAbs,{label:sp(r),root:true}],[t.rootAbs+s,{label:sp(t.name),root:false}]]);const svg=keyboard({octaves:2,marks:m,W:34,H:120});svg.setAttribute('aria-label',`Teclado con ${sp(r)} y ${sp(t.name)}`);$('#ikb').innerHTML='';$('#ikb').appendChild(svg)}
+$('#ir').onchange=$('#ii').onchange=drawIv;
+$('#iplay').onclick=()=>{const r=$('#ir').value,[n,num,s]=IV[+$('#ii').value],t=target(r,num,s),c=actx();if(!c)return;stopAll();const T=c.currentTime+.03;note(t.rootAbs+12,T,.9,.3);note(t.rootAbs+12+s,T+.6,1.2,.3)};drawIv();
+/* Escalas */
+function stripHtml(l,a,minor){const sc=scale(l,a,minor),notes=sc.concat([{...sc[0],name:sc[0].name,abs:sc[0].abs+12}]),steps=minor?['T','½','T','T','½','T','T']:['T','T','½','T','T','T','½'];
+  return `<div class="scale-box"><div class="scale">${notes.map((n,i)=>`<div class="${i===0||i===7?'hit':''}"><div class="n">${sp(n.name)}</div><div class="d">${i===0?'R':i===7?'8.ª':i+1}</div></div>`).join('')}</div><div class="steps">${steps.map(s=>`<span>${s}</span>`).join('')}<span></span></div></div>`}
+function examples(sel,minor){[['C'],['F'],['Eb']].forEach(([r])=>{const p=parseNote(r),d=document.createElement('div');d.className='card';d.innerHTML=`<h3>Escala de ${sp(r)} ${minor?'menor':'mayor'}</h3>${stripHtml(p.l,p.a,minor)}`;$(sel).appendChild(d)})}
+examples('#exMaj',false);examples('#exMin',true);
+let sroot='C',smin=false;
+function drawLab(){const p=parseNote(sroot),sc=scale(p.l,p.a,smin),dbl=sc.some(n=>Math.abs(n.a)===2);
+  $('#ssym').textContent=sp(sroot)+(smin?' menor':' mayor');$('#ssym').style.fontSize='';$('#sstrip').outerHTML=`<div id="sstrip">${stripHtml(p.l,p.a,smin)}</div>`;
+  const ac=sc.reduce((x,n)=>x+n.a,0),cnt=sc.filter(n=>n.a!==0).length;
+  const key=cnt===0?'Sin sostenidos ni bemoles.':`${cnt} ${cnt===1?'nota alterada':'notas alteradas'}: ${sc.filter(n=>n.a!==0).map(n=>sp(n.name)).join(', ')}.`;
+  $('#sexp').innerHTML=`<div class="ex-name"><h3>Escala ${smin?'menor':'mayor'}</h3><span>${smin?'R T ½ T T ½ T T':'R T T ½ T T T ½'}</span></div><p>${key}</p>${dbl?'<p class="note">Esta raíz lleva dobles alteraciones. En la práctica se usa su nombre equivalente, que es más sencillo de leer.</p>':''}`;
+  const m=new Map();sc.forEach((n,i)=>m.set(n.abs,{label:sp(n.name),deg:String(i+1),root:i===0}));m.set(sc[0].abs+12,{label:sp(sc[0].name),deg:'8',root:true});
+  const svg=keyboard({octaves:2,marks:m,W:34,H:130});svg.setAttribute('aria-label',`Teclado con la escala de ${sp(sroot)} ${smin?'menor':'mayor'}: ${sc.map(n=>sp(n.name)).join(', ')}`);$('#skb').innerHTML='';$('#skb').appendChild(svg)}
+$('#sr').onchange=()=>{sroot=$('#sr').value;drawLab()};
+document.querySelectorAll('#sty button').forEach(b=>b.onclick=()=>{smin=b.dataset.t==='min';document.querySelectorAll('#sty button').forEach(x=>x.setAttribute('aria-pressed',x===b));drawLab()});
+$('#splay').onclick=()=>{const p=parseNote(sroot),sc=scale(p.l,p.a,smin),c=actx();if(!c)return;stopAll();const T=c.currentTime+.03;sc.concat([{abs:sc[0].abs+12}]).forEach((n,i)=>note(n.abs+12,T+i*.33,.7,.3))};drawLab();
+/* Práctica */
+const MAJR=['C','D','E','F','G','A','B','Bb','Eb','Ab','Db','F#'],MINR=['A','E','B','F#','C#','G#','D','G','C','F','Bb','Eb'];
+keyQuiz({root:'#kq',id:'av-u5-teclas',title:'Arma la escala en el piano',total:5,make:n=>pick(MAJR.map(r=>[r,false]).concat(MINR.map(r=>[r,true])),n).map(([r,mi])=>{const p=parseNote(r),sc=scale(p.l,p.a,mi);return{q:`Marca las 7 notas de la escala de <b>${sp(r)} ${mi?'menor':'mayor'}</b>`,targets:sc.map(x=>x.pc),need:7,why:`${sp(r)} ${mi?'menor':'mayor'}: ${sc.map(x=>sp(x.name)).join(' – ')}.`,play:sc.map(x=>x.abs+12)}})});
+const IVN=IV.filter(i=>i[2]!==12);
+const ivQ=()=>{const r=['C','D','E','F','G','A','B'][rnd(0,6)],i=IVN[rnd(0,IVN.length-1)],t=target(r,i[1],i[2]);const same=IVN.filter(x=>x[1]===i[1]&&x!==i).map(x=>x[0]);const others=pick(IVN.filter(x=>x[1]!==i[1]).map(x=>x[0]),3);const opts=pick(same.concat(others),3).concat(i[0]);
+  return{q:`¿Qué intervalo hay entre <b>${sp(r)}</b> y <b>${sp(t.name)}</b>?`,opts,ans:3,why:`${i[1]} notas contando ambas y ${i[2]} semitonos (${dist(i[2])}): ${i[0]}.`}};
+const degQ=()=>{const mi=Math.random()<.5,r=(mi?MINR:MAJR)[rnd(0,11)],p=parseNote(r),sc=scale(p.l,p.a,mi),k=rnd(1,6);const c=sc[k].name,others=pick(sc.filter((_,i)=>i!==k).map(x=>x.name),3);return{q:`¿Qué nota es el grado <b>${k+1}</b> de la escala de <b>${sp(r)} ${mi?'menor':'mayor'}</b>?`,opts:others.map(sp).concat(sp(c)),ans:3,why:`${sp(r)} ${mi?'menor':'mayor'}: ${sc.map(x=>sp(x.name)).join(' – ')}.`}};
+const FQ=[['¿Cuál es la fórmula de la escala mayor?',['R T T ½ T T T ½','R T ½ T T ½ T T','R ½ T T T ½ T T','R T T T ½ T T ½'],'Los semitonos caen entre los grados 3–4 y 7–8.'],['¿Cuál es la fórmula de la escala menor natural?',['R T ½ T T ½ T T','R T T ½ T T T ½','R ½ ½ T T T T T','R T T ½ T ½ T T'],'Los semitonos caen entre los grados 2–3 y 5–6.'],['¿Cuántos semitonos tiene una tercera mayor?',['4 (2 tonos)','3 (1 tono y ½)','5 (2 tonos y ½)','2 (1 tono)'],'Tercera menor = 3; tercera mayor = 4.'],['¿Cuántos semitonos tiene una quinta justa?',['7 (3 tonos y ½)','6 (3 tonos)','8 (4 tonos)','5 (2 tonos y ½)'],'La quinta justa tiene 7 semitonos.'],['¿Cuántas notas distintas tiene una escala de siete notas (sin contar la octava)?',['7','8','5','12'],'Siete notas, más la octava, que repite la primera.']].map(([q,o,w])=>({q,opts:o,ans:0,why:w}));
+mcq({root:'#mq',id:'av-u5',total:8,title:'Intervalos y escalas',make:n=>{const q=[];for(let i=0;i<n;i++){const k=i%4;q.push(k===0||k===1?ivQ():k===2?degQ():pick(FQ,1)[0])}return shuffle(q)}});
+
+document.querySelectorAll('[data-carousel]').forEach(e=>U.carousel(e,e.dataset.carousel));
+U.course(5);
+})();
+</script>
+</body>
+</html>

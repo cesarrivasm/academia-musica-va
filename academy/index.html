@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Academia de Música · Ministerio de Alabanza, Iglesia Vida Abundante. Índice del curso.">
+<title>Índice del curso · Academia de Música</title>
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+:root{
+  --bg:#ffffff; --tint:#f6f7fc; --ink:#161a33; --muted:#5a5f7d; --line:#e3e5ef; --line-strong:#cfd3e3;
+  --navy:#24427a; --navy-hover:#1c3563; --on-navy:#ffffff; --violet:#7a5599; --violet-soft:#f2ebf8; --ok:#1d7f55;
+  --f-display:"Bricolage Grotesque","Avenir Next","Segoe UI",sans-serif;
+  --f-body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+  --r-sm:8px; color-scheme:light;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2{font-family:var(--f-display);text-wrap:balance;line-height:1.1;margin:0}
+p{margin:0}
+a:focus-visible,button:focus-visible{outline:3px solid var(--violet);outline-offset:2px;border-radius:6px}
+.wrap{max-width:900px;margin:0 auto;padding-inline:max(20px,env(safe-area-inset-left,0px)) max(20px,env(safe-area-inset-right,0px))}
+.skip{position:absolute;left:-9999px;top:8px;z-index:20;background:var(--bg);color:var(--navy);padding:10px 16px;border-radius:var(--r-sm);font-weight:700}
+.skip:focus{left:12px}
+.top{background:var(--navy);color:var(--on-navy)}
+.top .wrap{padding-block:24px 48px;display:grid;gap:36px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{width:44px;height:auto;background:#fff;border-radius:10px;padding:4px}
+.brand b{display:block;font-family:var(--f-display);font-size:16px;color:#fff}
+.brand span{font-size:14px;color:#c9d4ec}
+.top h1{font-size:clamp(40px,7vw,64px);font-weight:800;letter-spacing:-.03em;line-height:1;color:#fff}
+.top p{color:#d6def0;max-width:56ch;font-size:clamp(17px,2vw,19px);margin-top:16px}
+main{padding-block:40px 64px;display:grid;gap:32px}
+.summary{display:flex;flex-wrap:wrap;gap:16px 24px;align-items:center;justify-content:space-between}
+.progress{display:grid;gap:6px;min-width:220px;flex:1 1 260px;max-width:360px;font-size:15px;color:var(--muted)}
+.bar{height:8px;background:var(--tint);border-radius:99px;overflow:hidden;border:1px solid var(--line)}
+.bar i{display:block;height:100%;background:var(--violet);border-radius:99px;transition:width .3s}
+.btn{display:inline-flex;align-items:center;border:1px solid var(--navy);background:var(--navy);color:var(--on-navy);border-radius:999px;padding:8px 22px;min-height:44px;font-weight:700;font-size:16px;text-decoration:none;cursor:pointer;font-family:inherit}
+.btn:hover{background:var(--navy-hover)}
+.units{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.units li{border-bottom:1px solid var(--line)}
+.unit{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:16px;align-items:center;padding:20px 4px;color:inherit;text-decoration:none}
+a.unit:hover{background:var(--tint)}
+.num{font-family:var(--f-display);font-weight:800;font-size:40px;line-height:1;color:var(--violet);letter-spacing:-.02em}
+.unit.soon .num{color:var(--muted)}
+.name{font-family:var(--f-display);font-weight:700;font-size:clamp(20px,3vw,26px);color:var(--navy);line-height:1.2}
+.unit.soon .name{color:var(--muted)}
+.state{font-size:15px;color:var(--muted);text-align:right;white-space:nowrap}
+.state.done{color:var(--ok);font-weight:700}
+@media (max-width:520px){.unit{grid-template-columns:48px minmax(0,1fr);}.num{font-size:32px}.state{grid-column:2;text-align:left}}
+.reset{background:none;border:0;color:var(--muted);font:inherit;font-size:15px;text-decoration:underline;cursor:pointer;min-height:44px;padding:0}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:15px}
+footer .wrap{padding-block:24px 36px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#unidades">Saltar a las unidades</a>
+<header class="top">
+  <div class="wrap">
+    <div class="brand"><img alt="Logo Ministerio de Alabanza" src="logo.png"><div><b>Academia de Música</b><span>Ministerio de Alabanza · Iglesia Vida Abundante</span></div></div>
+    <div>
+      <h1>Índice del curso</h1>
+      <p>Siete unidades, una a la vez. Avanza a tu ritmo: tu progreso se guarda en este dispositivo.</p>
+    </div>
+  </div>
+</header>
+<main class="wrap" id="unidades">
+  <div class="summary">
+    <div class="progress"><span id="count"></span><div class="bar"><i id="barFill" style="width:0"></i></div></div>
+    <a class="btn" id="resume" href="#" hidden></a>
+  </div>
+  <ol class="units" id="units"></ol>
+  <div><button type="button" class="reset" id="reset" hidden>Borrar mi progreso</button></div>
+</main>
+<footer><div class="wrap">Material de la Academia de Música · Ministerio de Alabanza, Iglesia Vida Abundante</div></footer>
+<script src="curso.js"></script>
+<script>
+(function(){
+const C=window.CURSO,$=s=>document.querySelector(s);
+function render(){
+  const done=C.done();
+  $('#units').innerHTML=C.units.map(u=>{
+    const d=done.includes(u.n),num=String(u.n).padStart(2,'0');
+    const inner=`<span class="num" aria-hidden="true">${num}</span><span class="name">Unidad ${num} · ${u.title}</span><span class="state${d?' done':''}">${d?'✓ Terminada':u.ready?'Disponible':'Próximamente'}</span>`;
+    return `<li>${u.ready?`<a class="unit" href="${u.file}">${inner}</a>`:`<div class="unit soon">${inner}</div>`}</li>`}).join('');
+  const n=done.filter(x=>C.unit(x)).length;
+  $('#count').textContent=`${n} de ${C.units.length} unidades terminadas`;
+  $('#barFill').style.width=Math.round(n/C.units.length*100)+'%';
+  const next=C.units.find(u=>u.ready&&!done.includes(u.n)),r=$('#resume');
+  if(next){r.hidden=false;r.href=next.file;r.textContent=(n?'Continuar con la ':'Empezar la ')+'Unidad '+String(next.n).padStart(2,'0')}else r.hidden=true;
+  $('#reset').hidden=!n;
+}
+$('#reset').onclick=()=>{if(confirm('¿Borrar las unidades marcadas como terminadas en este dispositivo?')){C.reset();render()}};
+render();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Academia de Música · Ministerio de Alabanza, Iglesia Vida Abundante. Unidad 03: Rítmica y métrica.">
+<title>Unidad 03 · Rítmica y métrica · Academia de Música</title>
+<link rel="icon" href="logo.png">
+<meta property="og:title" content="Unidad 03 · Rítmica y métrica">
+<meta property="og:description" content="El pentagrama, las figuras, las claves, el compás y la ligadura.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="unidad.css">
+</head>
+<body>
+<a class="skip" href="#pentagrama">Saltar al contenido</a>
+<header class="top">
+  <div class="wrap">
+    <div class="toprow"><div class="brand">
+      <img alt="" src="logo.png">
+      <div><b>Academia de Música</b><span>Ministerio de Alabanza · Iglesia Vida Abundante</span></div>
+    </div>
+    <div class="menu"><button type="button" class="kebab" id="menuBtn" aria-expanded="false" aria-controls="menuList" aria-label="Menú de unidades" title="Unidades del curso"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg></button><div class="menu-list" id="menuList" hidden></div></div></div>
+    <div class="hero">
+      <nav class="crumbs" aria-label="Ruta de navegación"><ol id="crumbs"></ol></nav>
+      <h1>Rítmica y métrica</h1>
+      <p>Cómo se escribe la música: el pentagrama, las figuras que dan duración a las notas, las claves, el compás y la ligadura.</p>
+    </div>
+  </div>
+</header>
+
+<div class="wrap page">
+  <nav class="toc" aria-label="En esta unidad">
+    <button type="button" class="toc-toggle" id="tocToggle" aria-expanded="false" aria-label="Mostrar los títulos de los temas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.6 6L15 12l-6.4 6-1.4-1.4 5-4.6-5-4.6z"/></svg><span class="t">Temas</span></button>
+    <a href="#pentagrama" aria-label="3.1 El pentagrama (Básico)" title="El pentagrama · Básico"><span class="n">3.1</span><span class="t">El pentagrama</span></a>
+    <a href="#figuras" aria-label="3.2 Figuras rítmicas (Básico)" title="Figuras rítmicas · Básico"><span class="n">3.2</span><span class="t">Figuras rítmicas</span></a>
+    <a href="#claves" aria-label="3.3 Las claves (Intermedio)" title="Las claves · Intermedio"><span class="n">3.3</span><span class="t">Las claves</span></a>
+    <a href="#compas" aria-label="3.4 El compás (Intermedio)" title="El compás · Intermedio"><span class="n">3.4</span><span class="t">El compás</span></a>
+    <a href="#ligadura" aria-label="3.5 La ligadura (Intermedio)" title="La ligadura · Intermedio"><span class="n">3.5</span><span class="t">La ligadura</span></a>
+    <a href="#practica" aria-label="3.6 Práctica (Intermedio)" title="Práctica · Intermedio"><span class="n">3.6</span><span class="t">Práctica</span></a>
+  </nav>
+
+  <main>
+    <section id="pentagrama">
+      <div class="sec-head"><span class="k">3.1</span><h2>El pentagrama</h2><span class="lvl lvl-1">Básico</span></div>
+      <div class="prose">
+        <p>El <strong>pentagrama</strong> son 5 líneas (penta) y 4 espacios que sirven para escribir (grama) las notas y los signos musicales. Las líneas y los espacios se cuentan de abajo hacia arriba.</p>
+        <p>Las notas agudas se escriben hacia arriba y las graves hacia abajo. Entre líneas y espacios solo caben 9 notas; para más usamos <strong>líneas adicionales</strong>, hasta un máximo de 3 arriba o abajo.</p>
+      </div>
+      <div class="cards">
+        <div class="card"><h3>Líneas y espacios</h3><div id="stA"></div></div>
+        <div class="card"><h3>Líneas adicionales</h3><div id="stB"></div><p class="cap">Las notas que se salen del pentagrama llevan una rayita extra, como una línea más.</p></div>
+      </div>
+    </section>
+
+    <section id="figuras">
+      <div class="sec-head"><span class="k">3.2</span><h2>Figuras rítmicas</h2><span class="lvl lvl-1">Básico</span></div>
+      <div class="prose">
+        <p>Con el pentagrama damos altura a las notas (hacia arriba o abajo); con las <strong>figuras rítmicas</strong> les damos <strong>duración</strong> (en horizontal). Su valor se mide en pulsos: cuatro negras forman una redonda, la figura más larga que usamos aquí.</p>
+      </div>
+      <div class="figs" id="figs"></div>
+      <div class="note"><b>Cada figura vale la mitad de la anterior:</b> 1 redonda = 2 blancas = 4 negras = 8 corcheas = 16 semicorcheas.</div>
+    </section>
+
+    <section id="claves">
+      <div class="sec-head"><span class="k">3.3</span><h2>Las claves</h2><span class="lvl lvl-2">Intermedio</span></div>
+      <div class="prose"><p>Las <strong>claves</strong> definen qué nota es cada línea del pentagrama. Existen tres: de Sol, de Fa y de Do. Cada una marca una línea de referencia; a partir de ella se leen todas las demás.</p></div>
+      <div class="cards" id="clefs" data-carousel="Las tres claves"></div>
+      <div class="note">La más usada en alabanza es la <b>clave de Sol</b> (voces, melodías, mano derecha del piano y guitarra). La <b>clave de Fa</b> escribe los sonidos graves: mano izquierda del piano y bajo.</div>
+    </section>
+
+    <section id="compas">
+      <div class="sec-head"><span class="k">3.4</span><h2>El compás</h2><span class="lvl lvl-2">Intermedio</span></div>
+      <div class="prose">
+        <p>El <strong>compás</strong> son dos números, uno encima del otro, al inicio del pentagrama. Indican dónde acentuar la música. El número de arriba dice <strong>cuántos pulsos</strong> hay en cada compás; el de abajo, <strong>qué figura vale un pulso</strong> (el 4 significa negra).</p>
+        <p>Cada compás se separa del siguiente con una <strong>barra de compás</strong> (una línea vertical). La <strong>doble barra</strong> son dos líneas juntas: avisa que algo va a cambiar en lo que sigue.</p>
+      </div>
+      <div class="panel">
+        <div class="pbar">
+          <div class="field"><span class="lbl">Compás</span><div class="seg" id="msSeg" role="group" aria-label="Compás"><button type="button" data-n="2" aria-pressed="false">2/4</button><button type="button" data-n="3" aria-pressed="false">3/4</button><button type="button" data-n="4" aria-pressed="true">4/4</button></div></div>
+          <div class="field grow"><label class="lbl" for="mbpm">Tempo: <span id="mbpmOut">80</span></label><input class="range" type="range" id="mbpm" min="50" max="140" value="80"></div>
+          <button type="button" class="ibtn solid" id="mgo" data-toggle aria-pressed="false" aria-label="Escuchar el compás" title="Escuchar el compás"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg></button>
+        </div>
+        <div class="pin"><div id="mstaff" class="qvis" style="max-width:560px"></div><p class="cap" id="mcap"></p></div>
+      </div>
+      <div class="cards" data-carousel="Compases más comunes">
+        <div class="card"><h3>2/4</h3><p>Dos pulsos por compás. Marcha: <span class="mono">1 2 · 1 2</span>.</p></div>
+        <div class="card"><h3>3/4</h3><p>Tres pulsos, con gran acento en el primero: el vals, <span class="mono">1 2 3 · 1 2 3</span>.</p></div>
+        <div class="card"><h3>4/4</h3><p>Cuatro pulsos. Es el compás de un bolero, la salsa y la mayoría de las canciones de alabanza.</p></div>
+      </div>
+    </section>
+
+    <section id="ligadura">
+      <div class="sec-head"><span class="k">3.5</span><h2>La ligadura</h2><span class="lvl lvl-2">Intermedio</span></div>
+      <div class="prose">
+        <p>La <strong>ligadura de valor</strong> es una línea curva que une dos o más notas <strong>de la misma altura</strong> (en el mismo lugar del pentagrama). Solo se toca la primera nota y se le suma el valor de las demás. Sirve para que un sonido dure 5, 6, 7 o más tiempos, incluso pasando de un compás a otro.</p>
+        <p>Elige dos figuras y mira cuánto dura el sonido:</p>
+      </div>
+      <div class="panel">
+        <div class="pbar">
+          <div class="field"><label class="lbl" for="fa">Primera nota</label><span class="select"><select id="fa"></select><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8l7 8 7-8z"/></svg></span></div>
+          <div class="field"><label class="lbl" for="fb">Segunda nota (ligada)</label><span class="select"><select id="fb"></select><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8l7 8 7-8z"/></svg></span></div>
+          <button type="button" class="ibtn solid" id="tgo" aria-label="Escuchar la ligadura" title="Escuchar la ligadura"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg></button>
+        </div>
+        <div class="pin"><div id="tie" class="qvis" style="max-width:420px"></div><div class="big" id="tsum" aria-live="polite"></div><p class="cap" id="tcap"></p></div>
+      </div>
+    </section>
+
+    <section id="practica">
+      <div class="sec-head"><span class="k">3.6</span><h2>Práctica</h2><span class="lvl lvl-2">Intermedio</span></div>
+      <p class="prose">Lee notas en clave de Sol, recuerda el valor de las figuras y completa compases.</p>
+      <div id="quiz"></div>
+    </section>
+  </main>
+</div>
+
+<nav class="pager" aria-label="Navegación del curso"><div class="wrap" id="pager"></div></nav>
+
+<footer>
+  <div class="wrap">
+    <span>Material de la Academia de Música · Ministerio de Alabanza, Iglesia Vida Abundante</span>
+    <span>Unidad 03 · Rítmica y métrica</span>
+  </div>
+</footer>
+
+<script src="curso.js"></script>
+<script src="unidad.js"></script>
+<script>
+(function(){
+const {$,svgEl,keyboard,actx,note,playSet,stopAll,out,mcq,keyQuiz,shuffle,pick,rnd,R12S,store,metro,ICON_SPK}=U;
+
+const NS=['E','F','G','A','B','C','D'];
+const ESN={C:'Do',D:'Re',E:'Mi',F:'Fa',G:'Sol',A:'La',B:'Si'};
+const yOf=s=>60-s*5;
+const INK='var(--ink)',VIO='var(--violet)';
+function staffSvg(w,h,label){const s=svgEl('svg',{viewBox:`0 0 ${w} ${h}`,role:'img','aria-label':label||'Pentagrama'});for(let i=0;i<5;i++)s.appendChild(svgEl('line',{x1:4,y1:20+i*10,x2:w-4,y2:20+i*10,stroke:INK,'stroke-width':1.2}));return s}
+function ledger(s,x,step){const L=(y)=>s.appendChild(svgEl('line',{x1:x-12,y1:y,x2:x+12,y2:y,stroke:INK,'stroke-width':1.2}));for(let k=-2;k>=step;k-=2)L(yOf(k));for(let k=10;k<=step;k+=2)L(yOf(k))}
+function figAt(s,x,y,kind,color){const c=color||INK,filled=kind!=='whole'&&kind!=='half';
+  const e=svgEl('ellipse',{cx:x,cy:y,rx:kind==='whole'?8.5:7.5,ry:5.4,transform:`rotate(-18 ${x} ${y})`,fill:filled?c:'var(--bg)',stroke:c,'stroke-width':kind==='whole'?2:1.8});s.appendChild(e);
+  if(kind==='whole'){s.appendChild(svgEl('ellipse',{cx:x,cy:y,rx:3,ry:5.5,transform:`rotate(-60 ${x} ${y})`,fill:c,stroke:'none'}));return}
+  const sx=x+6.8;s.appendChild(svgEl('line',{x1:sx,y1:y-1,x2:sx,y2:y-33,stroke:c,'stroke-width':1.8}));
+  const nf=kind==='eighth'?1:kind==='sixteenth'?2:0;for(let f=0;f<nf;f++)s.appendChild(svgEl('path',{d:`M${sx} ${y-33+f*8} c 1 8 12 9 10 20`,fill:'none',stroke:c,'stroke-width':2.2,'stroke-linecap':'round'}));return e}
+const FIGS=[['whole','Redonda',4,'4'],['half','Blanca',2,'2'],['quarter','Negra',1,'1'],['eighth','Corchea',.5,'½'],['sixteenth','Semicorchea',.25,'¼']];
+const figIcon=(k,w=46)=>{const s=svgEl('svg',{viewBox:'0 0 44 70',role:'img','aria-label':FIGS.find(f=>f[0]===k)[1]});s.style.width=w+'px';s.style.height='auto';figAt(s,18,52,k);return s};
+/* 3.1 */
+{const s=staffSvg(300,80,'Pentagrama: cinco notas sobre las líneas y cuatro en los espacios');
+  for(let k=0;k<=8;k++)figAt(s,40+k*27,yOf(k),'quarter',k%2?'var(--navy)':VIO);
+  $('#stA').appendChild(s);$('#stA').insertAdjacentHTML('beforeend','<p class="cap">En violeta, las 5 notas sobre las <b>líneas</b> (1 a 5, de abajo hacia arriba). En azul, las 4 de los <b>espacios</b>.</p>');
+  const b=staffSvg(300,100,'Notas con líneas adicionales arriba y abajo');b.setAttribute('viewBox','0 -10 300 100');[[70,-2],[130,-4],[190,10],[250,12]].forEach(([x,st])=>{ledger(b,x,st);figAt(b,x,yOf(st),'quarter',VIO)});$('#stB').appendChild(b)}
+/* 3.2 */
+{const fg=$('#figs');fg.innerHTML='<div class="grid4 ruler" aria-hidden="true"><span>Pulso 1</span><span>2</span><span>3</span><span>4</span></div>';
+  FIGS.forEach(([k,n,v,t])=>{const cnt=4/v,it=document.createElement('div');it.className='fig';
+    it.innerHTML=`<div class="fig-h"><span class="fig-ic"></span><div class="fig-t"><div><b>${n}</b><span class="pill">${t} ${v>1?'pulsos':'pulso'}</span></div><span class="cap">En 4 pulsos caben <b>${cnt}</b></span></div><button type="button" class="ibtn solid" data-fig="${k}" aria-label="Escuchar ${n}" title="Escuchar ${n}">${ICON_SPK}</button></div><div class="grid4 g" role="img" aria-label="${cnt} ${cnt===1?'figura cabe':'figuras caben'} en la cuadrícula de 4 pulsos"><div class="bk">${Array(cnt).fill(`<i style="flex:0 0 ${100/cnt}%"></i>`).join('')}</div><span></span><span></span><span></span><span></span></div>`;
+    it.querySelector('.fig-ic').appendChild(figIcon(k,30));fg.appendChild(it)});
+  fg.querySelectorAll('[data-fig]').forEach(b=>b.onclick=()=>{const c=actx();if(!c)return;stopAll();const v=FIGS.find(f=>f[0]===b.dataset.fig)[2],beat=60/90,t=c.currentTime+.05,cnt=4/v,bl=[...b.closest('.fig').querySelectorAll('.bk i')],T=[];
+    for(let i=0;i<cnt;i++){note(19,t+i*v*beat,Math.max(.25,v*beat*.95),.3);T.push(setTimeout(()=>{bl.forEach(x=>x.classList.remove('on'));bl[i].classList.add('on')},(i*v*beat+.05)*1000))}
+    b._end=()=>{T.forEach(clearTimeout);bl.forEach(x=>x.classList.remove('on'))}})}
+/* 3.3 */
+{const C=[['Sol','G',2,'La 2.ª línea es Sol','Escribe los sonidos agudos y medios.'],['Fa','F',4,'La 4.ª línea es Fa','Escribe los sonidos graves.'],['Do','C',3,'La 3.ª línea es Do','Se usa menos; el Do central queda en la línea de referencia.']];
+  C.forEach(([n,l,line,t1,t2])=>{const d=document.createElement('div');d.className='card';d.innerHTML=`<h3>Clave de ${n} (${l})</h3>`;const s=staffSvg(180,90,`Clave de ${n}: la línea ${line} es ${n}`);const y=60-(line-1)*10;
+    s.appendChild(svgEl('rect',{x:4,y:y-5,width:172,height:10,fill:'var(--violet-soft)'}));s.insertBefore(s.lastChild,s.firstChild);
+    s.appendChild(svgEl('text',{x:14,y:y+12,'font-size':40,'font-family':'Georgia, serif','font-style':'italic','font-weight':700,fill:VIO},l));figAt(s,110,y,'quarter',VIO);
+    d.appendChild(s);d.insertAdjacentHTML('beforeend',`<p><b>${t1.replace('La ','La ')}</b>. ${t2}</p>`);$('#clefs').appendChild(d)})}
+/* 3.4 */
+const setM=on=>U.setPlaying($('#mgo'),on);
+let N=4;const mb=$('#mbpm');
+function drawMeasure(){const w=320,s=staffSvg(w,92,`Compás de ${N} por 4: ${N} negras por compás`);const T=(y,t)=>s.appendChild(svgEl('text',{x:26,y,'font-size':26,'font-family':'var(--f-display)','font-weight':800,'text-anchor':'middle',fill:'var(--navy)'},t));T(40,String(N));T(60,'4');
+  const bar=(x,wd)=>s.appendChild(svgEl('line',{x1:x,y1:20,x2:x,y2:60,stroke:INK,'stroke-width':wd}));
+  const x0=48,len=(w-48-12)/2;[0,1].forEach(m=>{for(let i=0;i<N;i++){const g=svgEl('g',{class:'nb','data-i':i});figAt(g,x0+m*len+(i+.5)*(len/N),yOf(2),'quarter',i===0?VIO:INK);s.appendChild(g)}});
+  bar(x0+len,1.6);bar(w-12,1.6);bar(w-16,3.4);$('#mstaff').innerHTML='';$('#mstaff').appendChild(s);
+  $('#mcap').textContent=`${N}/4: ${N} pulsos por compás. La primera negra (en violeta) lleva el acento. Barra de compás en medio y doble barra al final.`}
+const mt=metro({bpm:()=>+mb.value,beats:()=>N,onBeat:i=>document.querySelectorAll('#mstaff .nb').forEach(g=>g.style.opacity=(+g.dataset.i===i)?1:.3)});
+function mstop(){mt.stop();setM(false);document.querySelectorAll('#mstaff .nb').forEach(g=>g.style.opacity=1)}
+document.querySelectorAll('#msSeg button').forEach(b=>b.onclick=()=>{N=+b.dataset.n;document.querySelectorAll('#msSeg button').forEach(x=>x.setAttribute('aria-pressed',x===b));if(mt.on)mstop();drawMeasure()});
+mb.oninput=()=>$('#mbpmOut').textContent=mb.value;
+$('#mgo').onclick=()=>{if(mt.on)mstop();else{mt.start();setM(true)}};drawMeasure();
+/* 3.5 */
+const fa=$('#fa'),fb=$('#fb');[fa,fb].forEach((s,j)=>FIGS.slice(0,4).forEach(([k,n,v])=>{const o=document.createElement('option');o.value=k;o.textContent=n;s.appendChild(o)}));fa.value='half';fb.value='quarter';
+const val=k=>FIGS.find(f=>f[0]===k)[2],fmt=v=>({.5:'½',.25:'¼',.75:'¾',1.5:'1½',2.5:'2½',3.5:'3½'}[v]||String(v));
+function drawTie(){const s=svgEl('svg',{viewBox:'0 0 260 92',role:'img','aria-label':'Dos notas de la misma altura unidas por una ligadura'});for(let i=0;i<5;i++)s.appendChild(svgEl('line',{x1:4,y1:20+i*10,x2:256,y2:20+i*10,stroke:INK,'stroke-width':1.2}));
+  const y=yOf(2);figAt(s,70,y,fa.value);figAt(s,190,y,fb.value);s.appendChild(svgEl('path',{d:`M70 ${y+9} Q130 ${y+34} 190 ${y+9}`,fill:'none',stroke:VIO,'stroke-width':2.2,'stroke-linecap':'round'}));
+  $('#tie').innerHTML='';$('#tie').appendChild(s);const tot=val(fa.value)+val(fb.value);$('#tsum').textContent=`${fmt(val(fa.value))} + ${fmt(val(fb.value))} = ${fmt(tot)} ${tot===1?'pulso':'pulsos'}`;
+  $('#tcap').textContent='Solo se toca la primera nota; la segunda no se vuelve a tocar, solo alarga el sonido.'}
+fa.onchange=fb.onchange=drawTie;
+$('#tgo').onclick=()=>{const c=actx();if(!c)return;stopAll();const tot=val(fa.value)+val(fb.value);note(19,c.currentTime+.05,tot*60/90,.32)};drawTie();
+/* Práctica */
+const nm1=v=>FIGS.find(f=>f[2]===v)[1];
+function noteQ(){const st=rnd(-2,10),L=NS[((st%7)+7)%7];return{q:'¿Qué nota es? (clave de Sol)',vis:()=>{const s=staffSvg(170,100,'Una nota en clave de Sol');s.setAttribute('viewBox','0 -10 170 100');s.appendChild(svgEl('text',{x:12,y:58,'font-size':40,'font-family':'Georgia, serif','font-style':'italic','font-weight':700,fill:VIO},'G'));ledger(s,100,st);figAt(s,100,yOf(st),'quarter');return s},
+    opts:pick(Object.keys(ESN).filter(x=>x!==L),3).concat(L).map(x=>`${ESN[x]} (${x})`),ans:3,why:`Con la clave de Sol, la 2.ª línea es Sol; de ahí se cuenta. Esta nota es ${ESN[L]}.`}}
+const FIGQ=()=>{const f=FIGS[rnd(0,4)];return{q:`¿Cuántos pulsos vale una <b>${f[1].toLowerCase()}</b>?`,vis:()=>figIcon(f[0],80),opts:['¼','½','1','2','4'].filter(x=>x!==f[3]).slice(0,3).concat(f[3]),ans:3,why:`${f[1]} = ${f[3]} ${f[2]>1?'pulsos':'pulso'}.`}};
+const MEAS=[[4,[2,1],1],[4,[2],2],[4,[1,1],2],[3,[2],1],[3,[1],2],[2,[1],1],[4,[1,1,1],1],[2,[.5,.5],1],[3,[1,1],1]];
+const measQ=()=>{const [n,g,m]=MEAS[rnd(0,MEAS.length-1)];const names=g.map(nm1);return{q:`En un compás de <b>${n}/4</b> hay ${names.join(' + ')}. ¿Qué figura falta para completarlo?`,opts:['Redonda','Blanca','Negra','Corchea'].filter(x=>x!==nm1(m)).slice(0,3).concat(nm1(m)),ans:3,why:`El compás debe sumar ${n} pulsos. ${g.map(fmt).join(' + ')} + ${fmt(m)} = ${n}.`}};
+const COMP=[['¿Qué compás es el del vals?',['3/4','2/4','4/4','6/4'],'3/4 (tres pulsos, con acento en el primero).'],['En el compás 4/4, ¿qué indica el número de abajo?',['Que un pulso vale una negra','Que hay 4 compases','Que se toca fuerte','Que el tempo es 4'],'El 4 de abajo significa negra.'],['¿Qué separa un compás del siguiente?',['La barra de compás','La ligadura','La clave','El becuadro'],'La barra de compás es una línea vertical.'],['¿Para qué sirve una ligadura de valor?',['Para sumar la duración de notas de la misma altura','Para subir una nota','Para cambiar de compás','Para tocar más fuerte'],'Solo se toca la primera nota y se suman los valores.']].map(([q,o,w])=>({q,opts:o,ans:0,why:w}));
+mcq({root:'#quiz',id:'av-u3',total:8,make:n=>{const q=[];for(let i=0;i<n;i++){const k=i%4;q.push(k===0?noteQ():k===1?FIGQ():k===2?measQ():pick(COMP,1)[0])}return shuffle(q)}});
+
+document.querySelectorAll('[data-carousel]').forEach(e=>U.carousel(e,e.dataset.carousel));
+U.course(3);
+})();
+</script>
+</body>
+</html>

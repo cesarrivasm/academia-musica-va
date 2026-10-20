@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Academia de Música · Ministerio de Alabanza, Iglesia Vida Abundante. Unidad 02: Notas musicales.">
+<title>Unidad 02 · Notas musicales · Academia de Música</title>
+<link rel="icon" href="logo.png">
+<meta property="og:title" content="Unidad 02 · Notas musicales">
+<meta property="og:description" content="Los doce sonidos, sus nombres y el cifrado americano.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="unidad.css">
+</head>
+<body>
+<a class="skip" href="#doce">Saltar al contenido</a>
+<header class="top">
+  <div class="wrap">
+    <div class="toprow"><div class="brand">
+      <img alt="" src="logo.png">
+      <div><b>Academia de Música</b><span>Ministerio de Alabanza · Iglesia Vida Abundante</span></div>
+    </div>
+    <div class="menu"><button type="button" class="kebab" id="menuBtn" aria-expanded="false" aria-controls="menuList" aria-label="Menú de unidades" title="Unidades del curso"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg></button><div class="menu-list" id="menuList" hidden></div></div></div>
+    <div class="hero">
+      <nav class="crumbs" aria-label="Ruta de navegación"><ol id="crumbs"></ol></nav>
+      <h1>Notas musicales</h1>
+      <p>Los doce sonidos de la música occidental, cómo se llaman con sostenidos y bemoles, y cómo leer el cifrado americano.</p>
+    </div>
+  </div>
+</header>
+
+<div class="wrap page">
+  <nav class="toc" aria-label="En esta unidad">
+    <button type="button" class="toc-toggle" id="tocToggle" aria-expanded="false" aria-label="Mostrar los títulos de los temas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.6 6L15 12l-6.4 6-1.4-1.4 5-4.6-5-4.6z"/></svg><span class="t">Temas</span></button>
+    <a href="#doce" aria-label="2.1 Los doce sonidos (Básico)" title="Los doce sonidos · Básico"><span class="n">2.1</span><span class="t">Los doce sonidos</span></a>
+    <a href="#cifrado" aria-label="2.2 Cifrado americano (Básico)" title="Cifrado americano · Básico"><span class="n">2.2</span><span class="t">Cifrado americano</span></a>
+    <a href="#lectura" aria-label="2.3 Lee un cifrado (Intermedio)" title="Lee un cifrado · Intermedio"><span class="n">2.3</span><span class="t">Lee un cifrado</span></a>
+    <a href="#digitacion" aria-label="2.4 Digitación en el piano (Básico)" title="Digitación en el piano · Básico"><span class="n">2.4</span><span class="t">Digitación en el piano</span></a>
+    <a href="#practica" aria-label="2.5 Práctica (Básico)" title="Práctica · Básico"><span class="n">2.5</span><span class="t">Práctica</span></a>
+  </nav>
+
+  <main>
+    <section id="doce">
+      <div class="sec-head"><span class="k">2.1</span><h2>Los doce sonidos</h2><span class="lvl lvl-1">Básico</span></div>
+      <div class="prose">
+        <p>En la música occidental se usan <strong>doce sonidos</strong>. Siete son <strong>naturales</strong> (Do – Re – Mi – Fa – Sol – La – Si) y cinco son <strong>alterados</strong>: Do♯ (Re♭), Re♯ (Mi♭), Fa♯ (Sol♭), Sol♯ (La♭) y La♯ (Si♭). Al llegar a los doce, los sonidos se repiten en el mismo orden a lo largo del registro de cada instrumento.</p>
+        <p>Las notas alteradas tienen dos nombres: con sostenido (♯) o con bemol (♭). Más adelante profundizaremos en esto en la Unidad 04.</p>
+      </div>
+      <div class="note"><b>Truco en el piano:</b> la nota <b>Do</b> (C) es la tecla blanca que está justo antes del grupo de <b>2 teclas negras</b>.</div>
+      <div class="lab" id="lab">
+        <div class="a-controls">
+          <div class="field"><span class="lbl">Ver nombres</span><div class="seg" id="modeSeg" role="group" aria-label="Sistema de nombres"><button type="button" data-m="es" aria-pressed="true">Do Re Mi</button><button type="button" data-m="en" aria-pressed="false">C D E</button><button type="button" data-m="both" aria-pressed="false">Ambos</button></div></div>
+        </div>
+        <div class="a-readout"><div class="sym" id="sym" aria-live="polite">Do</div><div class="tones" id="alt"></div></div>
+        <div class="a-viz"><div class="kbd-box" id="kbd"></div><p class="cap">Toca una tecla para escuchar la nota y ver sus nombres. Con teclado: flechas y Enter.</p></div>
+        <div class="a-explain" id="exp"></div>
+      </div>
+    </section>
+
+    <section id="cifrado">
+      <div class="sec-head"><span class="k">2.2</span><h2>Cifrado americano</h2><span class="lvl lvl-1">Básico</span></div>
+      <div class="prose">
+        <p>El <strong>cifrado americano</strong> (o notación anglosajona) cambia el nombre de las notas por letras del alfabeto. Es una de las notaciones más prácticas para un músico, sobre todo para escribir acordes.</p>
+        <p>Empieza en la <strong>A</strong> porque <strong>La</strong> es la nota que se usa como referencia para afinar la mayoría de los instrumentos.</p>
+      </div>
+      <div class="tblwrap"><table class="tbl"><thead><tr><th>Nota</th><th>Cifrado</th><th>Nota</th><th>Cifrado</th></tr></thead><tbody>
+        <tr><td>La</td><td class="m">A</td><td>Mi</td><td class="m">E</td></tr>
+        <tr><td>Si</td><td class="m">B</td><td>Fa</td><td class="m">F</td></tr>
+        <tr><td>Do</td><td class="m">C</td><td>Sol</td><td class="m">G</td></tr>
+        <tr><td>Re</td><td class="m">D</td><td></td><td></td></tr></tbody></table></div>
+      <div class="prose"><p>Estos son los símbolos que acompañan a las letras. Conviene memorizarlos:</p></div>
+      <div class="tblwrap"><table class="tbl"><thead><tr><th>Símbolo</th><th>Significa</th></tr></thead><tbody>
+        <tr><td class="m">m</td><td>menor</td></tr>
+        <tr><td class="m">M</td><td>Mayor</td></tr>
+        <tr><td class="m">7</td><td>Séptima (lo mismo con cada número: 8.ª, 9.ª…)</td></tr>
+        <tr><td class="m">#</td><td>Sostenido</td></tr>
+        <tr><td class="m">b</td><td>Bemol</td></tr>
+        <tr><td class="m">Aug&nbsp; o&nbsp; +</td><td>Aumentado</td></tr>
+        <tr><td class="m">dis, dim&nbsp; o&nbsp; -</td><td>Disminuido</td></tr>
+        <tr><td class="m">C/E</td><td>Do con bajo de Mi. La barra indica que se toca el acorde y, además, una nota en el bajo (aplica para piano y guitarra).</td></tr></tbody></table></div>
+    </section>
+
+    <section id="lectura">
+      <div class="sec-head"><span class="k">2.3</span><h2>Lee un cifrado</h2><span class="lvl lvl-2">Intermedio</span></div>
+      <div class="prose"><p>Con la tabla ya puedes leer un cifrado. Escribe uno (o toca un ejemplo) y mira cómo se lee:</p></div>
+      <div class="panel"><div class="pin">
+        <div class="field"><label class="lbl" for="cin">Cifrado</label><input class="in" id="cin" value="Cm7" autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+        <div class="row" id="cex"></div>
+        <div class="big" id="cout" aria-live="polite"></div>
+        <p class="cap" id="cwhy"></p>
+      </div></div>
+    </section>
+
+    <section id="digitacion">
+      <div class="sec-head"><span class="k">2.4</span><h2>Digitación en el piano</h2><span class="lvl lvl-1">Básico</span></div>
+      <div class="prose"><p>Una parte importante al tocar es saber qué dedo va en cada tecla. Los dedos se numeran del <strong>1 (pulgar)</strong> al <strong>5 (meñique)</strong> en cada mano. En la posición base de cinco dedos, la mano derecha toca Do – Re – Mi – Fa – Sol con los dedos 1 a 5, y la izquierda toca Do – Re – Mi – Fa – Sol una octava más grave con los dedos 5 a 1.</p></div>
+      <div class="kbd-box" id="fing"></div>
+      <p class="cap">En violeta: la nota; debajo de ella, el número del dedo. La distribución completa está en el material impreso.</p>
+    </section>
+
+    <section id="practica">
+      <div class="sec-head"><span class="k">2.5</span><h2>Práctica</h2><span class="lvl lvl-1">Básico</span></div>
+      <p class="prose">Primero ubica notas en el piano; después practica el paso entre nombres y cifrado.</p>
+      <div id="kq"></div>
+      <div id="mq"></div>
+    </section>
+  </main>
+</div>
+
+<nav class="pager" aria-label="Navegación del curso"><div class="wrap" id="pager"></div></nav>
+
+<footer>
+  <div class="wrap">
+    <span>Material de la Academia de Música · Ministerio de Alabanza, Iglesia Vida Abundante</span>
+    <span>Unidad 02 · Notas musicales</span>
+  </div>
+</footer>
+
+<script src="curso.js"></script>
+<script src="unidad.js"></script>
+<script>
+(function(){
+const {$,svgEl,keyboard,actx,note,playSet,stopAll,out,mcq,keyQuiz,shuffle,pick,rnd,R12S,store,metro,ICON_SPK}=U;
+
+const SH=['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'],FL=['C','Db','D','Eb','E','F','Gb','G','Ab','A','Bb','B'];
+const ES={C:'Do',D:'Re',E:'Mi',F:'Fa',G:'Sol',A:'La',B:'Si'};
+const es=n=>ES[n[0]]+(n[1]==='#'?'♯':n[1]==='b'?'♭':'');
+const en=n=>n[0]+(n[1]==='#'?'♯':n[1]==='b'?'♭':'');
+const esLong=n=>ES[n[0]]+(n[1]==='#'?' sostenido':n[1]==='b'?' bemol':'');
+let mode='es',sel=0;
+const label=n=>mode==='es'?es(n):mode==='en'?en(n):es(n)+' · '+en(n);
+function withNames(svg,octaves,W,H,pad){const vb=svg.getAttribute('viewBox').split(' ').map(Number);svg.setAttribute('viewBox',`0 0 ${vb[2]} ${vb[3]+22}`);
+  for(let i=0;i<octaves*7;i++){const n=['C','D','E','F','G','A','B'][i%7];svg.appendChild(svgEl('text',{x:pad+i*W+W/2,y:vb[3]+16,'text-anchor':'middle','font-size':12,'font-family':'JetBrains Mono, monospace',fill:'var(--muted)','pointer-events':'none'},mode==='es'?ES[n]:mode==='en'?n:ES[n]+'/'+n))}}
+function drawKbd(){
+  const marks=new Map([[sel,{label:'',root:true}],[sel+12,{label:'',root:true}]]);
+  const svg=keyboard({octaves:2,marks,clickable:true,W:34,H:130,minKey:30,ctx:'#kbd',onKey:abs=>{sel=abs%12;const c=actx();if(c)note(abs+12,c.currentTime+.01,1.4,.32);render()}});
+  svg.removeAttribute('aria-label');svg.setAttribute('aria-label','Teclado de dos octavas. Flechas para moverte, Enter para tocar.');
+  withNames(svg,2,34,130,2);const box=$('#kbd');box.innerHTML='';box.appendChild(svg)}
+function render(){
+  const s=SH[sel],f=FL[sel],alt=s!==f;
+  $('#sym').textContent=alt?(mode==='en'?`${en(s)} · ${en(f)}`:`${es(s)} · ${es(f)}`):(mode==='en'?en(s):es(s));
+  $('#sym').style.fontSize='56px';
+  $('#alt').innerHTML=mode==='both'?`<span class="tone"><b>${alt?en(s)+' · '+en(f):en(s)}</b><i>cifrado</i></span>`:`<span class="tone"><b>${mode==='es'?(alt?en(s)+' · '+en(f):en(s)):(alt?es(s)+' · '+es(f):es(s))}</b><i>${mode==='es'?'cifrado':'nombre'}</i></span>`;
+  $('#exp').innerHTML=alt?`<div class="ex-name"><h3>Nota alterada</h3></div><p>Es la tecla negra entre ${es(SH[sel-1])} y ${es(SH[sel+1])}. Con sostenido se llama ${es(s)}; con bemol, ${es(f)}. Es el mismo sonido con dos nombres.</p>`:`<div class="ex-name"><h3>Nota natural</h3></div><p>Es una de las siete teclas blancas. En el cifrado americano se escribe <b>${s}</b>.</p>`;
+  drawKbd();drawFing()}
+document.querySelectorAll('#modeSeg button').forEach(b=>b.onclick=()=>{mode=b.dataset.m;document.querySelectorAll('#modeSeg button').forEach(x=>x.setAttribute('aria-pressed',x===b));render()});
+function drawFing(){const m=new Map();[[0,5],[2,4],[4,3],[5,2],[7,1]].forEach(([a,f])=>m.set(a,{label:es(SH[a%12]),deg:String(f),root:true}));[[12,1],[14,2],[16,3],[17,4],[19,5]].forEach(([a,f])=>m.set(a,{label:es(SH[a%12]),deg:String(f),root:true}));
+  const svg=keyboard({octaves:2,marks:m,W:40,H:140});svg.setAttribute('aria-label','Posición de cinco dedos: mano izquierda Do a Sol con dedos 5 a 1, mano derecha Do a Sol con dedos 1 a 5');const b=$('#fing');b.innerHTML='';b.appendChild(svg)}
+/* Lectura de cifrados */
+const QUAL={'':'mayor','M':'mayor','m':'menor','7':'séptima','m7':'menor séptima','M7':'séptima mayor','maj7':'séptima mayor','Maj7':'séptima mayor','aug':'aumentado','Aug':'aumentado','+':'aumentado','dim':'disminuido','dis':'disminuido','-':'disminuido','°':'disminuido','sus2':'suspendido 2','sus4':'suspendido 4','sus':'suspendido 4','add9':'con novena agregada','9':'novena','6':'con sexta agregada'};
+const noteEs=s=>{const p=U.parseNote(s);if(!p||p.a>1||p.a<-1)return null;return esLong(U.nm(p.l,p.a))};
+function readChord(txt){txt=txt.trim();if(!txt)return null;const parts=txt.split('/');if(parts.length>2)return null;const p=U.parseNote(parts[0]);if(!p||p.a>1||p.a<-1)return null;
+  const q=parts[0].slice(p.len);if(!(q in QUAL))return null;let out=esLong(U.nm(p.l,p.a))+' '+QUAL[q];
+  if(parts[1]!==undefined){const b=U.parseNote(parts[1]);if(!b||b.len!==parts[1].length||b.a>1||b.a<-1)return null;out=esLong(U.nm(p.l,p.a))+(QUAL[q]==='mayor'?'':' '+QUAL[q])+' con bajo de '+esLong(U.nm(b.l,b.a))}
+  return out.replace(/\s+/g,' ')}
+const cin=$('#cin');
+function readIt(){const r=readChord(cin.value);$('#cout').textContent=r?r.charAt(0).toUpperCase()+r.slice(1):'—';$('#cwhy').textContent=r?'Letra = nota; lo que sigue es la calidad del acorde; la barra “/” indica la nota del bajo.':'No reconozco ese cifrado. Revisa la tabla de símbolos (por ejemplo: C, Dm, G7, Bb, F#m7, C/E).'}
+cin.oninput=readIt;
+['Cm7','G#dis','Eb/Bb','F#m','Bb','D/F#'].forEach(c=>{const b=document.createElement('button');b.type='button';b.className='chip';b.textContent=c;b.onclick=()=>{cin.value=c;readIt()};$('#cex').appendChild(b)});
+readIt();render();
+/* Práctica */
+keyQuiz({root:'#kq',id:'av-u2-teclas',title:'Ubica la nota en el piano',total:6,make:n=>pick([...Array(12).keys()],n).map(pc=>{const nat=SH[pc].length===1,name=nat?es(SH[pc]):(Math.random()<.5?es(SH[pc])+' (o '+es(FL[pc])+')':es(FL[pc])+' (o '+es(SH[pc])+')');return{q:`Marca la nota <b>${name}</b>`,targets:[pc],need:1,why:`En cifrado americano: ${nat?SH[pc]:SH[pc]+' = '+FL[pc]}.`}})});
+const NAT=['C','D','E','F','G','A','B'];
+const CH=[['Cm7','Do menor séptima'],['G#dis','Sol sostenido disminuido'],['Eb/Bb','Mi bemol con bajo de Si bemol'],['F#m','Fa sostenido menor'],['Bb','Si bemol mayor'],['A7','La séptima'],['Dm','Re menor'],['Caug','Do aumentado'],['C/E','Do con bajo de Mi'],['Em7','Mi menor séptima'],['Gsus4','Sol suspendido 4'],['Abmaj7','La bemol séptima mayor']];
+mcq({root:'#mq',id:'av-u2-cifrado',title:'Nombres y cifrado',total:8,make:n=>{const qs=[];
+  for(let i=0;i<n;i++){const k=i%3;
+    if(k===0){const a=NAT[rnd(0,6)];qs.push({q:`En cifrado americano, <b>${ES[a]}</b> se escribe…`,opts:pick(NAT.filter(x=>x!==a),3).concat(a),ans:3,why:`${ES[a]} = ${a}. Recuerda que el cifrado empieza en A = La.`})}
+    else if(k===1){const a=NAT[rnd(0,6)];qs.push({q:`La letra <b>${a}</b> corresponde a la nota…`,opts:pick(NAT.filter(x=>x!==a),3).map(x=>ES[x]).concat(ES[a]),ans:3,why:`${a} = ${ES[a]}.`})}
+    else{const c=CH[rnd(0,CH.length-1)],oth=pick(CH.filter(x=>x!==c),3).map(x=>x[1]);qs.push({q:`¿Cómo se lee <b>${c[0]}</b>?`,opts:oth.concat(c[1]),ans:3,why:`${c[0]} → ${c[1]}.`})}}
+  return qs}});
+
+document.querySelectorAll('[data-carousel]').forEach(e=>U.carousel(e,e.dataset.carousel));
+U.course(2);
+})();
+</script>
+</body>
+</html>

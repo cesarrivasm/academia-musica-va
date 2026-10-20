@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Academia de Música · Ministerio de Alabanza, Iglesia Vida Abundante. Unidad 04: Tonos y semitonos.">
+<title>Unidad 04 · Tonos y semitonos · Academia de Música</title>
+<link rel="icon" href="logo.png">
+<meta property="og:title" content="Unidad 04 · Tonos y semitonos">
+<meta property="og:description" content="La distancia entre notas, sostenidos, bemoles y becuadros.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="unidad.css">
+</head>
+<body>
+<a class="skip" href="#semitono">Saltar al contenido</a>
+<header class="top">
+  <div class="wrap">
+    <div class="toprow"><div class="brand">
+      <img alt="" src="logo.png">
+      <div><b>Academia de Música</b><span>Ministerio de Alabanza · Iglesia Vida Abundante</span></div>
+    </div>
+    <div class="menu"><button type="button" class="kebab" id="menuBtn" aria-expanded="false" aria-controls="menuList" aria-label="Menú de unidades" title="Unidades del curso"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg></button><div class="menu-list" id="menuList" hidden></div></div></div>
+    <div class="hero">
+      <nav class="crumbs" aria-label="Ruta de navegación"><ol id="crumbs"></ol></nav>
+      <h1>Tonos y semitonos</h1>
+      <p>La distancia mínima entre dos notas, cómo medir tonos y semitonos, y qué hacen los sostenidos, bemoles y becuadros.</p>
+    </div>
+  </div>
+</header>
+
+<div class="wrap page">
+  <nav class="toc" aria-label="En esta unidad">
+    <button type="button" class="toc-toggle" id="tocToggle" aria-expanded="false" aria-label="Mostrar los títulos de los temas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.6 6L15 12l-6.4 6-1.4-1.4 5-4.6-5-4.6z"/></svg><span class="t">Temas</span></button>
+    <a href="#semitono" aria-label="4.1 El semitono y el tono (Básico)" title="El semitono y el tono · Básico"><span class="n">4.1</span><span class="t">El semitono y el tono</span></a>
+    <a href="#distancias" aria-label="4.2 Medir distancias (Intermedio)" title="Medir distancias · Intermedio"><span class="n">4.2</span><span class="t">Medir distancias</span></a>
+    <a href="#alteraciones" aria-label="4.3 Sostenidos, bemoles y becuadros (Básico)" title="Sostenidos, bemoles y becuadros · Básico"><span class="n">4.3</span><span class="t">Sostenidos, bemoles y becuadros</span></a>
+    <a href="#practica" aria-label="4.4 Práctica (Intermedio)" title="Práctica · Intermedio"><span class="n">4.4</span><span class="t">Práctica</span></a>
+  </nav>
+
+  <main>
+    <section id="semitono">
+      <div class="sec-head"><span class="k">4.1</span><h2>El semitono y el tono</h2><span class="lvl lvl-1">Básico</span></div>
+      <div class="prose">
+        <p>Entre una nota musical y la siguiente hay una distancia (un <strong>intervalo</strong>) que clasificamos en <strong>tonos</strong> y <strong>semitonos</strong>. Si escribimos seguidas las 12 notas obtenemos:</p>
+      </div>
+      <div class="note"><span class="mono">C ⇾ C♯ ⇾ D ⇾ D♯ ⇾ E ⇾ F ⇾ F♯ ⇾ G ⇾ G♯ ⇾ A ⇾ A♯ ⇾ B ⇾ C</span><br><span class="mono">C ⇽ D♭ ⇽ D ⇽ E♭ ⇽ E ⇽ F ⇽ G♭ ⇽ G ⇽ A♭ ⇽ A ⇽ B♭ ⇽ B ⇽ C</span></div>
+      <div class="prose">
+        <p>El <strong>semitono</strong> es la distancia mínima entre dos notas. En el piano es la distancia entre una tecla y la que tiene justo al lado, sea blanca o negra. En la guitarra, la distancia entre un traste y el siguiente (o entre la cuerda al aire y el primer traste).</p>
+        <p>Dos semitonos forman un <strong>tono</strong>: C a C♯ es ½ tono; C a D es 1 tono (½ + ½); C a E son 2 tonos; C a F son 2 tonos y medio.</p>
+        <p>Hacia la derecha del piano (o más trastes en la guitarra) <strong>subes</strong> medios tonos o tonos: los sonidos son más agudos. Hacia la izquierda <strong>bajas</strong>: más graves. Por eso F es más agudo que D, y E es más grave que B.</p>
+      </div>
+      <div class="panel">
+        <div class="pbar"><div class="field"><label class="lbl" for="str">Cuerda de la guitarra</label><span class="select"><select id="str"><option value="0">6.ª · E (Mi)</option><option value="1">5.ª · A (La)</option><option value="2">4.ª · D (Re)</option><option value="3">3.ª · G (Sol)</option><option value="4">2.ª · B (Si)</option><option value="5">1.ª · E (Mi)</option></select><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8l7 8 7-8z"/></svg></span></div></div>
+        <div class="pin"><div class="row" id="frets" role="group" aria-label="Trastes"></div><p class="cap">Cada traste sube un semitono. Toca uno para escucharlo.</p></div>
+      </div>
+    </section>
+
+    <section id="distancias">
+      <div class="sec-head"><span class="k">4.2</span><h2>Medir distancias</h2><span class="lvl lvl-2">Intermedio</span></div>
+      <p class="prose">Toca una tecla de partida y luego otra de llegada. Si tocas una tercera vez, empiezas de nuevo.</p>
+      <div class="lab" id="lab">
+        <div class="a-readout"><div class="sym" id="dsym" aria-live="polite">—</div><p id="dtxt" class="cap">Elige la primera tecla.</p></div>
+        <div class="a-viz"><div class="kbd-box" id="dkb"></div></div>
+      </div>
+    </section>
+
+    <section id="alteraciones">
+      <div class="sec-head"><span class="k">4.3</span><h2>Sostenidos, bemoles y becuadros</h2><span class="lvl lvl-1">Básico</span></div>
+      <div class="prose">
+        <p>Un <strong>sostenido (♯)</strong> sube la nota un semitono. Un <strong>bemol (♭)</strong> la baja un semitono. Por eso cada tecla negra tiene dos nombres: C♯ = D♭, D♯ = E♭, F♯ = G♭, G♯ = A♭, A♯ = B♭. Un <strong>becuadro (♮)</strong> anula cualquier alteración previa y la nota vuelve a su altura original.</p>
+        <p>Importante: <strong>entre E y F, y entre B y C, no hay tecla negra</strong>. Están a un solo semitono, así que el sostenido de E es F, y el bemol de F es E. Lo mismo pasa con B y C.</p>
+      </div>
+      <div class="panel">
+        <div class="pbar">
+          <div class="field"><label class="lbl" for="an">Nota</label><span class="select"><select id="an"></select><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8l7 8 7-8z"/></svg></span></div>
+          <div class="field"><span class="lbl">Signo</span><div class="seg" id="asg" role="group" aria-label="Signo"><button type="button" data-a="1" aria-pressed="true">♯ sostenido</button><button type="button" data-a="-1" aria-pressed="false">♭ bemol</button><button type="button" data-a="0" aria-pressed="false">♮ becuadro</button></div></div>
+        </div>
+        <div class="pin"><div class="big" id="aout" aria-live="polite"></div><p id="atxt"></p><div class="kbd-box" id="akb"></div></div>
+      </div>
+    </section>
+
+    <section id="practica">
+      <div class="sec-head"><span class="k">4.4</span><h2>Práctica</h2><span class="lvl lvl-2">Intermedio</span></div>
+      <p class="prose">Los primeros ejercicios son los del material impreso (D–F, G–A, C♯–F♯, E–B, G♭–D♭). Después hay más combinaciones al azar.</p>
+      <div id="q1"></div>
+      <div id="q2"></div>
+    </section>
+  </main>
+</div>
+
+<nav class="pager" aria-label="Navegación del curso"><div class="wrap" id="pager"></div></nav>
+
+<footer>
+  <div class="wrap">
+    <span>Material de la Academia de Música · Ministerio de Alabanza, Iglesia Vida Abundante</span>
+    <span>Unidad 04 · Tonos y semitonos</span>
+  </div>
+</footer>
+
+<script src="curso.js"></script>
+<script src="unidad.js"></script>
+<script>
+(function(){
+const {$,svgEl,keyboard,actx,note,playSet,stopAll,out,mcq,keyQuiz,shuffle,pick,rnd,R12S,store,metro,ICON_SPK}=U;
+
+const SH=['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'],NAT=['C','D','E','F','G','A','B'],PC=n=>{const p=U.parseNote(n);return ((U.LPC[p.l]+p.a)%12+12)%12};
+const sp=n=>n.replace('#','♯').replace(/b$/,'♭').replace(/^([A-G])b/,'$1♭');
+const dist=s=>s===0?'0 tonos':s===1?'½ tono':s%2===0?`${s/2} ${s/2===1?'tono':'tonos'}`:`${(s-1)/2} ${(s-1)/2===1?'tono':'tonos'} y ½`;
+const distFull=s=>`${dist(s)} (${s} ${s===1?'semitono':'semitonos'})`;
+/* 4.1 guitarra */
+const OPEN=[-8,-3,2,7,11,16];
+function drawFrets(){const k=+$('#str').value,box=$('#frets');box.innerHTML='';for(let f=0;f<=12;f++){const abs=OPEN[k]+f,b=document.createElement('button');b.type='button';b.className='chip';b.innerHTML=`${sp(SH[((abs%12)+12)%12])}<br><span class="cap">${f===0?'al aire':'traste '+f}</span>`;b.style.textAlign='center';b.onclick=()=>{const c=actx();if(c){stopAll();note(abs,c.currentTime+.01,1.6,.32)}};box.appendChild(b)}}
+$('#str').onchange=drawFrets;drawFrets();
+/* 4.2 distancias */
+let A=null,B=null;
+function drawD(){const marks=new Map();if(A!=null)marks.set(A,{label:sp(SH[A%12]),root:true});if(B!=null)marks.set(B,{label:sp(SH[B%12]),root:false});
+  const svg=keyboard({octaves:2,marks,clickable:true,W:34,H:130,minKey:30,ctx:'#dkb',onKey:abs=>{const c=actx();if(c)note(abs+12,c.currentTime+.01,1.2,.3);if(A==null||B!=null){A=abs;B=null}else B=abs;drawD()}});
+  const box=$('#dkb');box.innerHTML='';box.appendChild(svg);
+  if(A==null){$('#dsym').textContent='—';$('#dtxt').textContent='Elige la primera tecla.'}
+  else if(B==null){$('#dsym').textContent=sp(SH[A%12]);$('#dtxt').textContent='Ahora elige la tecla de llegada.'}
+  else{const s=Math.abs(B-A);$('#dsym').textContent=distFull(s).split(' (')[0];$('#dtxt').textContent=`De ${sp(SH[A%12])} a ${sp(SH[B%12])}: ${s} ${s===1?'semitono':'semitonos'}, es decir ${dist(s)}. ${B>A?'Subes':B<A?'Bajas':'Es la misma tecla'}${B===A?'.':' hacia '+(B>A?'los sonidos más agudos (derecha).':'los sonidos más graves (izquierda).')}`}}
+drawD();
+/* 4.3 alteraciones */
+NAT.forEach(n=>{const o=document.createElement('option');o.value=n;o.textContent=n;$('#an').appendChild(o)});$('#an').value='E';let acc=1;
+function drawAlt(){const n=$('#an').value,base=PC(n),pc=((base+acc)%12+12)%12,mark=acc===1?'♯':acc===-1?'♭':'♮',name=n+mark;
+  const res=NAT.includes(SH[pc])?SH[pc]:null;
+  $('#aout').textContent=acc===0?`${n}♮ = ${n}`:`${name} = ${res?res:sp(SH[pc])+(acc===-1?'':'')}`;
+  let t;if(acc===0)t=`El becuadro anula cualquier ♯ o ♭ anterior: ${n} vuelve a su altura natural.`;
+  else if(res)t=`${acc===1?'Sube':'Baja'} un semitono desde ${n} y cae en ${res}: ${acc===1?'no hay tecla negra entre '+n+' y '+res:'no hay tecla negra entre '+res+' y '+n}. Son notas vecinas a un solo semitono.`;
+  else t=`${acc===1?'Sube':'Baja'} un semitono desde ${n}: es la tecla negra ${sp(SH[pc])} (que también se llama ${sp(['C','Db','D','Eb','E','F','Gb','G','Ab','A','Bb','B'][pc])}).`;
+  $('#atxt').textContent=t;const m=new Map([[base+(acc===0?0:acc),{label:'',root:true}]]);if(acc!==0)m.set(base,{label:sp(n),root:false});
+  const svg=keyboard({octaves:1,marks:new Map([[((base+acc)%12+12)%12,{label:'',root:true}],...(acc?[[base,{label:n,root:false}]]:[])]),W:40,H:120});svg.setAttribute('aria-label',`Teclado: ${$('#aout').textContent}`);$('#akb').innerHTML='';$('#akb').appendChild(svg)}
+$('#an').onchange=drawAlt;document.querySelectorAll('#asg button').forEach(b=>b.onclick=()=>{acc=+b.dataset.a;document.querySelectorAll('#asg button').forEach(x=>x.setAttribute('aria-pressed',x===b));drawAlt()});drawAlt();
+/* Práctica */
+const FIX=[['D','F'],['G','A'],['C#','F#'],['E','B'],['Gb','Db']];
+const wrongD=s=>pick([1,2,3,4,5,6,7,8,9,10,11].filter(x=>x!==s&&Math.abs(x-s)<=3),3);
+const distQ=(a,b)=>{const s=((PC(b)-PC(a))%12+12)%12;return{q:`Subiendo, ¿qué distancia hay entre <b>${sp(a)}</b> y <b>${sp(b)}</b>?`,opts:wrongD(s).map(distFull).concat(distFull(s)),ans:3,why:`Cuenta las teclas: ${s} ${s===1?'semitono':'semitonos'} = ${dist(s)}.`}};
+const SHN=SH;
+const nearQ=()=>{const n=SHN[rnd(0,11)],up=Math.random()<.5,pc=PC(n),r=SHN[((pc+(up?1:-1))%12+12)%12];return{q:`¿Qué nota está un <b>semitono ${up?'más agudo':'más grave'}</b> que <b>${sp(n)}</b>?`,opts:pick(SHN.filter(x=>x!==r&&x!==n),3).map(sp).concat(sp(r)),ans:3,why:`${up?'Sube':'Baja'} una tecla desde ${sp(n)} y llegas a ${sp(r)}.`}};
+const ALT=[['El sostenido de E','F'],['El bemol de F','E'],['El sostenido de B','C'],['El bemol de C','B'],['El sostenido de C','C♯'],['El bemol de B','B♭'],['El sostenido de F','F♯'],['El bemol de A','A♭']];
+const altQ=()=>{const [q,r]=ALT[rnd(0,ALT.length-1)];return{q:`${q} es…`,opts:pick(['C','D','E','F','G','A','B','C♯','B♭','F♯','A♭','D♭'].filter(x=>x!==r),3).concat(r),ans:3,why:'Recuerda: entre E–F y B–C no hay tecla negra.'}};
+const hiQ=()=>{const a=rnd(0,6),b=(a+rnd(1,6))%7,x=NAT[a],y=NAT[b];const hi=a>b?x:y;return{q:`En una octava de piano (de C a B), ¿cuál es más agudo: <b>${x}</b> o <b>${y}</b>?`,opts:[hi,hi===x?y:x],ans:0,why:'Más a la derecha en el piano = más agudo.'}};
+mcq({root:'#q1',id:'av-u4',total:8,title:'Distancias y alteraciones',make:n=>{const q=FIX.map(([a,b])=>distQ(a,b)).slice(0,5);const rest=[];for(let i=0;i<n-5;i++)rest.push([nearQ,altQ,hiQ][i%3]());return q.concat(rest)}});
+keyQuiz({root:'#q2',id:'av-u4-teclas',title:'En el piano',total:5,make:n=>pick([...Array(12).keys()],n).map(pc=>{const k=rnd(0,3),d=[2,-2,1,-1][k],tg=((pc+d)%12+12)%12;return{q:`Marca la nota <b>${Math.abs(d)===2?'un tono':'un semitono'} ${d>0?'más agudo':'más grave'}</b> que <b>${sp(SH[pc])}</b>`,targets:[tg],need:1,why:`${sp(SH[pc])} ${d>0?'+':'−'} ${dist(Math.abs(d))} = ${sp(SH[tg])}.`,play:[pc,tg]}})});
+
+document.querySelectorAll('[data-carousel]').forEach(e=>U.carousel(e,e.dataset.carousel));
+U.course(4);
+})();
+</script>
+</body>
+</html>

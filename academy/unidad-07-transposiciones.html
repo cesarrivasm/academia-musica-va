@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Academia de Música · Ministerio de Alabanza, Iglesia Vida Abundante. Unidad 07: Transposiciones.">
+<title>Unidad 07 · Transposiciones · Academia de Música</title>
+<link rel="icon" href="logo.png">
+<meta property="og:title" content="Unidad 07 · Transposiciones">
+<meta property="og:description" content="El círculo de quintas, los grados de una tonalidad y cómo llevar una canción a otro tono.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="unidad.css">
+</head>
+<body>
+<a class="skip" href="#por-que">Saltar al contenido</a>
+<header class="top">
+  <div class="wrap">
+    <div class="toprow"><div class="brand">
+      <img alt="" src="logo.png">
+      <div><b>Academia de Música</b><span>Ministerio de Alabanza · Iglesia Vida Abundante</span></div>
+    </div>
+    <div class="menu"><button type="button" class="kebab" id="menuBtn" aria-expanded="false" aria-controls="menuList" aria-label="Menú de unidades" title="Unidades del curso"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg></button><div class="menu-list" id="menuList" hidden></div></div></div>
+    <div class="hero">
+      <nav class="crumbs" aria-label="Ruta de navegación"><ol id="crumbs"></ol></nav>
+      <h1>Transposiciones</h1>
+      <p>Cómo llevar una canción a otra tonalidad sin perder su sonoridad, usando el círculo de quintas y los grados de la escala.</p>
+    </div>
+  </div>
+</header>
+
+<div class="wrap page">
+  <nav class="toc" aria-label="En esta unidad">
+    <button type="button" class="toc-toggle" id="tocToggle" aria-expanded="false" aria-label="Mostrar los títulos de los temas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.6 6L15 12l-6.4 6-1.4-1.4 5-4.6-5-4.6z"/></svg><span class="t">Temas</span></button>
+    <a href="#por-que" aria-label="7.1 Qué es transportar (Intermedio)" title="Qué es transportar · Intermedio"><span class="n">7.1</span><span class="t">Qué es transportar</span></a>
+    <a href="#circulo" aria-label="7.2 Círculo de quintas (Avanzado)" title="Círculo de quintas · Avanzado"><span class="n">7.2</span><span class="t">Círculo de quintas</span></a>
+    <a href="#grados" aria-label="7.3 Grados y acordes de una tonalidad (Avanzado)" title="Grados y acordes de una tonalidad · Avanzado"><span class="n">7.3</span><span class="t">Grados y acordes de una tonalidad</span></a>
+    <a href="#transponer" aria-label="7.4 Transponer una canción (Avanzado)" title="Transponer una canción · Avanzado"><span class="n">7.4</span><span class="t">Transponer una canción</span></a>
+    <a href="#practica" aria-label="7.5 Práctica (Avanzado)" title="Práctica · Avanzado"><span class="n">7.5</span><span class="t">Práctica</span></a>
+  </nav>
+
+  <main>
+    <section id="por-que">
+      <div class="sec-head"><span class="k">7.1</span><h2>Qué es transportar</h2><span class="lvl lvl-2">Intermedio</span></div>
+      <div class="prose">
+        <p><strong>Transportar</strong> un tema es llevarlo a cualquiera de las once tonalidades restantes, conservando exactamente su sonoridad pero en un registro más alto o más bajo. Para lograrlo hay que mantener la <strong>relación de distancias</strong> entre las notas originales y las nuevas.</p>
+        <p>Se transporta por varios motivos:</p>
+        <ul style="margin:0;padding-left:22px;display:grid;gap:6px"><li>Para que un cantante pueda hacer el tema en la tonalidad que le corresponde a su registro.</li><li>Para facilitar la ejecución de algún instrumento.</li></ul>
+      </div>
+      <div class="note"><b>Antes de empezar</b> conviene dominar la Unidad 04 (tonos y semitonos), la Unidad 05 (escalas) y la Unidad 06 (acordes): aquí las usamos todas.</div>
+    </section>
+
+    <section id="circulo">
+      <div class="sec-head"><span class="k">7.2</span><h2>Círculo de quintas</h2><span class="lvl lvl-3">Avanzado</span></div>
+      <div class="prose">
+        <p>El <strong>círculo de quintas</strong> muestra todas las tonalidades mayores (círculo exterior) y sus <strong>relativas menores</strong> (círculo interior). Cada nombre puede representar una nota o un acorde. Al lado de cada una aparece su <strong>armadura</strong>: cuántos sostenidos (♯) o bemoles (♭) lleva.</p>
+        <p>Una tonalidad mayor y su relativa menor comparten la misma armadura: por ejemplo, F mayor y D menor tienen un bemol. Toca una tonalidad:</p>
+      </div>
+      <div class="panel"><div class="pin">
+        <div class="circ" id="circ"></div>
+        <div class="row"><div class="stack"><div class="big" id="ckey" aria-live="polite"></div><p id="cinfo"></p></div></div>
+        <p class="cap">Los vecinos a ambos lados (en azul) son la subdominante (IV) y la dominante (V): los acordes más cercanos a la tónica. Con teclado: flechas para moverte.</p>
+      </div></div>
+    </section>
+
+    <section id="grados">
+      <div class="sec-head"><span class="k">7.3</span><h2>Grados y acordes de una tonalidad</h2><span class="lvl lvl-3">Avanzado</span></div>
+      <div class="prose">
+        <p>Cada nota de la escala es un <strong>grado</strong> (I a VII), y sobre cada grado se forma una tríada. Si quitamos los nombres y dejamos solo la estructura, el esquema es siempre el mismo, en cualquier tonalidad:</p>
+      </div>
+      <div class="tblwrap"><table class="tbl"><thead><tr><th>Grado</th><th>I</th><th>II</th><th>III</th><th>IV</th><th>V</th><th>VI</th><th>VII</th></tr></thead><tbody>
+        <tr><td><b>Mayor</b></td><td class="m">M</td><td class="m">m</td><td class="m">m</td><td class="m">M</td><td class="m">M</td><td class="m">m</td><td class="m">dim</td></tr>
+        <tr><td><b>Menor</b></td><td class="m">m</td><td class="m">dim</td><td class="m">M</td><td class="m">m</td><td class="m">m</td><td class="m">M</td><td class="m">M</td></tr></tbody></table></div>
+      <div class="prose"><p>Aplicado a la tonalidad que elegiste en el círculo (puedes cambiar entre mayor y menor):</p></div>
+      <div class="panel">
+        <div class="pbar"><div class="field"><label class="lbl" for="gk">Tonalidad</label><span class="select"><select id="gk"></select><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8l7 8 7-8z"/></svg></span></div>
+        <div class="field"><span class="lbl">Modo</span><div class="seg" id="gm" role="group" aria-label="Modo"><button type="button" data-m="maj" aria-pressed="true">Mayor</button><button type="button" data-m="min" aria-pressed="false">Menor</button></div></div>
+        <button type="button" class="ibtn solid" id="gplay" aria-label="Escuchar la progresión I – V – VI – IV" title="Escuchar la progresión I – V – VI – IV"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg></button></div>
+        <div class="pin"><div class="tblwrap"><table class="tbl" id="gtbl"><thead><tr><th>Grado</th><th>Nombre</th><th>Tríada</th></tr></thead><tbody></tbody></table></div></div>
+      </div>
+    </section>
+
+    <section id="transponer">
+      <div class="sec-head"><span class="k">7.4</span><h2>Transponer una canción</h2><span class="lvl lvl-3">Avanzado</span></div>
+      <div class="prose">
+        <p>Para transponer una canción no hace falta cambiar nota por nota. El método es:</p>
+        <ol style="margin:0;padding-left:22px;display:grid;gap:6px"><li>Identifica la <strong>tonalidad</strong> de la canción.</li><li>Escribe el <strong>grado</strong> de cada acorde en esa tonalidad.</li><li>Cambia cada grado por el acorde que tiene ese mismo grado en la <strong>nueva tonalidad</strong>.</li></ol>
+        <p>Ejemplo del material: una canción con solo 4 acordes, <span class="mono">D – A – Bm – G</span>, escrita en D mayor, usa los grados I, V, VI y IV. Pasada a A mayor queda <span class="mono">A – E – F♯m – D</span>. Pruébalo con tus propias progresiones:</p>
+      </div>
+      <div class="panel">
+        <div class="pbar">
+          <div class="field"><span class="lbl">Modo</span><div class="seg" id="tm" role="group" aria-label="Modo"><button type="button" data-m="maj" aria-pressed="true">Mayor</button><button type="button" data-m="min" aria-pressed="false">Menor</button></div></div>
+          <div class="field"><label class="lbl" for="tf">De la tonalidad</label><span class="select"><select id="tf"></select><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8l7 8 7-8z"/></svg></span></div>
+          <div class="field"><label class="lbl" for="tt">A la tonalidad</label><span class="select"><select id="tt"></select><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8l7 8 7-8z"/></svg></span></div>
+        </div>
+        <div class="pin">
+          <div class="field"><label class="lbl" for="tin">Acordes (sepáralos con espacios)</label><input class="in" id="tin" value="D A Bm G" autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+          <div class="row" id="tex"></div>
+          <p class="cap" id="tsteps"></p>
+          <div class="outchords" id="tout" aria-live="polite"></div>
+          <div class="tblwrap"><table class="tbl" id="ttbl"><thead><tr><th>Acorde</th><th>Grado</th><th>Nuevo acorde</th></tr></thead><tbody></tbody></table></div>
+          <div><button type="button" class="ibtn solid" id="tplay" aria-label="Escuchar el resultado" title="Escuchar el resultado"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg></button></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="practica">
+      <div class="sec-head"><span class="k">7.5</span><h2>Práctica</h2><span class="lvl lvl-3">Avanzado</span></div>
+      <p class="prose">Ubica grados y transpón progresiones. Si fallas, el aviso te muestra la escala o el cálculo.</p>
+      <div id="quiz"></div>
+    </section>
+  </main>
+</div>
+
+<nav class="pager" aria-label="Navegación del curso"><div class="wrap" id="pager"></div></nav>
+
+<footer>
+  <div class="wrap">
+    <span>Material de la Academia de Música · Ministerio de Alabanza, Iglesia Vida Abundante</span>
+    <span>Unidad 07 · Transposiciones</span>
+  </div>
+</footer>
+
+<script src="curso.js"></script>
+<script src="unidad.js"></script>
+<script>
+(function(){
+const {$,svgEl,keyboard,actx,note,playSet,stopAll,out,mcq,keyQuiz,shuffle,pick,rnd,R12S,store,metro,ICON_SPK}=U;
+
+const {scale,triads,nm,LPC,parseNote,pretty:sp,ROMAN}=U;
+const SH=['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'],FL=['C','Db','D','Eb','E','F','Gb','G','Ab','A','Bb','B'];
+const MAJ=['C','G','D','A','E','B','F#','Db','Ab','Eb','Bb','F'],MIN=['A','E','B','F#','C#','G#','D#','Bb','F','C','G','D'];
+const SIG=['sin sostenidos ni bemoles','1 sostenido','2 sostenidos','3 sostenidos','4 sostenidos','5 sostenidos','6 sostenidos (G♭ mayor lleva 6 bemoles)','5 bemoles','4 bemoles','3 bemoles','2 bemoles','1 bemol'];
+const SHORT=['0','1♯','2♯','3♯','4♯','5♯','6♯/6♭','5♭','4♭','3♭','2♭','1♭'];
+const pcOf=n=>{const p=parseNote(n);return ((LPC[p.l]+p.a)%12+12)%12};
+const tri=(root,minor)=>{const p=parseNote(root);return triads(p.l,p.a,minor)};
+const flatKey=(root,minor)=>{const i=(minor?MIN:MAJ).indexOf(root);return i>=7};
+/* Círculo */
+let ci=0,cmin=false;const nodes={maj:[],min:[]};
+{const W=420,svg=svgEl('svg',{viewBox:`0 0 ${W} ${W}`,role:'group','aria-label':'Círculo de quintas. Flechas para moverte, Enter para elegir.'}),c=W/2;
+  svg.appendChild(svgEl('circle',{cx:c,cy:c,r:168,fill:'var(--tint)',stroke:'var(--line)'}));svg.appendChild(svgEl('circle',{cx:c,cy:c,r:112,fill:'var(--bg)',stroke:'var(--line)'}));
+  for(let i=0;i<12;i++){const a=(-90+i*30)*Math.PI/180,P=(r)=>[c+r*Math.cos(a),c+r*Math.sin(a)];
+    const [sx,sy]=P(196);svg.appendChild(svgEl('text',{x:sx,y:sy+4,'text-anchor':'middle','font-size':12,'font-family':'JetBrains Mono, monospace',fill:'var(--muted)'},SHORT[i]));
+    [['maj',140,25,MAJ[i],18],['min',86,18,MIN[i]+'m',13]].forEach(([k,r,rad,label,fs])=>{const [x,y]=P(r),g=svgEl('g',{class:'seg-k',role:'button',tabindex:'-1','data-i':i,'data-k':k});
+      const cir=svgEl('circle',{cx:x,cy:y,r:rad,stroke:'var(--line-strong)','stroke-width':1.5});const tx=svgEl('text',{x,y:y+fs*.35,'text-anchor':'middle','font-size':fs,'font-family':'var(--f-display)','font-weight':800},sp(i===6&&k==='maj'?'F#':label));
+      g.append(cir,tx);g.addEventListener('click',()=>pickKey(i,k==='min'));g.addEventListener('keydown',e=>{const d=e.key==='ArrowRight'||e.key==='ArrowDown'?1:e.key==='ArrowLeft'||e.key==='ArrowUp'?-1:0;
+        if(d){e.preventDefault();const j=(i+d+12)%12;pickKey(j,k==='min');nodes[k][j].g.focus()}else if(e.key==='Enter'||e.key===' '){e.preventDefault();pickKey(i,k==='min')}});
+      svg.appendChild(g);nodes[k][i]={g,cir,tx}})}
+  $('#circ').appendChild(svg)}
+function paintCircle(){for(const k of ['maj','min'])nodes[k].forEach((n,i)=>{const sel=(k==='min')===cmin&&i===ci,nb=(k==='min')===cmin&&(i===(ci+1)%12||i===(ci+11)%12);
+  n.cir.setAttribute('fill',sel?'var(--violet)':nb?'var(--navy-soft)':'var(--bg)');n.tx.setAttribute('fill',sel?'#fff':'var(--navy)');n.g.setAttribute('tabindex',sel?'0':'-1');n.g.setAttribute('aria-pressed',sel);
+  n.g.setAttribute('aria-label',`${sp(k==='maj'?(i===6?'F#':MAJ[i]):MIN[i])} ${k==='maj'?'mayor':'menor'}, ${SIG[i]}`)})}
+function keyName(){return cmin?MIN[ci]:MAJ[ci]}
+function info(){const r=keyName(),rel=cmin?MAJ[ci]:MIN[ci];$('#ckey').textContent=`${sp(r)} ${cmin?'menor':'mayor'}`;
+  $('#cinfo').innerHTML=`Armadura: <b>${SIG[ci]}</b>. Relativa ${cmin?'mayor':'menor'}: <b>${sp(rel)} ${cmin?'mayor':'menor'}</b>. Notas: <span class="mono">${scale(parseNote(r).l,parseNote(r).a,cmin).map(n=>sp(n.name)).join(' – ')}</span>.`}
+/* Grados */
+const gk=$('#gk');let gmin=false;
+function fillSel(sel,minor,val){sel.innerHTML='';(minor?MIN:MAJ).forEach(r=>{const o=document.createElement('option');o.value=r;o.textContent=sp(r)+(minor?'m':'');sel.appendChild(o)});if(val&&[...sel.options].some(o=>o.value===val))sel.value=val}
+function triAbs(sc,k){return [k,k+2,k+4].map(i=>sc[i%7].abs+(i>=7?12:0))}
+function drawG(){const r=gk.value,p=parseNote(r),T=tri(r,gmin);const tb=$('#gtbl tbody');tb.innerHTML=T.map(t=>`<tr><td class="m">${t.deg}</td><td>${t.dname}</td><td><b>${sp(t.sym)}</b></td></tr>`).join('')}
+gk.onchange=drawG;
+document.querySelectorAll('#gm button').forEach(b=>b.onclick=()=>{gmin=b.dataset.m==='min';document.querySelectorAll('#gm button').forEach(x=>x.setAttribute('aria-pressed',x===b));fillSel(gk,gmin,gk.value);drawG()});
+function playChords(list,gap){const c=actx();if(!c)return;stopAll();const t=c.currentTime+.05;list.forEach((ch,i)=>ch.forEach(a=>note(a+12,t+i*gap,gap*1.05,.22)))}
+$('#gplay').onclick=()=>{const r=gk.value,p=parseNote(r),sc=scale(p.l,p.a,gmin);const ds=gmin?[0,5,2,6]:[0,4,5,3];playChords(ds.map(k=>triAbs(sc,k)),1)};
+function pickKey(i,m){ci=i;cmin=m;paintCircle();info();gmin=m;document.querySelectorAll('#gm button').forEach(x=>x.setAttribute('aria-pressed',(x.dataset.m==='min')===m));fillSel(gk,m,keyName());gk.value=keyName();drawG();if(tmode!==(m?'min':'maj')){}}
+/* Transponer */
+let tmode='maj';const tf=$('#tf'),tt=$('#tt'),tin=$('#tin');
+const qOf=s=>/^(dim|°|o)/.test(s)?'dim':/^m(?!aj)/.test(s)?'m':'';
+function parseChord(tok){const m=tok.match(/^([A-G])(#|b)?([^/]*)(?:\/([A-G])(#|b)?)?$/);if(!m)return null;return{root:m[1]+(m[2]||''),suf:m[3],bass:m[4]?m[4]+(m[5]||''):null}}
+function transpose(chords,from,to,minor){const S=tri(from,minor),D=tri(to,minor),sc=scale(parseNote(from).l,parseNote(from).a,minor),dc=scale(parseNote(to).l,parseNote(to).a,minor),shift=(pcOf(to)-pcOf(from)+12)%12,fl=flatKey(to,minor);
+  const spell=pc=>(fl?FL:SH)[pc];
+  return chords.map(tok=>{const c=parseChord(tok);if(!c)return{tok,bad:true};const rp=pcOf(c.root),q=qOf(c.suf);let k=S.findIndex(t=>t.pc===rp&&t.q===q);let out,deg;
+    if(k>=0){out=D[k].name+c.suf;const q2=S[k].q;deg=q2==='m'?ROMAN[k].toLowerCase():q2==='dim'?ROMAN[k].toLowerCase()+'°':ROMAN[k]}else{out=spell((rp+shift)%12)+c.suf;deg=null}
+    if(c.bass){const bp=pcOf(c.bass),j=sc.findIndex(n=>n.pc===bp);out+='/'+(j>=0?dc[j].name:spell((bp+shift)%12))}
+    return{tok,deg,out,pc:(rp+shift)%12,q}})}
+function drawT(){const from=tf.value,to=tt.value,minor=tmode==='min',toks=tin.value.split(/[\s,\-–]+/).filter(Boolean);
+  const res=transpose(toks,from,to,minor);const ok=res.filter(r=>!r.bad);
+  $('#tout').innerHTML=ok.map(r=>`<span>${sp(r.out)}</span>`).join('');
+  const dir=(pcOf(to)-pcOf(from)+12)%12;
+  $('#tsteps').textContent=ok.length?`${sp(from)}${minor?'m':''} → ${sp(to)}${minor?'m':''}: los acordes ${dir===0?'no cambian':'suben '+dir+' '+(dir===1?'semitono':'semitonos')+' (o bajan '+(12-dir)+')'}. Cada acorde se cambia por el del mismo grado.`:'Escribe acordes como D, Bm, F#m, G/B…';
+  $('#ttbl tbody').innerHTML=res.map(r=>r.bad?`<tr><td>${r.tok}</td><td colspan="2" class="cap">No reconocí este acorde</td></tr>`:`<tr><td><b>${sp(r.tok)}</b></td><td class="m">${r.deg||'fuera de la tonalidad'}</td><td><b>${sp(r.out)}</b></td></tr>`).join('')}
+function setT(mode){tmode=mode;document.querySelectorAll('#tm button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.m===mode));const a=tf.value,b=tt.value;fillSel(tf,mode==='min',a);fillSel(tt,mode==='min',b);drawT()}
+document.querySelectorAll('#tm button').forEach(b=>b.onclick=()=>{const m=b.dataset.m;if(m===tmode)return;const ex=m==='min'?['Em C D G Am','E','F#']:['D A Bm G','D','A'];tin.value=ex[0];tmode=m;document.querySelectorAll('#tm button').forEach(x=>x.setAttribute('aria-pressed',x===b));fillSel(tf,m==='min',ex[1]);fillSel(tt,m==='min',ex[2]);tf.value=ex[1];tt.value=ex[2];drawT()});
+tf.onchange=tt.onchange=drawT;tin.oninput=drawT;
+[['D A Bm G','maj','D','A'],['Em C D G Am','min','E','F#'],['G C D Em','maj','G','D']].forEach(([c,m,a,b])=>{const e=document.createElement('button');e.type='button';e.className='chip';e.textContent=c+' ('+sp(a)+(m==='min'?'m':'')+')';e.onclick=()=>{tmode=m;document.querySelectorAll('#tm button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.m===m));fillSel(tf,m==='min',a);fillSel(tt,m==='min',b);tf.value=a;tt.value=b;tin.value=c;drawT()};$('#tex').appendChild(e)});
+$('#tplay').onclick=()=>{const res=transpose(tin.value.split(/[\s,\-–]+/).filter(Boolean),tf.value,tt.value,tmode==='min').filter(r=>!r.bad);const IV={'':[0,4,7],m:[0,3,7],dim:[0,3,6]};playChords(res.map(r=>IV[r.q].map(i=>r.pc+i)),1)};
+fillSel(tf,false,'D');fillSel(tt,false,'A');pickKey(0,false);fillSel(gk,false,'C');gk.value='C';drawG();setT('maj');tf.value='D';tt.value='A';drawT();
+/* Práctica */
+const ALLK=MAJ.map(r=>[r,false]).concat(MIN.map(r=>[r,true]));
+const gradeQ=()=>{const [r,mi]=ALLK[rnd(0,23)],T=tri(r,mi),k=rnd(1,6),c=T[k].sym;const others=pick(T.filter((_,i)=>i!==k).map(t=>t.sym),3);return{q:`En la tonalidad de <b>${sp(r)} ${mi?'menor':'mayor'}</b>, ¿qué acorde es el grado <b>${ROMAN[k]}</b> (${T[k].dname.toLowerCase()})?`,opts:others.map(sp).concat(sp(c)),ans:3,why:`${sp(r)} ${mi?'menor':'mayor'}: ${T.map(t=>sp(t.sym)).join(' – ')}.`}};
+const PROG={maj:[[0,4,5,3],[0,3,4,0],[5,3,0,4],[0,5,3,4]],min:[[0,5,2,6],[0,3,4,0],[0,6,5,6],[0,3,6,2]]};
+const trQ=()=>{const mi=Math.random()<.4,keys=mi?MIN:MAJ,a=keys[rnd(0,11)];let b;do{b=keys[rnd(0,11)]}while(b===a);const pr=PROG[mi?'min':'maj'][rnd(0,3)],TA=tri(a,mi),toks=pr.map(k=>TA[k].sym);const right=transpose(toks,a,b,mi).map(r=>sp(r.out)).join(' – ');
+  const wrong=[];const cand=keys.filter(x=>x!==a&&x!==b);for(const w of pick(cand,8)){const s=transpose(toks,a,w,mi).map(r=>sp(r.out)).join(' – ');if(s!==right&&!wrong.includes(s))wrong.push(s);if(wrong.length===3)break}
+  const TB=tri(b,mi);return{q:`La canción está en <b>${sp(a)}${mi?'m':''}</b> y usa <b>${toks.map(sp).join(' – ')}</b>. ¿Cómo queda en <b>${sp(b)}${mi?'m':''}</b>?`,opts:wrong.concat(right),ans:wrong.length,why:`Grados ${pr.map(k=>mi?(TA[k].q===''?ROMAN[k]:ROMAN[k].toLowerCase()+(TA[k].q==='dim'?'°':'')):(TA[k].q===''?ROMAN[k]:ROMAN[k].toLowerCase()+(TA[k].q==='dim'?'°':''))).join(' – ')}: en ${sp(b)}${mi?'m':''} son ${pr.map(k=>sp(TB[k].sym)).join(' – ')}.`}};
+const STAT=[['¿Qué esquema de tríadas tiene una tonalidad mayor (grados I a VII)?',['M m m M M m dim','m dim M m m M M','M M m M m m dim','M m M m M m dim'],'Mayor: M m m M M m dim.'],['¿Qué esquema de tríadas tiene una tonalidad menor?',['m dim M m m M M','M m m M M m dim','m m M m M M dim','m dim m M m M M'],'Menor: m dim M m m M M.'],['Las tonalidades de F mayor y D menor comparten…',['La misma armadura (1 bemol)','Los mismos acordes','La misma tónica','Ninguna alteración'],'Una mayor y su relativa menor tienen la misma armadura.'],['Transportar un tema significa…',['Llevarlo a otra tonalidad conservando las distancias entre sus notas','Cambiar su tempo','Cambiar su letra','Tocarlo más fuerte'],'Se mantiene la relación de distancias; solo cambia el registro.'],['En el círculo de quintas, los vecinos de la tónica son…',['La subdominante (IV) y la dominante (V)','El relativo menor y el mayor','El II y el VII','Los dos acordes disminuidos'],'A un lado queda la IV y al otro la V.']].map(([q,o,w])=>({q,opts:o,ans:0,why:w}));
+mcq({root:'#quiz',id:'av-u7',total:8,make:n=>{const q=[];for(let i=0;i<n;i++){const k=i%4;q.push(k===0||k===2?gradeQ():k===1?trQ():pick(STAT,1)[0])}return shuffle(q)}});
+
+document.querySelectorAll('[data-carousel]').forEach(e=>U.carousel(e,e.dataset.carousel));
+U.course(7);
+})();
+</script>
+</body>
+</html>
