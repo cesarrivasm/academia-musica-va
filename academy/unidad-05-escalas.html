@@ -89,7 +89,7 @@
           <button type="button" class="ibtn solid" id="splay" aria-label="Escuchar la escala"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg></button>
         </div>
         <div class="a-readout"><div class="sym" id="ssym" aria-live="polite">C</div><div class="scale-box" id="sstrip"></div></div>
-        <div class="a-viz"><p class="lbl">Piano</p><div class="kbd-box" id="skb"></div><p class="lbl">Guitarra</p><div id="sfb"></div></div>
+        <div class="a-viz"><div class="viz-head"><div class="tabs" role="group" aria-label="Instrumento"><button type="button" data-inst="piano" aria-pressed="true">Piano</button><button type="button" data-inst="guitar" aria-pressed="false">Guitarra</button></div></div><div class="kbd-box" id="skb"></div><div id="sfb" hidden></div></div>
       </div>
     </section>
 
@@ -142,6 +142,8 @@ function drawLab(){const p=parseNote(sroot),sc=scale(p.l,p.a,smin);
   const m=new Map();sc.forEach((n,i)=>m.set(n.abs,{label:sp(n.name),deg:String(i+1),root:i===0}));m.set(sc[0].abs+12,{label:sp(sc[0].name),deg:'8',root:true});
   const svg=keyboard({octaves:2,marks:m,clickable:true,W:34,H:130,minKey:30,ctx:'#skb',onKey:abs=>{const c=actx();if(c)note(abs+12,c.currentTime+.01,1.2,.3)}});svg.setAttribute('aria-label',`Teclado con la escala de ${sp(sroot)} ${smin?'menor':'mayor'}: ${sc.map(n=>sp(n.name)).join(', ')}. Flechas para moverte, Enter para tocar.`);$('#skb').innerHTML='';$('#skb').appendChild(svg);
   U.fretboard($('#sfb'),{marks:new Map(sc.map((n,i)=>[n.pc,{label:n.name,root:i===0}])),label:`Diapasón con la escala de ${sp(sroot)} ${smin?'menor':'mayor'}`})}
+let sinst='piano';
+document.querySelectorAll('#lab [data-inst]').forEach(x=>x.onclick=()=>{sinst=x.dataset.inst;document.querySelectorAll('#lab [data-inst]').forEach(y=>y.setAttribute('aria-pressed',y===x));$('#skb').hidden=sinst!=='piano';$('#sfb').hidden=sinst!=='guitar';window.dispatchEvent(new Event('resize'))});
 $('#sr').onchange=()=>{sroot=$('#sr').value;drawLab()};
 document.querySelectorAll('#sty button').forEach(b=>b.onclick=()=>{smin=b.dataset.t==='min';document.querySelectorAll('#sty button').forEach(x=>x.setAttribute('aria-pressed',x===b));drawLab()});
 $('#splay').onclick=()=>{const p=parseNote(sroot),sc=scale(p.l,p.a,smin),c=actx();if(!c)return;stopAll();const T=c.currentTime+.03;sc.concat([{abs:sc[0].abs+12}]).forEach((n,i)=>note(n.abs+12,T+i*.33,.7,.3))};drawLab();
