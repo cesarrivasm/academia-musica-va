@@ -95,7 +95,7 @@
 
     <section id="practica">
       <div class="sec-head"><span class="k">5.5</span><h2>Práctica</h2><span class="lvl lvl-3">Avanzado</span></div>
-      <p class="prose">Primero arma escalas en el piano; después identifica intervalos y notas.</p>
+      <p class="prose">Primero arma escalas en el piano o la guitarra; después identifica intervalos y notas.</p>
       <div id="kq"></div>
       <div id="mq"></div>
     </section>
@@ -151,7 +151,7 @@ document.querySelectorAll('#sty button').forEach(b=>b.onclick=()=>{smin=b.datase
 $('#splay').onclick=()=>{const p=parseNote(sroot),sc=scale(p.l,p.a,smin),c=actx();if(!c)return;stopAll();const T=c.currentTime+.03;sc.concat([{abs:sc[0].abs+12}]).forEach((n,i)=>note(n.abs+12,T+i*.33,.7,.3))};drawLab();
 /* Práctica */
 const MAJR=['C','D','E','F','G','A','B','Bb','Eb','Ab','Db','F#'],MINR=['A','E','B','F#','C#','G#','D','G','C','F','Bb','Eb'];
-keyQuiz({root:'#kq',id:'av-u5-teclas',title:'Arma la escala en el piano',total:5,make:n=>pick(MAJR.map(r=>[r,false]).concat(MINR.map(r=>[r,true])),n).map(([r,mi])=>{const p=parseNote(r),sc=scale(p.l,p.a,mi);return{q:`Marca las 7 notas de la escala de <b>${sp(r)} ${mi?'menor':'mayor'}</b>`,targets:sc.map(x=>x.pc),need:7,why:`${sp(r)} ${mi?'menor':'mayor'}: ${sc.map(x=>sp(x.name)).join(' – ')}.`,play:sc.map(x=>x.abs+12)}})});
+keyQuiz({root:'#kq',id:'av-u5-teclas',title:'Arma la escala',total:5,make:n=>pick(MAJR.map(r=>[r,false]).concat(MINR.map(r=>[r,true])),n).map(([r,mi])=>{const p=parseNote(r),sc=scale(p.l,p.a,mi);return{q:`Marca las 7 notas de la escala de <b>${sp(r)} ${mi?'menor':'mayor'}</b>`,targets:sc.map(x=>x.pc),need:7,why:`${sp(r)} ${mi?'menor':'mayor'}: ${sc.map(x=>sp(x.name)).join(' – ')}.`,play:sc.map(x=>x.abs+12)}})});
 const IVN=IV.filter(i=>i[2]!==12);
 const ivQ=()=>{const r=['C','D','E','F','G','A','B'][rnd(0,6)],i=IVN[rnd(0,IVN.length-1)],t=target(r,i[1],i[2]);const same=IVN.filter(x=>x[1]===i[1]&&x!==i).map(x=>x[0]);const others=pick(IVN.filter(x=>x[1]!==i[1]).map(x=>x[0]),3);const opts=pick(same.concat(others),3).concat(i[0]);
   return{q:`¿Qué intervalo hay entre <b>${sp(r)}</b> y <b>${sp(t.name)}</b>?`,opts,ans:3,why:`${i[1]} notas contando ambas y ${i[2]} semitonos (${dist(i[2])}): ${i[0]}.`}};

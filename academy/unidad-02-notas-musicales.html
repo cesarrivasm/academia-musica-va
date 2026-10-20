@@ -47,7 +47,7 @@
         <p>En la música occidental se usan <strong>doce sonidos</strong>. Siete son <strong>naturales</strong> (Do – Re – Mi – Fa – Sol – La – Si) y cinco son <strong>alterados</strong>: Do♯ (Re♭), Re♯ (Mi♭), Fa♯ (Sol♭), Sol♯ (La♭) y La♯ (Si♭). Al llegar a los doce, los sonidos se repiten en el mismo orden a lo largo del registro de cada instrumento.</p>
         <p>Las notas alteradas tienen dos nombres: con sostenido (♯) o con bemol (♭). Más adelante profundizaremos en esto en la Unidad 04.</p>
       </div>
-      <div class="note"><b>Truco en el piano:</b> la nota <b>Do</b> (C) es la tecla blanca que está justo antes del grupo de <b>2 teclas negras</b>.</div>
+      <div class="note"><b>Truco en el piano:</b> la nota <b>Do</b> (C) es la tecla blanca que está justo antes del grupo de <b>2 teclas negras</b>. <b>En la guitarra:</b> Do está en la 5.ª cuerda, traste 3.</div>
       <div class="lab" id="lab">
         <div class="a-controls">
           <div class="field"><span class="lbl">Ver nombres</span><div class="seg" id="modeSeg" role="group" aria-label="Sistema de nombres"><button type="button" data-m="es" aria-pressed="true">Do Re Mi</button><button type="button" data-m="en" aria-pressed="false">C D E</button><button type="button" data-m="both" aria-pressed="false">Ambos</button></div></div>
@@ -101,7 +101,7 @@
 
     <section id="practica">
       <div class="sec-head"><span class="k">2.5</span><h2>Práctica</h2><span class="lvl lvl-1">Básico</span></div>
-      <p class="prose">Primero ubica notas en el piano; después practica el paso entre nombres y cifrado.</p>
+      <p class="prose">Primero ubica notas en el piano o la guitarra; después practica el paso entre nombres y cifrado.</p>
       <div id="kq"></div>
       <div id="mq"></div>
     </section>
@@ -142,7 +142,7 @@ function render(){
   $('#sym').textContent=alt?(mode==='en'?`${en(s)} · ${en(f)}`:`${es(s)} · ${es(f)}`):(mode==='en'?en(s):es(s));
   $('#sym').style.fontSize='56px';
   $('#alt').innerHTML=mode==='both'?`<span class="tone"><b>${alt?en(s)+' · '+en(f):en(s)}</b><i>cifrado</i></span>`:`<span class="tone"><b>${mode==='es'?(alt?en(s)+' · '+en(f):en(s)):(alt?es(s)+' · '+es(f):es(s))}</b><i>${mode==='es'?'cifrado':'nombre'}</i></span>`;
-  $('#exp').innerHTML=alt?`<div class="ex-name"><h3>Nota alterada</h3></div><p>Es la tecla negra entre ${es(SH[sel-1])} y ${es(SH[sel+1])}. Con sostenido se llama ${es(s)}; con bemol, ${es(f)}. Es el mismo sonido con dos nombres.</p>`:`<div class="ex-name"><h3>Nota natural</h3></div><p>Es una de las siete teclas blancas. En el cifrado americano se escribe <b>${s}</b>.</p>`;
+  $('#exp').innerHTML=alt?`<div class="ex-name"><h3>Nota alterada</h3></div><p>Es una nota alterada (la tecla negra en el piano), entre ${es(SH[sel-1])} y ${es(SH[sel+1])}. Con sostenido se llama ${es(s)}; con bemol, ${es(f)}. Es el mismo sonido con dos nombres.</p>`:`<div class="ex-name"><h3>Nota natural</h3></div><p>Es una de las siete notas naturales (las teclas blancas en el piano). En el cifrado americano se escribe <b>${s}</b>.</p>`;
   drawKbd();drawGtr();drawFing()}
 function drawGtr(){if(!fbo||fbMode!==mode){fbMode=mode;fbo=U.fretboard($('#gfb'),{labelFn:n=>mode==='en'?en(n):es(n),label:'Diapasón con las doce notas',onPlay:({pc})=>{sel=pc;render()}})}
   fbo.setPcs(new Map([[sel,{root:true}]]))}
@@ -163,7 +163,7 @@ cin.oninput=readIt;
 ['Cm7','G#dis','Eb/Bb','F#m','Bb','D/F#'].forEach(c=>{const b=document.createElement('button');b.type='button';b.className='chip';b.textContent=c;b.onclick=()=>{cin.value=c;readIt()};$('#cex').appendChild(b)});
 readIt();render();
 /* Práctica */
-keyQuiz({root:'#kq',id:'av-u2-teclas',title:'Ubica la nota en el piano',total:6,make:n=>pick([...Array(12).keys()],n).map(pc=>{const nat=SH[pc].length===1,name=nat?es(SH[pc]):(Math.random()<.5?es(SH[pc])+' (o '+es(FL[pc])+')':es(FL[pc])+' (o '+es(SH[pc])+')');return{q:`Marca la nota <b>${name}</b>`,targets:[pc],need:1,why:`En cifrado americano: ${nat?SH[pc]:SH[pc]+' = '+FL[pc]}.`}})});
+keyQuiz({root:'#kq',id:'av-u2-teclas',title:'Ubica la nota',total:6,make:n=>pick([...Array(12).keys()],n).map(pc=>{const nat=SH[pc].length===1,name=nat?es(SH[pc]):(Math.random()<.5?es(SH[pc])+' (o '+es(FL[pc])+')':es(FL[pc])+' (o '+es(SH[pc])+')');return{q:`Marca la nota <b>${name}</b>`,targets:[pc],need:1,why:`En cifrado americano: ${nat?SH[pc]:SH[pc]+' = '+FL[pc]}.`}})});
 const NAT=['C','D','E','F','G','A','B'];
 const CH=[['Cm7','Do menor séptima'],['G#dis','Sol sostenido disminuido'],['Eb/Bb','Mi bemol con bajo de Si bemol'],['F#m','Fa sostenido menor'],['Bb','Si bemol mayor'],['A7','La séptima'],['Dm','Re menor'],['Caug','Do aumentado'],['C/E','Do con bajo de Mi'],['Em7','Mi menor séptima'],['Gsus4','Sol suspendido 4'],['Abmaj7','La bemol séptima mayor']];
 mcq({root:'#mq',id:'av-u2-cifrado',title:'Nombres y cifrado',total:8,make:n=>{const qs=[];

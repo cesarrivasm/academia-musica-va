@@ -108,7 +108,7 @@ function mcq({root,id,title='Práctica',total=8,make}){
   }
   start();return{restart:()=>start()}}
 /* Práctica en el piano. make(n) devuelve [{q,targets:[pc],need,why?,play?}]; el orden y la octava no importan */
-function keyQuiz({root,id,title='Práctica en el piano',total=8,make,octaves=2}){
+function keyQuiz({root,id,title='Práctica con el instrumento',total=8,make,octaves=2}){
   const el=typeof root==='string'?$(root):root,sh=quizShell(el,title),b0=store.get(id+'-best',null);
   if(b0!=null)sh.best.textContent=`Tu mejor resultado: ${b0} de ${total}`;
   let st,inst='piano';const start=qs=>{st={i:0,score:0,qs:qs||make(total),picked:[],checked:false,missed:[],full:!qs};draw()};
@@ -201,7 +201,7 @@ function ksBuffer(freq){const key=freq.toFixed(2);if(ksCache.has(key))return ksC
   // soft excitation: smoothed noise, like a fingertip on nylon
   let lp=0;for(let i=0;i<N;i++){lp+=0.35*((Math.random()*2-1)-lp);ring[i]=lp}
   for(let pass=0;pass<2;pass++)for(let i=0;i<N;i++)ring[i]=0.5*(ring[i]+ring[(i+1)%N]);
-  const damp=0.9985-Math.min(.004,freq/120000);let idx=0,peak=0;
+  const damp=Math.min(.99995,Math.pow(.84,1/freq)/(.5+.5*Math.cos(2*Math.PI/N)));let idx=0,peak=0;
   for(let i=0;i<len;i++){const p=(idx+N-1)%N,nx=(idx+1)%N,v=ring[idx];d[i]=v;ring[idx]=damp*(0.25*ring[p]+0.5*v+0.25*ring[nx]);idx=nx;const a=Math.abs(v);if(a>peak)peak=a}
   const atk=Math.floor(sr*.004);for(let i=0;i<len;i++){d[i]/=peak||1;if(i<atk)d[i]*=i/atk}
   ksCache.set(key,buf);return buf}
