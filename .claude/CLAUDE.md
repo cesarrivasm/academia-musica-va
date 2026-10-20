@@ -1,6 +1,6 @@
 # Academia de Música VA
 
-Curso de teoría musical en español para el Ministerio de Alabanza · Iglesia Vida Abundante. Sitio estático (HTML/CSS/JS sin dependencias ni paso de compilación) en `academy/`. El contenido sale de `Material-Alumno.pdf`.
+Curso de teoría musical en español para el Ministerio de Alabanza · Iglesia Vida Abundante. Sitio estático (HTML/CSS/JS sin dependencias ni paso de compilación) en `academy/`.
 
 ## Estructura
 - `academy/index.html`: índice. `academy/curso.js` es la única fuente de la lista de unidades (`ready:true` publica una unidad) y del progreso (`localStorage`, clave `av-curso-done`).
@@ -15,9 +15,6 @@ Curso de teoría musical en español para el Ministerio de Alabanza · Iglesia V
 - Carruseles: `data-carousel="Etiqueta"` en un contenedor cuyos hijos son las diapositivas, o `U.carousel(el, etiqueta)` si se arman por JS.
 - Accesibilidad: objetivos táctiles de 44 px, `aria-label` en botones de ícono, respetar `prefers-reduced-motion`.
 - Notación: las notas se escriben con la ortografía correcta de la escala (sin repetir letras; E♭ y no D♯ en E♭ mayor).
-
-## Correcciones al PDF (ya aplicadas)
-Fórmula de la escala mayor (T T ½ T T T ½), IV de F mayor = B♭ y V = C, y escalas con raíz D♯/G♯/A♯ escritas con E♭/A♭/B♭.
 
 ## Agregar o cambiar una unidad
 1. Copiar la estructura de una unidad existente (encabezado con migas y menú ⋮, barra lateral, `#pager`) y enlazar `unidad.css`, `curso.js` y `unidad.js`.
