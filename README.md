@@ -18,13 +18,15 @@ Cada tema lleva un distintivo de nivel (Básico, Intermedio o Avanzado). El prog
 
 ## Cómo verlo
 
-Es un sitio estático, sin compilación. Desde la carpeta del proyecto:
+Es un sitio estático, sin compilación ni servidor: abre `academy/index.html` con doble clic. Las fuentes vienen de Google Fonts (sin internet se usa una fuente del sistema) y el progreso se guarda en el navegador.
+
+Para probarlo como sitio web, desde la carpeta del proyecto:
 
 ```bash
 cd academy && python3 -m http.server 8000
 ```
 
-Abre <http://localhost:8000>. Conviene usar un servidor y no abrir los archivos con `file://`, para que carguen las fuentes y los scripts.
+Abre <http://localhost:8000>.
 
 ## Estructura
 
