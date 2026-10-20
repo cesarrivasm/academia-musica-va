@@ -52,8 +52,8 @@
         <p>Hacia la derecha del piano (o más trastes en la guitarra) <strong>subes</strong> medios tonos o tonos: los sonidos son más agudos. Hacia la izquierda <strong>bajas</strong>: más graves. Por eso F es más agudo que D, y E es más grave que B.</p>
       </div>
       <div class="panel">
-        <div class="pbar"><div class="field"><label class="lbl" for="str">Cuerda de la guitarra</label><span class="select"><select id="str"><option value="0">6.ª · E (Mi)</option><option value="1">5.ª · A (La)</option><option value="2">4.ª · D (Re)</option><option value="3">3.ª · G (Sol)</option><option value="4">2.ª · B (Si)</option><option value="5">1.ª · E (Mi)</option></select><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8l7 8 7-8z"/></svg></span></div></div>
-        <div class="pin"><div class="row" id="frets" role="group" aria-label="Trastes"></div><p class="cap">Cada traste sube un semitono. Toca uno para escucharlo.</p></div>
+        <div class="pbar"><div class="field"><span class="lbl">Nombres</span><div class="seg" id="fnSeg" role="group" aria-label="Nombres de las notas"><button type="button" data-f="sharp" aria-pressed="true">Sostenidos ♯</button><button type="button" data-f="flat" aria-pressed="false">Bemoles ♭</button></div></div></div>
+        <div class="pin"><div id="fbBox"></div><p class="cap" id="fbCap" aria-live="polite" style="min-height:3.3em">Toca cualquier nota del diapasón: cada traste sube un semitono desde la cuerda al aire.</p></div>
       </div>
     </section>
 
@@ -61,7 +61,7 @@
       <div class="sec-head"><span class="k">4.2</span><h2>Medir distancias</h2><span class="lvl lvl-2">Intermedio</span></div>
       <p class="prose">Toca una tecla de partida y luego otra de llegada. Si tocas una tercera vez, empiezas de nuevo.</p>
       <div class="lab" id="lab">
-        <div class="a-readout"><div class="sym" id="dsym" aria-live="polite">—</div><p id="dtxt" class="cap">Elige la primera tecla.</p></div>
+        <div class="a-readout"><div class="sym" id="dsym" aria-live="polite">—</div><p id="dtxt" class="cap" style="min-height:6.4em">Elige la primera tecla.</p></div>
         <div class="a-viz"><div class="kbd-box" id="dkb"></div></div>
       </div>
     </section>
@@ -83,7 +83,7 @@
 
     <section id="practica">
       <div class="sec-head"><span class="k">4.4</span><h2>Práctica</h2><span class="lvl lvl-2">Intermedio</span></div>
-      <p class="prose">Los primeros ejercicios son los del material impreso (D–F, G–A, C♯–F♯, E–B, G♭–D♭). Después hay más combinaciones al azar.</p>
+      <p class="prose">Empieza con distancias entre pares de notas (D–F, G–A, C♯–F♯, E–B, G♭–D♭) y sigue con más combinaciones al azar.</p>
       <div id="q1"></div>
       <div id="q2"></div>
     </section>
@@ -110,9 +110,11 @@ const sp=n=>n.replace('#','♯').replace(/b$/,'♭').replace(/^([A-G])b/,'$1♭'
 const dist=s=>s===0?'0 tonos':s===1?'½ tono':s%2===0?`${s/2} ${s/2===1?'tono':'tonos'}`:`${(s-1)/2} ${(s-1)/2===1?'tono':'tonos'} y ½`;
 const distFull=s=>`${dist(s)} (${s} ${s===1?'semitono':'semitonos'})`;
 /* 4.1 guitarra */
-const OPEN=[-8,-3,2,7,11,16];
-function drawFrets(){const k=+$('#str').value,box=$('#frets');box.innerHTML='';for(let f=0;f<=12;f++){const abs=OPEN[k]+f,b=document.createElement('button');b.type='button';b.className='chip';b.innerHTML=`${sp(SH[((abs%12)+12)%12])}<br><span class="cap">${f===0?'al aire':'traste '+f}</span>`;b.style.textAlign='center';b.onclick=()=>{const c=actx();if(c){stopAll();note(abs,c.currentTime+.01,1.6,.32)}};box.appendChild(b)}}
-$('#str').onchange=drawFrets;drawFrets();
+let fbFlat=false;
+function drawFb(){$('#fbCap').textContent='Toca cualquier nota del diapasón: cada traste sube un semitono desde la cuerda al aire.';
+  U.fretboard($('#fbBox'),{flat:fbFlat,onPlay:({r,f,name})=>{$('#fbCap').textContent=`Cuerda ${r+1}, ${f===0?'al aire':'traste '+f}: ${name}. `+(f===0?'Es la nota de la cuerda sin presionar.':`Está ${f} ${f===1?'semitono':'semitonos'} (${dist(f)}) por encima de la cuerda al aire.`)}})}
+document.querySelectorAll('#fnSeg button').forEach(b=>b.onclick=()=>{fbFlat=b.dataset.f==='flat';document.querySelectorAll('#fnSeg button').forEach(x=>x.setAttribute('aria-pressed',x===b));drawFb()});
+drawFb();
 /* 4.2 distancias */
 let A=null,B=null;
 function drawD(){const marks=new Map();if(A!=null)marks.set(A,{label:sp(SH[A%12]),root:true});if(B!=null)marks.set(B,{label:sp(SH[B%12]),root:false});

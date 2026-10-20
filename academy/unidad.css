@@ -375,3 +375,24 @@ h1,h2,h3,.sec-head,.qtext,.lbl,.ex-name{text-align:left;hyphens:manual}
 /* Una sola columna por sección: el texto llega al mismo borde que los widgets */
 main>section{width:100%;max-width:920px;margin-inline:auto}
 .prose,.note,p.prose{max-width:none}
+
+/* Diapasón */
+.fb-scroll{overflow-x:auto;max-width:100%}
+.fb-scroll svg{display:block;width:100%;height:auto}
+.fb{cursor:pointer;outline:none}
+.fb:hover circle{filter:brightness(.95)}
+.fb.hit circle{fill:var(--violet);stroke:var(--violet)}
+.fb.hit text{fill:#fff}
+.fb:focus-visible circle{stroke:var(--ink);stroke-width:3.2}
+.pin>*{min-width:0}
+#fbBox{min-width:0;max-width:100%}
+
+/* Laboratorio de una sola columna y controles de igual altura */
+.lab.one{grid-template-columns:minmax(0,1fr);grid-template-areas:"controls" "readout" "viz"}
+.a-viz{gap:10px}
+.a-controls .select select,.pbar .select select{min-height:52px}
+.a-controls .ibtn.solid,.pbar .ibtn.solid{width:52px;height:52px}
+
+.tbl tr.on td{background:var(--violet-soft)}
+.outchords span{transition:background .1s,color .1s}
+.outchords span.on{background:var(--violet);color:#fff}

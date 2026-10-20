@@ -127,7 +127,7 @@ function keyQuiz({root,id,title='Práctica en el piano',total=8,make,octaves=2})
     if(st.checked){const good=ok(),fb=sh.body.querySelector('#qfb');fb.className='feedback '+(good?'ok':'err');
       fb.textContent=good?'¡Correcto!':'Las teclas correctas están en violeta: '+q.targets.map(nmS).join(' – ')+'.';sh.body.querySelector('#qhint').textContent=q.why||'';
       sh.body.querySelector('#qclr').hidden=true;chk.textContent=st.i===st.qs.length-1?'Ver resultado':'Siguiente';chk.onclick=()=>{st.i++;st.picked=[];st.checked=false;draw();const t=sh.body.querySelector('.qtext');if(t)t.focus({preventScroll:true})}}
-    else{chk.disabled=pcs().length!==q.need;sh.body.querySelector('#qhint').textContent=chk.disabled?`Marca ${q.need} ${q.need===1?'tecla':'teclas'} (los sostenidos y bemoles son la misma tecla negra).`:'';
+    else{chk.disabled=pcs().length!==q.need;sh.body.querySelector('#qhint').textContent='';
       chk.onclick=()=>{st.checked=true;if(ok())st.score++;else if(st.full)st.missed.push(q);draw()};sh.body.querySelector('#qclr').onclick=()=>{st.picked=[];draw()}}
   }
   start();return{restart:()=>start()}}
@@ -192,5 +192,56 @@ document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest
   if(b.classList.contains('playing')&&!b.hasAttribute('data-restart')){e.stopImmediatePropagation();e.preventDefault();stopAll();endPlay(b);return}
   src=b;b._hold=0;setTimeout(()=>{if(src===b)src=null},0)},true);
 document.addEventListener('click',()=>{const b=src;if(!b)return;src=null;if(b._hold>0)startPlay(b,b._hold)});
-window.U={setPlaying,hold,reg,carousel,store,$,svgEl,keyboard,actx,note,playSet,stopAll,out:()=>{actx();return master},LET,LPC,nm,ES,esName,pretty,parseNote,scale,triads,ROMAN,DEG_NAMES,shuffle,pick,rnd,R12S,mcq,keyQuiz,course,metro,ICON_SPK,ACC};
+const ksCache=new Map();
+function ksBuffer(freq){const key=freq.toFixed(2);if(ksCache.has(key))return ksCache.get(key);
+  const sr=ac.sampleRate,len=Math.floor(sr*2.6),buf=ac.createBuffer(1,len,sr),d=buf.getChannelData(0),N=Math.max(3,Math.round(sr/freq)),ring=new Float32Array(N);
+  // soft excitation: smoothed noise, like a fingertip on nylon
+  let lp=0;for(let i=0;i<N;i++){lp+=0.35*((Math.random()*2-1)-lp);ring[i]=lp}
+  for(let pass=0;pass<2;pass++)for(let i=0;i<N;i++)ring[i]=0.5*(ring[i]+ring[(i+1)%N]);
+  const damp=0.9985-Math.min(.004,freq/120000);let idx=0,peak=0;
+  for(let i=0;i<len;i++){const p=(idx+N-1)%N,nx=(idx+1)%N,v=ring[idx];d[i]=v;ring[idx]=damp*(0.25*ring[p]+0.5*v+0.25*ring[nx]);idx=nx;const a=Math.abs(v);if(a>peak)peak=a}
+  const atk=Math.floor(sr*.004);for(let i=0;i<len;i++){d[i]/=peak||1;if(i<atk)d[i]*=i/atk}
+  ksCache.set(key,buf);return buf}
+let gBus=null;
+function guitarBus(){if(gBus)return gBus;const c=ac;const lp=c.createBiquadFilter();lp.type='lowpass';lp.frequency.value=2200;lp.Q.value=0.5;
+  const body=c.createBiquadFilter();body.type='peaking';body.frequency.value=180;body.Q.value=1.2;body.gain.value=4;
+  const air=c.createBiquadFilter();air.type='highshelf';air.frequency.value=3500;air.gain.value=-6;
+  lp.connect(body);body.connect(air);air.connect(master);gBus=lp;return gBus}
+function pluck(midi,when,amp){const c=actx();if(!c)return;U.hold(when-c.currentTime+2.6);const f=440*Math.pow(2,(midi-69)/12);
+  const src=c.createBufferSource();src.buffer=ksBuffer(f);const g=c.createGain();
+  g.gain.setValueAtTime(amp,when);g.gain.setTargetAtTime(amp*.55,when+.05,.6);src.connect(g);g.connect(guitarBus());src.start(when);src.stop(when+2.6);
+  voices=voices.filter(v=>v.end>c.currentTime);voices.push({g,oscs:[src],end:when+2.6})}
+
+const OPEN_MIDI=[40,45,50,55,59,64];
+const _pluck=pluck;pluck=function(m,w,a){_pluck(m,w,a);if(ac)hold(w-ac.currentTime+2.6)};
+/* Diapasón de guitarra interactivo. marks: Map(pc -> {label, root}) o null para mostrar todas las notas */
+function fretboard(host,{frets=12,flat=false,marks=null,onPlay=null,label='Diapasón de la guitarra'}={}){
+  const X0=46,FW=48,Y0=34,RH=30,W=X0+frets*FW+14,H=Y0+5*RH+40,SHn=['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'],FLn=['C','Db','D','Eb','E','F','Gb','G','Ab','A','Bb','B'];
+  const svg=svgEl('svg',{viewBox:`0 0 ${W} ${H}`,role:'group','aria-label':`${label}. Seis cuerdas y ${frets} trastes. Flechas para moverte, Enter para tocar una nota.`});
+  svg.style.minWidth=(frets*38+60)+'px';
+  const xf=f=>f===0?X0/2-3:X0+(f-.5)*FW,yr=r=>Y0+r*RH,mono='JetBrains Mono, monospace';
+  [3,5,7,9].forEach(f=>svg.appendChild(svgEl('circle',{cx:xf(f),cy:yr(2.5),r:7,fill:'var(--line)'})));
+  if(frets>=12)[1.5,3.5].forEach(k=>svg.appendChild(svgEl('circle',{cx:xf(12),cy:yr(k),r:7,fill:'var(--line)'})));
+  for(let k=1;k<=frets;k++)svg.appendChild(svgEl('line',{x1:X0+k*FW,y1:yr(0)-6,x2:X0+k*FW,y2:yr(5)+6,stroke:'var(--line-strong)','stroke-width':1.4}));
+  svg.appendChild(svgEl('rect',{x:X0-3,y:yr(0)-6,width:5,height:5*RH+12,fill:'var(--ink)'}));
+  for(let r=0;r<6;r++)svg.appendChild(svgEl('line',{x1:6,y1:yr(r),x2:W-8,y2:yr(r),stroke:'var(--muted)','stroke-width':[1,1.2,1.6,2,2.4,2.8][r]}));
+  for(let f=0;f<=frets;f++)svg.appendChild(svgEl('text',{x:xf(f),y:yr(5)+32,'text-anchor':'middle','font-size':12,'font-family':mono,fill:'var(--muted)'},f===0?'0':String(f)));
+  const cells=[];let first=null;
+  for(let r=0;r<6;r++){cells[r]=[];for(let f=0;f<=frets;f++){const midi=OPEN_MIDI[5-r]+f,pc=midi%12,m=marks&&marks.get(pc);if(marks&&!m){cells[r][f]=null;continue}
+    const name=m?m.label:(flat?FLn:SHn)[pc],root=m&&m.root,alt=!m&&name.length>1,pn=pretty(name);
+    const g=svgEl('g',{class:'fb',role:'button',tabindex:'-1','aria-label':`Cuerda ${r+1}, ${f===0?'al aire':'traste '+f}, ${pn}`});
+    g.appendChild(svgEl('rect',{x:f===0?2:X0+(f-1)*FW,y:yr(r)-RH/2,width:f===0?X0-6:FW,height:RH,fill:'transparent',style:'cursor:pointer'}));
+    g.appendChild(svgEl('circle',{cx:xf(f),cy:yr(r),r:11,fill:root?'var(--violet)':marks?'var(--navy)':alt?'var(--navy-soft)':'var(--bg)',stroke:root?'var(--violet)':'var(--navy)','stroke-width':1.6}));
+    g.appendChild(svgEl('text',{x:xf(f),y:yr(r)+3.5,'text-anchor':'middle','font-size':pn.length>2?8.5:10.5,'font-weight':700,'font-family':mono,fill:marks?'var(--on-navy)':'var(--navy)','pointer-events':'none'},pn));
+    const play=()=>{const c=actx();if(!c)return;pluck(midi,c.currentTime+.01,.3);g.classList.add('hit');clearTimeout(g._h);g._h=setTimeout(()=>g.classList.remove('hit'),650);if(onPlay)onPlay({r,f,midi,pc,name:pn})};
+    g.addEventListener('click',play);g._play=play;svg.appendChild(g);cells[r][f]=g;if(!first)first=g}}
+  if(first)first.setAttribute('tabindex','0');
+  svg.addEventListener('keydown',e=>{const t=e.target.closest&&e.target.closest('.fb');if(!t)return;const idx=[...svg.querySelectorAll('.fb')].indexOf(t);let r=-1,f=-1;cells.forEach((row,i)=>row.forEach((c,j)=>{if(c===t){r=i;f=j}}));
+    const d={ArrowRight:[0,1],ArrowLeft:[0,-1],ArrowUp:[-1,0],ArrowDown:[1,0]}[e.key];
+    if(d){e.preventDefault();let a=r+d[0],b=f+d[1];while(a>=0&&a<6&&b>=0&&b<=frets&&!cells[a][b]){a+=d[0];b+=d[1]}if(a>=0&&a<6&&b>=0&&b<=frets&&cells[a][b]){t.setAttribute('tabindex','-1');cells[a][b].setAttribute('tabindex','0');cells[a][b].focus()}}
+    else if(e.key==='Enter'||e.key===' '){e.preventDefault();t._play()}});
+  const box=document.createElement('div');box.className='fb-scroll';box.appendChild(svg);const hint=document.createElement('p');hint.className='cap';hint.hidden=true;hint.textContent='Desliza para ver todos los trastes →';
+  host.innerHTML='';host.append(box,hint);const upd=()=>{hint.hidden=!(box.scrollWidth>box.clientWidth+2)};requestAnimationFrame(upd);window.addEventListener('resize',upd);
+  return{svg}}
+window.U={fretboard,pluck,OPEN_MIDI,setPlaying,hold,reg,carousel,store,$,svgEl,keyboard,actx,note,playSet,stopAll,out:()=>{actx();return master},LET,LPC,nm,ES,esName,pretty,parseNote,scale,triads,ROMAN,DEG_NAMES,shuffle,pick,rnd,R12S,mcq,keyQuiz,course,metro,ICON_SPK,ACC};
 })();

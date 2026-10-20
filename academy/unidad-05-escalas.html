@@ -81,16 +81,15 @@
 
     <section id="laboratorio">
       <div class="sec-head"><span class="k">5.4</span><h2>Laboratorio de escalas</h2><span class="lvl lvl-2">Intermedio</span></div>
-      <p class="prose">Elige la raíz y el tipo. Verás las notas, los tonos que las separan y las teclas del piano.</p>
-      <div class="lab" id="lab">
+      <p class="prose">Elige la raíz y el tipo de escala. Verás sus notas, los tonos y semitonos que las separan, y dónde están en el piano y en la guitarra. Toca cualquier nota para escucharla.</p>
+      <div class="lab one" id="lab">
         <div class="a-controls">
           <div class="field"><label class="lbl" for="sr">Raíz</label><span class="select"><select id="sr"></select><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8l7 8 7-8z"/></svg></span></div>
           <div class="field"><span class="lbl">Escala</span><div class="seg" id="sty" role="group" aria-label="Tipo de escala"><button type="button" data-t="maj" aria-pressed="true">Mayor</button><button type="button" data-t="min" aria-pressed="false">Menor</button></div></div>
           <button type="button" class="ibtn solid" id="splay" aria-label="Escuchar la escala"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg></button>
         </div>
         <div class="a-readout"><div class="sym" id="ssym" aria-live="polite">C</div><div class="scale-box" id="sstrip"></div></div>
-        <div class="a-viz"><div class="kbd-box" id="skb"></div></div>
-        <div class="a-explain" id="sexp"></div>
+        <div class="a-viz"><p class="lbl">Piano</p><div class="kbd-box" id="skb"></div><p class="lbl">Guitarra</p><div id="sfb"></div></div>
       </div>
     </section>
 
@@ -138,13 +137,11 @@ function stripHtml(l,a,minor){const sc=scale(l,a,minor),notes=sc.concat([{...sc[
 function examples(sel,minor){[['C'],['F'],['Eb']].forEach(([r])=>{const p=parseNote(r),d=document.createElement('div');d.className='card';d.innerHTML=`<h3>Escala de ${sp(r)} ${minor?'menor':'mayor'}</h3>${stripHtml(p.l,p.a,minor)}`;$(sel).appendChild(d)})}
 examples('#exMaj',false);examples('#exMin',true);
 let sroot='C',smin=false;
-function drawLab(){const p=parseNote(sroot),sc=scale(p.l,p.a,smin),dbl=sc.some(n=>Math.abs(n.a)===2);
+function drawLab(){const p=parseNote(sroot),sc=scale(p.l,p.a,smin);
   $('#ssym').textContent=sp(sroot)+(smin?' menor':' mayor');$('#ssym').style.fontSize='';$('#sstrip').outerHTML=`<div id="sstrip">${stripHtml(p.l,p.a,smin)}</div>`;
-  const ac=sc.reduce((x,n)=>x+n.a,0),cnt=sc.filter(n=>n.a!==0).length;
-  const key=cnt===0?'Sin sostenidos ni bemoles.':`${cnt} ${cnt===1?'nota alterada':'notas alteradas'}: ${sc.filter(n=>n.a!==0).map(n=>sp(n.name)).join(', ')}.`;
-  $('#sexp').innerHTML=`<div class="ex-name"><h3>Escala ${smin?'menor':'mayor'}</h3><span>${smin?'R T ½ T T ½ T T':'R T T ½ T T T ½'}</span></div><p>${key}</p>${dbl?'<p class="note">Esta raíz lleva dobles alteraciones. En la práctica se usa su nombre equivalente, que es más sencillo de leer.</p>':''}`;
   const m=new Map();sc.forEach((n,i)=>m.set(n.abs,{label:sp(n.name),deg:String(i+1),root:i===0}));m.set(sc[0].abs+12,{label:sp(sc[0].name),deg:'8',root:true});
-  const svg=keyboard({octaves:2,marks:m,W:34,H:130});svg.setAttribute('aria-label',`Teclado con la escala de ${sp(sroot)} ${smin?'menor':'mayor'}: ${sc.map(n=>sp(n.name)).join(', ')}`);$('#skb').innerHTML='';$('#skb').appendChild(svg)}
+  const svg=keyboard({octaves:2,marks:m,clickable:true,W:34,H:130,minKey:30,ctx:'#skb',onKey:abs=>{const c=actx();if(c)note(abs+12,c.currentTime+.01,1.2,.3)}});svg.setAttribute('aria-label',`Teclado con la escala de ${sp(sroot)} ${smin?'menor':'mayor'}: ${sc.map(n=>sp(n.name)).join(', ')}. Flechas para moverte, Enter para tocar.`);$('#skb').innerHTML='';$('#skb').appendChild(svg);
+  U.fretboard($('#sfb'),{marks:new Map(sc.map((n,i)=>[n.pc,{label:n.name,root:i===0}])),label:`Diapasón con la escala de ${sp(sroot)} ${smin?'menor':'mayor'}`})}
 $('#sr').onchange=()=>{sroot=$('#sr').value;drawLab()};
 document.querySelectorAll('#sty button').forEach(b=>b.onclick=()=>{smin=b.dataset.t==='min';document.querySelectorAll('#sty button').forEach(x=>x.setAttribute('aria-pressed',x===b));drawLab()});
 $('#splay').onclick=()=>{const p=parseNote(sroot),sc=scale(p.l,p.a,smin),c=actx();if(!c)return;stopAll();const T=c.currentTime+.03;sc.concat([{abs:sc[0].abs+12}]).forEach((n,i)=>note(n.abs+12,T+i*.33,.7,.3))};drawLab();

@@ -1,6 +1,6 @@
 # Academia de Música · Ministerio de Alabanza
 
-Curso en línea de teoría musical del **Ministerio de Alabanza · Iglesia Vida Abundante**. Son siete unidades interactivas (con teclado, guitarra, metrónomo, círculo de quintas y ejercicios) basadas en el material impreso del alumno.
+Curso en línea de teoría musical del **Ministerio de Alabanza · Iglesia Vida Abundante**. Son siete unidades interactivas (con teclado, guitarra, metrónomo, círculo de quintas y ejercicios).
 
 ## Unidades
 
@@ -38,7 +38,6 @@ academy/
   unidad.js       audio, teclado SVG, prácticas, carrusel, menú y navegación
   unidad-NN-*.html  cada unidad (contenido + su lógica interactiva)
   logo.png
-Material-Alumno.pdf   material impreso original
 ```
 
 ## Atribución
