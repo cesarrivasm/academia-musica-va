@@ -10,7 +10,7 @@ Curso de teoría musical en español para el Ministerio de Alabanza · Iglesia V
 
 ## Convenciones
 - Todo el texto visible en español. Separador visible « – » (« / » para enarmónicos); sin « · ». Atribución solo al Ministerio de Alabanza · Iglesia Vida Abundante; no poner nombres de personas.
-- Cada tema (`.sec-head`) lleva un distintivo de nivel: `lvl lvl-1` Básico, `lvl-2` Intermedio, `lvl-3` Avanzado. Si se agrega un tema, asignarle nivel y ponerlo también en la barra lateral.
+- El nivel (`lvl lvl-1` Básico, `lvl-2` Intermedio, `lvl-3` Avanzado) se muestra por unidad, no por tema. Cada lección tiene su `lvl` en `lessons` de `curso.js` y la unidad hereda el que más se repite (en empate, el más alto). Si se agrega un tema, asignarle `lvl` y ponerlo en `lessons`.
 - Sonido: un solo botón estándar, `.ibtn.solid` con ícono de bocina. `unidad.js` muestra el estado de reproducción (violeta + pausa) y detiene al volver a pulsar. El audio debe pasar por `note()`/`playSet()` o llamar a `U.hold()`/`U.reg()`. Usar `data-toggle` (metrónomo) o `data-restart` solo si hace falta.
 - Instrumentos: todo widget con piano lleva un toggle Piano/Guitarra (`.tabs` con `data-inst`). La guitarra usa `U.fretboard()` (diapasón de 12 trastes; `marks`, `setPcs`, `setPicked`, modo `blank` para prácticas) y `U.keyQuiz` ya incluye el toggle.
 - Alineación: texto justificado, títulos a la izquierda, widgets centrados, una columna de 920 px por sección.

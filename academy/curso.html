@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Curso – Academia de Música</title>
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;600;700;800&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="unidad.css">
+<style>
+body{min-height:100vh;display:flex;flex-direction:column}
+main.cur{display:flex;flex-direction:column;gap:32px;flex:1;width:100%;max-width:1200px;margin:0 auto;padding:32px 48px 48px}
+main.cur p,main.cur li{text-align:left;hyphens:manual}
+main.cur>section{max-width:none;margin-inline:0}
+@media (max-width:760px){main.cur{padding:20px 16px 36px;gap:24px}}
+.hero-c{display:grid;grid-template-columns:minmax(0,1fr) 300px;background:var(--bg);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.hero-c .in{padding:32px 36px;display:grid;gap:14px;align-content:center;justify-items:start}
+.hero-c .art{background:repeating-linear-gradient(135deg,var(--cs) 0 14px,color-mix(in srgb,var(--cs) 70%,#fff) 14px 28px)}
+@supports not (color:color-mix(in srgb,red,blue)){.hero-c .art{background:var(--cs)}}
+.cpill{display:inline-flex;font-size:12px;font-weight:600;border-radius:99px;padding:3px 12px;background:var(--cs);color:var(--ct)}
+.hero-c h1{font-size:clamp(30px,5vw,40px);font-weight:800;letter-spacing:-.02em;line-height:1.1;color:var(--navy)}
+.hero-c .desc{font-size:17px;color:var(--body);max-width:60ch}
+.facts{display:flex;gap:8px 20px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
+.facts b{color:var(--ink)}
+.prog{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--muted);flex-wrap:wrap}
+.rbar{height:6px;border-radius:99px;background:#eceef4;overflow:hidden}
+.rbar i{display:block;height:100%;border-radius:99px;background:var(--c)}
+.prog .rbar{width:220px;max-width:100%}
+.go{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 26px;border-radius:12px;background:var(--navy);color:#fff;font-weight:600;font-size:16px;text-decoration:none}
+.go:hover{background:var(--navy-hover)}
+@media (max-width:900px){.hero-c{grid-template-columns:minmax(0,1fr)}.hero-c .art{display:none}.hero-c .in{padding:24px 20px}}
+.c-h2{font-size:22px;font-weight:700;color:var(--ink);margin-bottom:16px}
+.ulist{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.urow{display:grid;grid-template-columns:48px minmax(0,1fr) 180px;gap:16px;align-items:center;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:16px 18px;color:inherit;text-decoration:none}
+a.urow:hover{border-color:var(--c)}
+.unum{width:48px;height:48px;border-radius:12px;background:var(--cs);color:var(--c);display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:20px}
+.urow.ok .unum{background:var(--ok-line);color:#fff}
+.urow .nm{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-family:var(--f-display);font-size:18px;font-weight:700;color:var(--ink)}
+.urow .meta{font-size:14px;color:var(--muted)}
+@media (max-width:760px){.urow{grid-template-columns:48px minmax(0,1fr)}.urow .rbar{grid-column:1/-1}}
+.soon-box{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:24px;color:var(--muted)}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<header class="top" id="top"></header>
+<main class="cur" id="contenido"></main>
+<footer><div class="wrap">Ministerio de Alabanza – Iglesia Vida Abundante</div></footer>
+<script src="curso.js"></script>
+<script>
+(function(){
+const C=window.CURSO,$=s=>document.querySelector(s);
+C.header('cursos');
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const num=n=>String(n).padStart(2,'0');
+const id=new URLSearchParams(location.search).get('c')||'teoria';
+const c=C.courses.find(x=>x.id===id);
+const DESC={teoria:'Lo esencial para entender cómo funciona la música: el sonido, las notas, el ritmo, los tonos, las escalas, los acordes y las transposiciones. Sirve para cualquier instrumento.'};
+if(!c){document.title='Curso no encontrado – Academia de Música';$('#contenido').innerHTML='<div class="soon-box"><h1>No encontramos ese curso</h1><p style="margin-top:8px"><a href="index.html#cursos">Ver todos los cursos</a></p></div>'}
+else{
+  document.title=`${c.name} – Academia de Música`;
+  const hue=`class="course" data-hue="${c.hue}" style="--h:${c.hue}"`;
+  if(!c.ready){
+    $('#contenido').innerHTML=`<section ${hue}><div class="hero-c"><div class="in"><span class="cpill">Próximamente</span><h1>${esc(c.name)}</h1><p class="desc">${esc(c.meta)}. Estamos preparando este curso.</p><a class="go" href="index.html#cursos">Ver otros cursos</a></div><div class="art" aria-hidden="true"></div></div></section>`;
+  }else{
+    const done=C.done(),units=c.units,total=units.reduce((a,u)=>a+u.lessons.length,0),seen=units.reduce((a,u)=>a+C.seenCount(u.n),0);
+    const r=C.resume(),l=r.lesson,started=r.started||seen>0;
+    const cta=l?`<a class="go" href="${l.unit.file}#${l.id}">${started?'Continuar ▸':'Empezar ▸'}</a>`:`<a class="go" href="${units[0].file}">Repasar desde el inicio</a>`;
+    const sub=l?`${started?'Sigue':'Primera lección'}: ${l.k} ${esc(l.title)}`:'¡Terminaste el curso!';
+    const pct=Math.round(done.length/units.length*100);
+    $('#contenido').innerHTML=`<section ${hue} aria-labelledby="cT"><div class="hero-c"><div class="in"><span class="cpill">${started?'En curso':'Nuevo'}</span><h1 id="cT">${esc(c.name)}</h1><p class="desc">${DESC[c.id]||esc(c.meta)}</p><p class="facts"><span><b>${units.length}</b> unidades</span><span><b>${total}</b> lecciones</span><span>${esc(c.meta)}</span></p><div class="prog"><div class="rbar" role="progressbar" aria-label="Unidades terminadas" aria-valuemin="0" aria-valuemax="${units.length}" aria-valuenow="${done.length}"><i style="width:${pct}%"></i></div><span>${done.length} de ${units.length} unidades</span></div><p class="facts">${sub}</p>${cta}</div><div class="art" aria-hidden="true"></div></div></section>
+    <section ${hue} aria-labelledby="uH"><h2 class="c-h2" id="uH">Unidades</h2><ol class="ulist">${units.map(u=>{
+      const d=done.includes(u.n),s=C.seenCount(u.n),p=d?100:Math.round(s/u.lessons.length*100);
+      const st=d?'Terminada':s?`${s} de ${u.lessons.length} lecciones`:`${u.lessons.length} lecciones`;
+      const inner=`<span class="unum" aria-hidden="true">${d?'✓':num(u.n)}</span><div><div class="nm">Unidad ${num(u.n)} – ${esc(u.title)}<span class="lvl lvl-${u.lvl}">${C.levels[u.lvl]}</span></div><div class="meta">${st}</div></div><div class="rbar" aria-hidden="true"><i style="width:${p}%"></i></div>`;
+      return `<li>${u.ready?`<a class="urow${d?' ok':''}" href="${u.file}">${inner}</a>`:`<div class="urow">${inner}</div>`}</li>`}).join('')}</ol></section>`;
+  }
+}
+})();
+</script>
+</body>
+</html>

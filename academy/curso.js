@@ -52,6 +52,10 @@ const COURSES=[
   {id:'bajo',name:'Bajo',short:'B',hue:175,meta:'En preparación',ready:false,units:[]},
   {id:'bateria',name:'Batería',short:'B',hue:85,meta:'En preparación',ready:false,units:[]}
 ];
+const LEVELS=['','Básico','Intermedio','Avanzado'];
+/* Nivel de una unidad: el que más se repite entre sus lecciones (en empate, el más alto) */
+function unitLevel(u){const c=[0,0,0,0];u.lessons.forEach(l=>c[l.lvl]++);let b=1;for(let i=1;i<=3;i++)if(c[i]>=c[b])b=i;return b}
+UNITS.forEach(u=>{u.lvl=unitLevel(u)});
 const KEY='av-curso-done',SEEN='av-lecciones-vistas',LAST='av-ultima-leccion';
 function load(k,d){try{const v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(e){return d}}
 function save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
@@ -100,6 +104,7 @@ function header(active){
   drawer({id:'navDrawer',title:'Menú',html:`<nav class="drawer-nav" aria-label="Principal">${links()}</nav>`,opener:host.querySelector('#hdMenu')});
 }
 window.CURSO={
+  levels:LEVELS,
   header,drawer,
   units:UNITS,courses:COURSES,
   unit,

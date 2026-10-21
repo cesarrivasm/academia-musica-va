@@ -392,7 +392,6 @@ a.su:hover{background:var(--tint)}
 .sl.seen .sl-dot{background:var(--ok-line);border-color:var(--ok-line)}
 .sl.on .sl-dot{background:var(--violet);border-color:var(--violet)}
 .sl-t{flex:1;min-width:0}
-.sl-v{font-size:12px;color:var(--muted)}
 .syl-links{margin-top:18px;padding-top:14px;border-top:1px solid var(--line-soft)}
 
 main{padding:32px 56px 40px}
@@ -405,7 +404,6 @@ body{font-size:17px;line-height:1.65}
 /* Encabezado de la lección: chip + nivel y título grande */
 .sec-head{gap:8px 10px;align-items:center}
 .sec-head .k{order:1;font-family:var(--f-body);font-size:14px;line-height:1.5;font-weight:700;letter-spacing:0;color:var(--navy);background:var(--navy-soft);border-radius:7px;padding:2px 10px;font-variant-numeric:tabular-nums}
-.sec-head .lvl{order:2}
 .sec-head h2{order:3;flex-basis:100%;font-size:clamp(28px,3.6vw,40px);font-weight:800;letter-spacing:-.02em;line-height:1.1;margin-top:4px}
 
 /* Pie de cada lección (escritorio) */
@@ -446,9 +444,6 @@ body{font-size:17px;line-height:1.65}
   .sec-head{gap:6px}
   .sec-head .k{background:none;padding:0;border-radius:0;color:var(--violet);font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
   .sec-head .k::before{content:"Lección "}
-  .sec-head .k::after{content:" –"}
-  .sec-head .lvl{background:none;padding:0;color:var(--violet);font-family:var(--f-body);font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
-  .sec-head .lvl::before{display:none}
   .sec-head h2{font-size:38px}
   .seg-tabs{display:flex;gap:2px;padding:4px;border-radius:12px;background:#e6e9f1;width:max-content;max-width:100%}
   .seg-tabs button{border:0;background:none;min-height:44px;padding:9px 20px;border-radius:9px;font-size:14px;font-weight:600;color:var(--muted);cursor:pointer}
@@ -479,7 +474,7 @@ body{font-size:17px;line-height:1.65}
   .steps-strip span{display:none}
   .steps-strip a{padding-top:0}
   .steps-strip i{height:4px}
-  .sec-head .k,.sec-head .lvl{font-size:12px}
+  .sec-head .k{font-size:12px}
   .sec-head h2{font-size:28px}
   .seg-tabs{width:100%}
   .seg-tabs button{flex:1;padding:9px 6px;font-size:13px}
@@ -506,3 +501,10 @@ body{font-size:17px;line-height:1.65}
 .course[data-hue="175"]{--c:#1f8a7a;--cs:#e0f3ef;--ct:#126052}
 .course[data-hue="85"]{--c:#9a7a1c;--cs:#f6efd8;--ct:#6c5208}
 @supports (color:oklch(0.5 0.1 100)){.course{--c:oklch(0.55 0.13 var(--h));--cs:oklch(0.94 0.035 var(--h));--ct:oklch(0.42 0.13 var(--h))}}
+
+/* Tarjetas con fondo propio (no transparentes sobre el fondo de página) */
+.card,.inv{background:var(--bg)}
+.syl-name{font-family:var(--f-display);font-size:17px;font-weight:700;color:var(--ink);text-decoration:none}
+.syl-name:hover{text-decoration:underline}
+.syl-head a.syl-name{margin-left:0;min-height:44px}
+.unit-intro .lvl{justify-self:start}

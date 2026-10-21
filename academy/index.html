@@ -136,7 +136,7 @@ function courseCard(c){
   const foot=c.ready?`<div class="mbar" role="progressbar" aria-label="Unidades terminadas" aria-valuemin="0" aria-valuemax="${s.total}" aria-valuenow="${s.done}"><i style="width:${pct}%"></i></div><span class="lab-s">${s.done} de ${s.total} unidades</span>`:`<span class="lab-s">Muy pronto</span>`;
   const inner=`<div class="cover stripes" aria-hidden="true"><span class="pill st-${s.status}">${STATUS[s.status]}</span></div><div class="body"><div class="nm">${esc(c.name)}</div><div class="meta">${meta}</div>${foot}</div>`;
   const attrs=`class="card course${c.ready?'':' soon'}" data-hue="${c.hue}" style="--h:${c.hue}"`;
-  return c.ready?`<a ${attrs} href="${href(C.resume().lesson||{unit:C.units[0],id:C.units[0].lessons[0].id})}">${inner}</a>`:`<div ${attrs}>${inner}</div>`;
+  return c.ready?`<a ${attrs} href="curso.html?c=${c.id}">${inner}</a>`:`<div ${attrs}>${inner}</div>`;
 }
 
 function routeRow(c){
@@ -146,7 +146,7 @@ function routeRow(c){
   const bar=c.ready?`<div class="mbar" role="progressbar" aria-label="Unidades terminadas" aria-valuemin="0" aria-valuemax="${s.total}" aria-valuenow="${s.done}"><i style="width:${pct}%"></i></div>`:`<div class="mbar" aria-hidden="true"></div>`;
   const inner=`<span class="plate" aria-hidden="true">${esc(c.short)}</span><div><div class="nm">${esc(c.name)}</div><div class="meta">${meta}</div></div>${bar}${btn}`;
   const attrs=`class="route course${c.ready?'':' soon'}" data-hue="${c.hue}" style="--h:${c.hue}"`;
-  return c.ready?`<a ${attrs} href="${href(C.resume().lesson||{unit:C.units[0],id:C.units[0].lessons[0].id})}">${inner}</a>`:`<div ${attrs}>${inner}</div>`;
+  return c.ready?`<a ${attrs} href="curso.html?c=${c.id}">${inner}</a>`:`<div ${attrs}>${inner}</div>`;
 }
 
 function visible(c){

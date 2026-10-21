@@ -137,7 +137,6 @@ function keyQuiz({root,id,title='Práctica con el instrumento',total=8,make,octa
   start();return{restart:()=>start()}}
 
 /* Lección: temario, pestañas por tema, modo enfoque (≤1023 px) y progreso por lección */
-const LV=['','Básico','Intermedio','Avanzado'];
 const TABS=[['ver','Ver'],['leer','Leer'],['practicar','Practicar'],['recursos','Recursos']];
 const SEL_LEER='.prose,.note,.tbl,.tblwrap,.cards,.figs,.scale-box,.inv-grid,[data-carousel],.car-host';
 const SEL_PRAC='.lab,.panel,.quiz,.kbd-box,#kq,#mq,#quiz,#q1,#q2';
@@ -158,9 +157,10 @@ function course(ME){
   course.on=true;unitNo=ME;
   C.header('cursos');
   const num=n=>String(n).padStart(2,'0'),unit=C.unit(ME),secs=[...document.querySelectorAll('main>section[id]')];
-  const lessons=secs.map(s=>({id:s.id,k:s.querySelector('.sec-head .k').textContent,title:s.querySelector('.sec-head h2').textContent,lvl:+(s.querySelector('.lvl').className.match(/lvl-(\d)/)||[0,1])[1]}));
+  const lessons=secs.map(s=>({id:s.id,k:s.querySelector('.sec-head .k').textContent,title:s.querySelector('.sec-head h2').textContent}));
   const all=C.flat(),idxOf=id=>all.findIndex(x=>x.u===ME&&x.id===id);
-  const cr=$('#crumbs');if(cr)cr.innerHTML=`<li><a href="index.html#cursos">Teoría musical</a></li><li aria-current="page">Unidad ${num(ME)} – ${unit.title}</li>`;
+  const intro=document.querySelector('.unit-intro h1');if(intro&&!document.querySelector('.unit-intro .lvl'))intro.insertAdjacentHTML('beforebegin',`<span class="lvl lvl-${unit.lvl}">${C.levels[unit.lvl]}</span>`);
+  const cr=$('#crumbs');if(cr)cr.innerHTML=`<li><a href="curso.html?c=teoria">Teoría musical</a></li><li aria-current="page">Unidad ${num(ME)} – ${unit.title}</li>`;
 
   /* Temario: columna fija en escritorio y panel deslizable en tablet/celular */
   const chev='<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.6 6L15 12l-6.4 6-1.4-1.4 5-4.6-5-4.6z"/></svg>',chevD='<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8.6L12 15l6-6.4 1.4 1.4L12 17.8 4.6 10z"/></svg>';
@@ -173,14 +173,14 @@ function course(ME){
       const end=drawer?`<span class="su-n">${u.lessons.length} lecc.</span>`:(cur?chevD:chev);
       const row=`${ic}<span class="su-t">${u.title}</span>${u.ready?end:'<span class="su-n">Pronto</span>'}`;
       const ls=cur?`<ol class="sl-list">${lessons.map(l=>{const seen=C.isSeen(ME,l.id),on=l.id===curId;
-        return `<li><a class="sl${on?' on':''}${seen?' seen':''}" href="#${l.id}"${on?' aria-current="location"':''}><span class="sl-dot" aria-hidden="true"></span><span class="sl-t">${l.k} ${l.title}${seen?'<span class="sr"> (vista)</span>':''}</span><span class="sl-v">${LV[l.lvl]}</span></a></li>`}).join('')}</ol>`:'';
+        return `<li><a class="sl${on?' on':''}${seen?' seen':''}" href="#${l.id}"${on?' aria-current="location"':''}><span class="sl-dot" aria-hidden="true"></span><span class="sl-t">${l.k} ${l.title}${seen?'<span class="sr"> (vista)</span>':''}</span></a></li>`}).join('')}</ol>`:'';
       const a=!u.ready?`<span class="su off">${row}</span>`:cur?`<a class="su cur${d?' done':''}" href="#${curId||lessons[0].id}" aria-current="page">${row}</a>`:`<a class="su${d?' done':''}" href="${u.file}">${row}</a>`;
       return `<li>${a}${ls}</li>`}).join('');
-    return `<div class="syl-head"><span class="syl-dot" aria-hidden="true"></span><b>Teoría musical</b><a href="index.html#cursos">Cambiar ▾</a></div><div class="mbar v" role="progressbar" aria-label="Unidades terminadas" aria-valuemin="0" aria-valuemax="${C.units.length}" aria-valuenow="${nd}"><i style="width:${Math.round(nd/C.units.length*100)}%"></i></div><p class="syl-cap">${nd} de ${C.units.length} unidades</p><ol class="syl-units">${units}</ol>${drawer?'<nav class="drawer-nav syl-links" aria-label="Principal"><a href="index.html">Inicio</a><a href="progreso.html">Mi progreso</a></nav>':''}`;
+    return `<div class="syl-head"><span class="syl-dot" aria-hidden="true"></span><a class="syl-name" href="curso.html?c=teoria">Teoría musical</a><a href="index.html#cursos">Cambiar ▾</a></div><div class="mbar v" role="progressbar" aria-label="Unidades terminadas" aria-valuemin="0" aria-valuemax="${C.units.length}" aria-valuenow="${nd}"><i style="width:${Math.round(nd/C.units.length*100)}%"></i></div><p class="syl-cap">${nd} de ${C.units.length} unidades</p><ol class="syl-units">${units}</ol>${drawer?'<nav class="drawer-nav syl-links" aria-label="Principal"><a href="index.html">Inicio</a><a href="progreso.html">Mi progreso</a></nav>':''}`;
   }
   const syl=$('#syl');
   const bar=document.createElement('div');bar.className='fbar';
-  bar.innerHTML=`<a class="fb-back" href="index.html#cursos" aria-label="Volver a Teoría musical"><span class="t-long">← Teoría musical</span><span class="t-short" aria-hidden="true">‹</span></a><div class="fb-title"><small class="t-short">TEORÍA MUSICAL</small><b><span class="t-long">${unit.title}</span><span class="t-short">Unidad ${num(ME)} – ${unit.short}</span></b></div><button type="button" class="fb-menu" id="fbMenu" aria-label="Abrir el temario"><span class="t-long">☰ Temario</span><span class="t-short" aria-hidden="true">☰</span></button>`;
+  bar.innerHTML=`<a class="fb-back" href="curso.html?c=teoria" aria-label="Volver a Teoría musical"><span class="t-long">← Teoría musical</span><span class="t-short" aria-hidden="true">‹</span></a><div class="fb-title"><small class="t-short">TEORÍA MUSICAL</small><b><span class="t-long">${unit.title}</span><span class="t-short">Unidad ${num(ME)} – ${unit.short}</span></b></div><button type="button" class="fb-menu" id="fbMenu" aria-label="Abrir el temario"><span class="t-long">☰ Temario</span><span class="t-short" aria-hidden="true">☰</span></button>`;
   document.querySelector('header.top').after(bar);
   const dw=window.CURSO.drawer({id:'sylDrawer',title:'Temario – Teoría musical',html:temario(true),opener:bar.querySelector('#fbMenu')});
   dw.body.addEventListener('click',e=>{if(e.target.closest('a'))dw.close()});
@@ -264,7 +264,7 @@ function course(ME){
   document.addEventListener('av-progress',()=>paint());
   focusMQ.addEventListener&&focusMQ.addEventListener('change',()=>{const s=document.getElementById(curId);if(!focusMQ.matches&&s)s.scrollIntoView()});
   const h0=fromHash();curId=null;setCur(h0||secs[0].id,true);
-  if(h0)requestAnimationFrame(()=>{if(focusMQ.matches)window.scrollTo(0,0);else document.getElementById(h0).scrollIntoView()});
+  if(h0){const jump=()=>{if(focusMQ.matches)window.scrollTo(0,0);else document.getElementById(h0).scrollIntoView()};requestAnimationFrame(jump);window.addEventListener('load',jump,{once:true})}
   if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>{if(focusMQ.matches)return;es.forEach(e=>{if(e.isIntersecting)setCur(e.target.id)})},{rootMargin:'-30% 0px -60% 0px'});secs.forEach(s=>io.observe(s))}
 }
 /* Carrusel: convierte los hijos de un contenedor en diapositivas */
