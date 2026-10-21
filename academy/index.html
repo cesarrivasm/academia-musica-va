@@ -20,14 +20,6 @@ main.home p,main.home li{text-align:left;hyphens:manual}
 .h-hello p{font-size:17px;color:var(--muted);margin-top:10px}
 .h-h2{font-size:22px;font-weight:700;color:var(--ink)}
 
-/* Color por curso: hex de respaldo y oklch cuando el navegador lo admite */
-.course{--c:#4a62b0;--cs:#e8ecf8;--ct:#34478a}
-.course[data-hue="45"]{--c:#b0642a;--cs:#f8ebe0;--ct:#85431a}
-.course[data-hue="310"]{--c:#9a52a8;--cs:#f4e8f6;--ct:#6e2f7c}
-.course[data-hue="0"]{--c:#b6495a;--cs:#f9e8eb;--ct:#8a2c3c}
-.course[data-hue="175"]{--c:#1f8a7a;--cs:#e0f3ef;--ct:#126052}
-.course[data-hue="85"]{--c:#9a7a1c;--cs:#f6efd8;--ct:#6c5208}
-@supports (color:oklch(0.5 0.1 100)){.course{--c:oklch(0.55 0.13 var(--h));--cs:oklch(0.94 0.035 var(--h));--ct:oklch(0.42 0.13 var(--h))}}
 .stripes{background:repeating-linear-gradient(135deg,var(--cs) 0 14px,color-mix(in srgb,var(--cs) 70%,#fff) 14px 28px)}
 @supports not (color:color-mix(in srgb,red,blue)){.stripes{background:var(--cs)}}
 .pill{display:inline-flex;align-items:center;font-size:12px;font-weight:600;border-radius:99px;padding:3px 12px;background:var(--cs);color:var(--ct);white-space:nowrap;font-family:var(--f-body)}

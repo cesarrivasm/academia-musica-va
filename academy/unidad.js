@@ -83,6 +83,7 @@ function quizShell(root,title){root.classList.add('quiz');root.innerHTML=`<div c
 function finish(sh,id,score,total,again,missedN,review){
   let best=store.get(id+'-best',null);if(best==null||score>best){best=score;store.set(id+'-best',best)}
   sh.best.textContent=`Tu mejor resultado: ${best} de ${total}`;
+  const sec=sh.body.closest('section');if(sec&&unitNo&&window.CURSO){CURSO.markSeen(unitNo,sec.id);document.dispatchEvent(new Event('av-progress'))}
   const msg=score===total?'¡Perfecto! Todas salieron a la primera.':score>=total*.75?'Muy bien: ya dominas casi todo.':'Cada intento afina el oído. Repasa el tema y vuelve a intentarlo cuando quieras.';
   sh.body.innerHTML=`<div class="done"><b>${score} de ${total} correctas</b><p>${msg}</p><div class="qactions">${missedN?`<button type="button" class="btn" id="qrev">Repasar las falladas (${missedN})</button>`:''}<button type="button" class="${missedN?'pbtn':'btn'}" id="qagain">Repetir</button></div></div>`;
   sh.body.querySelector('#qagain').onclick=again;const r=sh.body.querySelector('#qrev');if(r)r.onclick=review}
@@ -100,7 +101,7 @@ function mcq({root,id,title='Práctica',total=8,make}){
     if(q.vis)sh.body.querySelector('.qvis').appendChild(typeof q.vis==='function'?q.vis():q.vis);
     const h=sh.body.querySelector('#qhear');if(h)h.onclick=()=>playList(q);
     const box=sh.body.querySelector('.opts');
-    q.opts.forEach((t,k)=>{const b=document.createElement('button');b.type='button';b.className='opt';b.innerHTML=t;b.onclick=()=>{
+    q.opts.forEach((t,k)=>{const b=document.createElement('button');b.type='button';b.className='opt'+(t.replace(/<[^>]*>/g,'').length<=6?' big':'');b.innerHTML=t;b.onclick=()=>{
       box.querySelectorAll('.opt').forEach((x,j)=>{x.disabled=true;if(j===q.ans)x.classList.add('good')});
       const ok=k===q.ans;if(!ok)b.classList.add('bad');if(ok)st.score++;else if(st.full&&!st.missed.includes(q))st.missed.push(q);
       const fb=sh.body.querySelector('#qfb');fb.className='feedback '+(ok?'ok':'err');fb.textContent=ok?'¡Correcto!':'Casi: la respuesta correcta está en verde.';
@@ -135,28 +136,136 @@ function keyQuiz({root,id,title='Práctica con el instrumento',total=8,make,octa
   }
   start();return{restart:()=>start()}}
 
+/* Lección: temario, pestañas por tema, modo enfoque (≤1023 px) y progreso por lección */
+const LV=['','Básico','Intermedio','Avanzado'];
+const TABS=[['ver','Ver'],['leer','Leer'],['practicar','Practicar'],['recursos','Recursos']];
+const SEL_LEER='.prose,.note,.tbl,.tblwrap,.cards,.figs,.scale-box,.inv-grid,[data-carousel],.car-host';
+const SEL_PRAC='.lab,.panel,.quiz,.kbd-box,#kq,#mq,#quiz,#q1,#q2';
+function tabOf(el,prev){
+  if(el.dataset.tab)return el.dataset.tab;
+  if(el.matches('video,iframe,.video')||el.querySelector('video,iframe'))return'ver';
+  if(el.matches('audio,.recursos,a[href$=".pdf"]'))return'recursos';
+  if(el.matches(SEL_LEER))return'leer';
+  if(el.matches(SEL_PRAC))return'practicar';
+  if(el.classList.contains('cap')&&prev)return prev;
+  return el.querySelector('button,input,select,textarea')?'practicar':'leer';
+}
+let unitNo=null;
+const focusMQ=window.matchMedia('(max-width:1023px)');
 function course(ME){
-  const C=window.CURSO;if(!C)return;const done=C.done(),cur=C.unit(ME),num=String(ME).padStart(2,'0');
+  const C=window.CURSO;if(!C)return;
+  if(course.on){document.dispatchEvent(new Event('av-progress'));return}
+  course.on=true;unitNo=ME;
   C.header('cursos');
-  const cr=$('#crumbs');if(cr)cr.innerHTML=`<li><a href="index.html#cursos">Teoría musical</a></li><li aria-current="page">Unidad ${num} – ${cur.title}</li>`;
-  const ml=$('#menuList'),mb=$('#menuBtn');
-  if(ml){ml.innerHTML=`<p class="lbl">Unidades del curso</p><ul><li><a class="mi" href="index.html"><span class="num">⌂</span><span>Índice del curso</span><span></span></a></li>${C.units.map(u=>{const n=String(u.n).padStart(2,'0'),d=done.includes(u.n),st=d?'<span class="st ok" role="img" aria-label="terminada">✓</span>':!u.ready?'<span class="st">Pronto</span>':'<span></span>',inner=`<span class="num">${n}</span><span>${u.title}</span>${st}`;
-      return u.n===ME?`<li><a class="mi cur" href="${u.file}" aria-current="page">${inner}</a></li>`:u.ready?`<li><a class="mi" href="${u.file}">${inner}</a></li>`:`<li><span class="mi off">${inner}</span></li>`}).join('')}</ul>`;
-    if(mb&&!mb.dataset.w){mb.dataset.w='1';const close=f=>{ml.hidden=true;mb.setAttribute('aria-expanded','false');if(f)mb.focus()};
-      mb.onclick=()=>{const o=ml.hidden;ml.hidden=!o;mb.setAttribute('aria-expanded',String(o));if(o){const f=ml.querySelector('a');if(f)f.focus()}};
-      document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!ml.hidden)close(true)});
-      document.addEventListener('click',e=>{if(!ml.hidden&&!e.target.closest('.menu'))close(false)})}}
-  const PG=$('#pager'),side=(u,dir)=>{if(!u)return `<span class="pg ${dir} off"></span>`;const lab=dir==='prev'?'← Anterior':'Siguiente →',t=`Unidad ${String(u.n).padStart(2,'0')} – ${u.title}`;
-    return u.ready?`<a class="pg ${dir}" href="${u.file}"><small>${lab}</small><b>${t}</b></a>`:`<span class="pg ${dir} off"><small>${lab}</small><b>${t}</b><small>Próximamente</small></span>`};
-  const d=C.isDone(ME);
-  PG.innerHTML=`${side(C.unit(ME-1),'prev')}<div class="pager-mid"><button type="button" class="pbtn" id="markDone" aria-pressed="${d}">${d?'✓ Unidad terminada':'Marcar unidad como terminada'}</button><a class="linkbtn" href="index.html">Índice del curso</a></div>${side(C.unit(ME+1),'next')}`;
-  $('#markDone').onclick=()=>{C.setDone(ME,!C.isDone(ME));course(ME)};
-  const pg=document.querySelector('.page'),tt=$('#tocToggle');
-  if(pg&&tt&&!tt.dataset.w){tt.dataset.w='1';const set=o=>{pg.classList.toggle('toc-open',o);tt.setAttribute('aria-expanded',String(o));tt.setAttribute('aria-label',o?'Contraer la barra de temas':'Mostrar los títulos de los temas');store.set('av-toc-open',o)};set(!!store.get('av-toc-open',false));tt.onclick=()=>set(!pg.classList.contains('toc-open'))}
-  const links=[...document.querySelectorAll('.toc a')];
-  if(!course.io&&'IntersectionObserver' in window){course.io=new IntersectionObserver(es=>{es.forEach(e=>{if(!e.isIntersecting)return;const id=e.target.id;
-    links.forEach(a=>{const on=a.getAttribute('href')==='#'+id;a.classList.toggle('on',on);on?a.setAttribute('aria-current','location'):a.removeAttribute('aria-current')})})},{rootMargin:'-30% 0px -60% 0px'});
-    document.querySelectorAll('main section').forEach(s=>course.io.observe(s))}
+  const num=n=>String(n).padStart(2,'0'),unit=C.unit(ME),secs=[...document.querySelectorAll('main>section[id]')];
+  const lessons=secs.map(s=>({id:s.id,k:s.querySelector('.sec-head .k').textContent,title:s.querySelector('.sec-head h2').textContent,lvl:+(s.querySelector('.lvl').className.match(/lvl-(\d)/)||[0,1])[1]}));
+  const all=C.flat(),idxOf=id=>all.findIndex(x=>x.u===ME&&x.id===id);
+  const cr=$('#crumbs');if(cr)cr.innerHTML=`<li><a href="index.html#cursos">Teoría musical</a></li><li aria-current="page">Unidad ${num(ME)} – ${unit.title}</li>`;
+
+  /* Temario: columna fija en escritorio y panel deslizable en tablet/celular */
+  const chev='<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.6 6L15 12l-6.4 6-1.4-1.4 5-4.6-5-4.6z"/></svg>',chevD='<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8.6L12 15l6-6.4 1.4 1.4L12 17.8 4.6 10z"/></svg>';
+  const tick='<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 16.2L5.3 12l-1.4 1.4 5.6 5.6L20.1 8.4 18.7 7z"/></svg>';
+  let curId=null;
+  function temario(drawer){
+    const done=C.done(),nd=done.length;
+    const units=C.units.map(u=>{
+      const d=done.includes(u.n),cur=u.n===ME,ic=`<span class="su-ic">${d?tick:num(u.n)}</span>`;
+      const end=drawer?`<span class="su-n">${u.lessons.length} lecc.</span>`:(cur?chevD:chev);
+      const row=`${ic}<span class="su-t">${u.title}</span>${u.ready?end:'<span class="su-n">Pronto</span>'}`;
+      const ls=cur?`<ol class="sl-list">${lessons.map(l=>{const seen=C.isSeen(ME,l.id),on=l.id===curId;
+        return `<li><a class="sl${on?' on':''}${seen?' seen':''}" href="#${l.id}"${on?' aria-current="location"':''}><span class="sl-dot" aria-hidden="true"></span><span class="sl-t">${l.k} ${l.title}${seen?'<span class="sr"> (vista)</span>':''}</span><span class="sl-v">${LV[l.lvl]}</span></a></li>`}).join('')}</ol>`:'';
+      const a=!u.ready?`<span class="su off">${row}</span>`:cur?`<a class="su cur${d?' done':''}" href="#${curId||lessons[0].id}" aria-current="page">${row}</a>`:`<a class="su${d?' done':''}" href="${u.file}">${row}</a>`;
+      return `<li>${a}${ls}</li>`}).join('');
+    return `<div class="syl-head"><span class="syl-dot" aria-hidden="true"></span><b>Teoría musical</b><a href="index.html#cursos">Cambiar ▾</a></div><div class="mbar v" role="progressbar" aria-label="Unidades terminadas" aria-valuemin="0" aria-valuemax="${C.units.length}" aria-valuenow="${nd}"><i style="width:${Math.round(nd/C.units.length*100)}%"></i></div><p class="syl-cap">${nd} de ${C.units.length} unidades</p><ol class="syl-units">${units}</ol>${drawer?'<nav class="drawer-nav syl-links" aria-label="Principal"><a href="index.html">Inicio</a><a href="progreso.html">Mi progreso</a></nav>':''}`;
+  }
+  const syl=$('#syl');
+  const bar=document.createElement('div');bar.className='fbar';
+  bar.innerHTML=`<a class="fb-back" href="index.html#cursos" aria-label="Volver a Teoría musical"><span class="t-long">← Teoría musical</span><span class="t-short" aria-hidden="true">‹</span></a><div class="fb-title"><small class="t-short">TEORÍA MUSICAL</small><b><span class="t-long">${unit.title}</span><span class="t-short">Unidad ${num(ME)} – ${unit.short}</span></b></div><button type="button" class="fb-menu" id="fbMenu" aria-label="Abrir el temario"><span class="t-long">☰ Temario</span><span class="t-short" aria-hidden="true">☰</span></button>`;
+  document.querySelector('header.top').after(bar);
+  const dw=window.CURSO.drawer({id:'sylDrawer',title:'Temario – Teoría musical',html:temario(true),opener:bar.querySelector('#fbMenu')});
+  dw.body.addEventListener('click',e=>{if(e.target.closest('a'))dw.close()});
+  const paint=()=>{syl.innerHTML=temario(false);dw.body.innerHTML=temario(true);strip();bottom()};
+
+  /* Tira de pasos (modo enfoque) */
+  const stripEl=document.createElement('nav');stripEl.className='steps-strip';stripEl.setAttribute('aria-label','Lecciones de la unidad');stripEl.style.setProperty('--n',lessons.length);
+  document.querySelector('main').prepend(stripEl);
+  const strip=()=>{stripEl.innerHTML=lessons.map(l=>`<a href="#${l.id}" class="${l.id===curId?'on':''}${C.isSeen(ME,l.id)?' seen':''}"${l.id===curId?' aria-current="step"':''} aria-label="${l.k} ${l.title}"><i></i><span>${l.title}</span></a>`).join('')};
+
+  /* Secciones: pestañas Ver / Leer / Practicar / Recursos (solo se ven en modo enfoque) */
+  secs.forEach(s=>{
+    const head=s.querySelector('.sec-head'),kids=[...s.children].filter(c=>c!==head&&!c.classList.contains('sec-body'));
+    const body=document.createElement('div');body.className='sec-body';body.id='p-'+s.id;let prev=null;
+    kids.forEach(k=>{k.dataset.tab=prev=tabOf(k,prev);body.appendChild(k)});
+    const present=TABS.filter(([k])=>kids.some(c=>c.dataset.tab===k));
+    let first=present.some(([k])=>k==='ver')?'ver':'leer';
+    const leer=kids.filter(c=>c.dataset.tab==='leer');
+    if(first==='leer'&&present.some(([k])=>k==='practicar')&&leer.length<=1&&leer.every(c=>c.textContent.trim().length<180))first='practicar';
+    if(!present.some(([k])=>k===first))first=present[0]?present[0][0]:'leer';
+    s.dataset.active=first;s.appendChild(body);
+    if(present.length>1){
+      const tl=document.createElement('div');tl.className='seg-tabs';tl.setAttribute('role','tablist');tl.setAttribute('aria-label','Contenido de la lección');
+      tl.innerHTML=present.map(([k,t])=>`<button type="button" role="tab" id="t-${s.id}-${k}" data-t="${k}" aria-controls="p-${s.id}" aria-selected="${k===first}" tabindex="${k===first?0:-1}">${t}</button>`).join('');
+      head.after(tl);body.setAttribute('role','tabpanel');body.setAttribute('aria-labelledby',`t-${s.id}-${first}`);
+      const tabs=[...tl.querySelectorAll('button')];
+      const set=(k,f)=>{s.dataset.active=k;tabs.forEach(b=>{const on=b.dataset.t===k;b.setAttribute('aria-selected',on);b.tabIndex=on?0:-1;if(on&&f)b.focus()});body.setAttribute('aria-labelledby',`t-${s.id}-${k}`);window.dispatchEvent(new Event('resize'))};
+      tabs.forEach((b,i)=>{b.onclick=()=>set(b.dataset.t);b.onkeydown=e=>{const j={ArrowRight:i+1,ArrowLeft:i-1,Home:0,End:tabs.length-1}[e.key];if(j==null)return;e.preventDefault();set(tabs[(j+tabs.length)%tabs.length].dataset.t,true)}});
+    }
+  });
+
+  /* Navegación entre lecciones */
+  const ref=l=>l.u===ME?`#${l.id}`:`${l.unit.file}#${l.id}`;
+  const cur=()=>idxOf(curId),prevL=()=>all[cur()-1],nextL=()=>all[cur()+1];
+  function complete(){
+    C.markSeen(ME,curId);const n=nextL();
+    if(!n||n.u!==ME)C.setDone(ME,true);
+    document.dispatchEvent(new Event('av-progress'));
+    if(!n){location.href='progreso.html';return}
+    go(n);
+  }
+  function go(l){if(l.u!==ME){location.href=ref(l);return}try{history.pushState(null,'','#'+l.id)}catch(e){}show(l.id)}
+  secs.forEach((s,i)=>{
+    const f=document.createElement('div');f.className='lfoot';
+    const p=all[idxOf(s.id)-1],n=all[idxOf(s.id)+1];
+    f.innerHTML=`${p?`<a class="lprev" href="${ref(p)}">← ${p.k} ${p.title}</a>`:'<span></span>'}<button type="button" class="lnext">${n?(n.u===ME?'Completar y seguir →':'Completar unidad y seguir →'):'Completar el curso →'}</button>`;
+    f.querySelector('.lnext').onclick=()=>{curId=s.id;complete()};
+    s.appendChild(f)});
+
+  /* Barra inferior (modo enfoque) */
+  const bot=document.createElement('nav');bot.className='fbottom';bot.setAttribute('aria-label','Navegación de la lección');
+  bot.innerHTML=`<a class="fb-prev" href="#"><span class="t-long">← Anterior</span><span class="t-short" aria-hidden="true">←</span></a><span class="fb-pos"></span><button type="button" class="fb-next"><span class="t-long"></span><span class="t-short"></span></button>`;
+  document.body.appendChild(bot);
+  const bp=bot.querySelector('.fb-prev'),bn=bot.querySelector('.fb-next');
+  bn.onclick=complete;
+  function bottom(){
+    const p=prevL(),n=nextL(),i=lessons.findIndex(l=>l.id===curId);
+    bp.setAttribute('aria-label',p?`Anterior: ${p.k} ${p.title}`:'Anterior');
+    if(p){bp.href=ref(p);bp.removeAttribute('aria-disabled')}else{bp.removeAttribute('href');bp.setAttribute('aria-disabled','true')}
+    bot.querySelector('.fb-pos').textContent=`Lección ${i+1} de ${lessons.length} – Unidad ${ME} de ${C.units.length}`;
+    bn.querySelector('.t-long').textContent=n?'Siguiente →':'Terminar curso →';
+    bn.querySelector('.t-short').textContent=n?`Siguiente: ${n.k} ${n.title} →`:'Terminar curso →';
+    bn.setAttribute('aria-label',n?`Siguiente: ${n.k} ${n.title}`:'Terminar el curso');
+  }
+
+  /* Lección actual: hash, scroll (escritorio) y modo enfoque */
+  function setCur(id,quiet){
+    if(curId===id)return;curId=id;
+    secs.forEach(s=>{s.classList.toggle('cur',s.id===id)});
+    C.setLast(ME,id);
+    if(!quiet){try{history.replaceState(null,'','#'+id)}catch(e){}}
+    paint();
+  }
+  function show(id){
+    setCur(id,true);const s=document.getElementById(id);
+    if(focusMQ.matches){window.scrollTo(0,0);const h=s.querySelector('h2');h.tabIndex=-1;h.focus({preventScroll:true})}
+    else s.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'});
+  }
+  const fromHash=()=>{const id=decodeURIComponent(location.hash.slice(1));return secs.some(s=>s.id===id)?id:null};
+  window.addEventListener('hashchange',()=>{const id=fromHash();if(id)show(id)});
+  document.addEventListener('av-progress',()=>paint());
+  focusMQ.addEventListener&&focusMQ.addEventListener('change',()=>{const s=document.getElementById(curId);if(!focusMQ.matches&&s)s.scrollIntoView()});
+  const h0=fromHash();curId=null;setCur(h0||secs[0].id,true);
+  if(h0)requestAnimationFrame(()=>{if(focusMQ.matches)window.scrollTo(0,0);else document.getElementById(h0).scrollIntoView()});
+  if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>{if(focusMQ.matches)return;es.forEach(e=>{if(e.isIntersecting)setCur(e.target.id)})},{rootMargin:'-30% 0px -60% 0px'});secs.forEach(s=>io.observe(s))}
 }
 /* Carrusel: convierte los hijos de un contenedor en diapositivas */
 function carousel(el,label){
