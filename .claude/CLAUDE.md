@@ -3,12 +3,13 @@
 Curso de teoría musical en español para el Ministerio de Alabanza · Iglesia Vida Abundante. Sitio estático (HTML/CSS/JS sin dependencias ni paso de compilación) en `academy/`.
 
 ## Estructura
-- `academy/index.html`: índice. `academy/curso.js` es la única fuente de la lista de unidades (`ready:true` publica una unidad) y del progreso (`localStorage`, clave `av-curso-done`).
+- `academy/index.html`: inicio (continuar + catálogo de cursos; `?v=lista` muestra la variante de lista). `academy/progreso.html`: Mi progreso (solo datos locales).
+- `academy/curso.js`: única fuente de los cursos (`COURSES`), las unidades (`ready:true` publica una unidad) y sus lecciones (`lessons`, deben coincidir con los `.sec-head` de cada HTML). Guarda el progreso en `localStorage` (`av-curso-done`, `av-lecciones-vistas`, `av-ultima-leccion`). También inyecta el header compacto (`CURSO.header`) y el panel deslizable (`CURSO.drawer`).
 - `academy/unidad.css` y `academy/unidad.js`: compartidos por las siete unidades (también la 06). Cualquier cambio de estilo o comportamiento común va ahí, no en cada HTML.
-- Cada `unidad-NN-*.html` contiene su contenido y su script. No hay generador: se edita el HTML directamente.
+- Cada `unidad-NN-*.html` contiene su contenido y su script. No hay generador: se edita el HTML directamente. `<body class="lesson">` activa el temario fijo y el modo enfoque (≤1023 px: una lección a la vez con pestañas Ver/Leer/Practicar/Recursos, barra superior e inferior).
 
 ## Convenciones
-- Todo el texto visible en español. Atribución solo al Ministerio de Alabanza · Iglesia Vida Abundante; no poner nombres de personas.
+- Todo el texto visible en español. Separador visible « – » (« / » para enarmónicos); sin « · ». Atribución solo al Ministerio de Alabanza · Iglesia Vida Abundante; no poner nombres de personas.
 - Cada tema (`.sec-head`) lleva un distintivo de nivel: `lvl lvl-1` Básico, `lvl-2` Intermedio, `lvl-3` Avanzado. Si se agrega un tema, asignarle nivel y ponerlo también en la barra lateral.
 - Sonido: un solo botón estándar, `.ibtn.solid` con ícono de bocina. `unidad.js` muestra el estado de reproducción (violeta + pausa) y detiene al volver a pulsar. El audio debe pasar por `note()`/`playSet()` o llamar a `U.hold()`/`U.reg()`. Usar `data-toggle` (metrónomo) o `data-restart` solo si hace falta.
 - Instrumentos: todo widget con piano lleva un toggle Piano/Guitarra (`.tabs` con `data-inst`). La guitarra usa `U.fretboard()` (diapasón de 12 trastes; `marks`, `setPcs`, `setPicked`, modo `blank` para prácticas) y `U.keyQuiz` ya incluye el toggle.
@@ -18,9 +19,10 @@ Curso de teoría musical en español para el Ministerio de Alabanza · Iglesia V
 - Notación: las notas se escriben con la ortografía correcta de la escala (sin repetir letras; E♭ y no D♯ en E♭ mayor).
 
 ## Agregar o cambiar una unidad
-1. Copiar la estructura de una unidad existente (encabezado con migas y menú ⋮, barra lateral, `#pager`) y enlazar `unidad.css`, `curso.js` y `unidad.js`.
+1. Copiar la estructura de una unidad existente (`<header class="top" id="top">` vacío, `#syl`, `.unit-intro` con migas, secciones con `.sec-head`) y enlazar `unidad.css`, `curso.js` y `unidad.js`.
 2. Llamar `U.course(N)` al final del script.
-3. Marcar `ready:true` en `curso.js`.
+3. Agregar la unidad y sus `lessons` en `curso.js` y marcar `ready:true`.
+4. Las pestañas se asignan solas por tipo de hijo de la sección; para forzar una, poner `data-tab="ver|leer|practicar|recursos"`.
 
 ## Probar
 ```bash
