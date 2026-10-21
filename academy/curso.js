@@ -67,14 +67,12 @@ const find=(n,id)=>flat().find(x=>x.u===n&&x.id===id);
 /* Lección a retomar: la última visitada o la primera no vista; null si no hay nada pendiente */
 function resume(){
   const all=flat(),last=load(LAST,null),started=Object.keys(seenAll()).length>0||!!last;
-  let cur=last&&find(last.u,last.id);
-  if(!cur||seen(cur.u).includes(cur.id)){const i=cur?all.indexOf(cur):-1;cur=all.slice(i+1).find(x=>!seen(x.u).includes(x.id))||all.find(x=>!seen(x.u).includes(x.id))||null}
-  const idx=cur?all.indexOf(cur):-1;
-  return{lesson:cur,next:idx>=0?all[idx+1]||null:null,started};
+  const at=l=>l?all.findIndex(x=>x.u===l.u&&x.id===l.id):-1,unseen=x=>!seen(x.u).includes(x.id);
+  let i=last?at(last):-1,cur=i>=0?all[i]:null;
+  if(!cur||!unseen(cur)){cur=all.slice(i+1).find(unseen)||all.find(unseen)||null;i=at(cur&&{u:cur.u,id:cur.id})}
+  return{lesson:cur,next:cur?all[i+1]||null:null,started};
 }
-
 /* Panel deslizable accesible: foco atrapado, Esc, velo y retorno del foco al botón */
-let lastOpen=null;
 function drawer({id,title,html,opener}){
   const veil=document.createElement('div');veil.className='veil';veil.hidden=true;
   const el=document.createElement('aside');el.className='drawer';el.id=id;el.hidden=true;el.setAttribute('role','dialog');el.setAttribute('aria-modal','true');el.setAttribute('aria-label',title);
@@ -82,7 +80,7 @@ function drawer({id,title,html,opener}){
   document.body.append(veil,el);
   const reduce=()=>matchMedia('(prefers-reduced-motion:reduce)').matches;
   const focusables=()=>[...el.querySelectorAll('a[href],button:not([disabled])')];
-  function open(){if(!el.hidden)return;lastOpen=document.activeElement;veil.hidden=false;el.hidden=false;void el.offsetWidth;veil.classList.add('open');el.classList.add('open');document.body.classList.add('drawer-on');
+  function open(){if(!el.hidden)return;veil.hidden=false;el.hidden=false;void el.offsetWidth;veil.classList.add('open');el.classList.add('open');document.body.classList.add('drawer-on');
     if(opener)opener.setAttribute('aria-expanded','true');const f=el.querySelector('[aria-current]')||el.querySelector('.drawer-x');f.focus({preventScroll:true});document.addEventListener('keydown',key)}
   function close(){if(el.hidden)return;veil.classList.remove('open');el.classList.remove('open');document.body.classList.remove('drawer-on');document.removeEventListener('keydown',key);
     if(opener){opener.setAttribute('aria-expanded','false');opener.focus()}
@@ -97,7 +95,7 @@ const NAV=[['inicio','Inicio','index.html'],['cursos','Cursos','index.html#curso
 /* Header compacto: activo = 'inicio' | 'cursos' | 'progreso'. Se inyecta en <header class="top"> */
 function header(active){
   const host=document.querySelector('header.top');if(!host||host.dataset.w)return;host.dataset.w='1';
-  const links=cls=>NAV.map(([k,t,h])=>`<a href="${h}"${k===active?' aria-current="page"':''}>${t}</a>`).join('');
+  const links=()=>NAV.map(([k,t,h])=>`<a href="${h}"${k===active?' aria-current="page"':''}>${t}</a>`).join('');
   host.innerHTML=`<div class="hd"><a class="hd-brand" href="index.html"><img alt="" src="logo.png"><span>Academia de Música</span></a><nav class="hd-nav" aria-label="Principal">${links()}</nav><button type="button" class="hd-menu" id="hdMenu" aria-label="Abrir el menú"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg></button></div>`;
   drawer({id:'navDrawer',title:'Menú',html:`<nav class="drawer-nav" aria-label="Principal">${links()}</nav>`,opener:host.querySelector('#hdMenu')});
 }

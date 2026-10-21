@@ -422,11 +422,11 @@ body{font-size:17px;line-height:1.65}
 
 /* Modo enfoque: tablet (761–1023) y celular (≤760) */
 @media (max-width:1023px){
-  .top{display:none}
+  body.lesson .top{display:none}
   .page{display:block;padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
   .syl{display:none}
-  main{padding:20px 24px 28px;max-width:808px;margin-inline:auto;gap:20px}
-  main>section:not(.cur){display:none}
+  body.lesson main{padding:20px 24px 28px;max-width:808px;margin-inline:auto;gap:20px}
+  body.lesson main>section:not(.cur){display:none}
   .unit-intro{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
   .lfoot{display:none}
   .fbar{display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:30;height:60px;padding:0 max(24px,env(safe-area-inset-right,0px)) 0 max(24px,env(safe-area-inset-left,0px));background:var(--bg);border-bottom:1px solid var(--line)}
@@ -442,7 +442,7 @@ body{font-size:17px;line-height:1.65}
   .steps-strip a.on i{background:var(--violet)}
   .steps-strip a.on{color:var(--ink);font-weight:600}
   .steps-strip span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  main>section{max-width:760px;gap:20px}
+  body.lesson main>section{max-width:760px;gap:20px}
   .sec-head{gap:6px}
   .sec-head .k{background:none;padding:0;border-radius:0;color:var(--violet);font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
   .sec-head .k::before{content:"Lección "}
@@ -474,7 +474,7 @@ body{font-size:17px;line-height:1.65}
   .fb-title b{font-size:15px}
   .fb-menu{flex:0 0 44px}
   .fb-menu .t-short{display:grid;place-items:center;width:44px;height:44px;border:1px solid var(--line-strong);border-radius:10px;color:var(--navy);font-size:18px;background:var(--bg)}
-  main{padding:16px 16px 24px;gap:16px}
+  body.lesson main{padding:16px 16px 24px;gap:16px}
   .steps-strip{gap:4px}
   .steps-strip span{display:none}
   .steps-strip a{padding-top:0}
@@ -488,7 +488,7 @@ body{font-size:17px;line-height:1.65}
   .fb-pos{display:none}
   .fb-prev{width:52px;height:52px;padding:0;font-size:22px;flex:none}
   .fb-next{flex:1;height:52px;font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 16px}
-  body{font-size:16px;line-height:1.6}
+  body.lesson{font-size:16px;line-height:1.6}
 }
 @media (min-width:1024px){.t-short{display:none}}
 
