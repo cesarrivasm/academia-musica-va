@@ -3,99 +3,181 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Academia de Música – Ministerio de Alabanza, Iglesia Vida Abundante. Índice del curso.">
-<title>Índice del curso – Academia de Música</title>
+<meta name="description" content="Academia de Música – Ministerio de Alabanza, Iglesia Vida Abundante. Cursos de música: teoría musical, guitarra, piano, voz, bajo y batería.">
+<title>Academia de Música – Inicio</title>
 <link rel="icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;600;700;800&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="unidad.css">
 <style>
-:root{
-  --bg:#ffffff; --page:#f3f4f8; --tint:#f6f7fb; --ink:#1a2340; --body:#2c3552; --muted:#5b6480; --line:#e3e6ee; --line-strong:#cfd5e4;
-  --navy:#1e3a73; --navy-hover:#142a57; --navy-soft:#eef1f8; --on-navy:#ffffff; --violet:#6f4a9b; --violet-soft:#f1ebf7; --ok:#1f7a50;
-  --f-display:"Schibsted Grotesk","Avenir Next","Segoe UI",sans-serif;
-  --f-body:"Instrument Sans","Segoe UI",system-ui,sans-serif;
-  --r-sm:8px; color-scheme:light;
-  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
-}
-*{box-sizing:border-box}
-body{margin:0;background:var(--page);color:var(--body);font-family:var(--f-body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
-h1,h2{font-family:var(--f-display);text-wrap:balance;line-height:1.1;margin:0}
-p{margin:0}
-a:focus-visible,button:focus-visible{outline:3px solid var(--violet);outline-offset:2px;border-radius:6px}
-.wrap{max-width:900px;margin:0 auto;padding-inline:max(20px,env(safe-area-inset-left,0px)) max(20px,env(safe-area-inset-right,0px))}
-.skip{position:absolute;left:-9999px;top:8px;z-index:20;background:var(--bg);color:var(--navy);padding:10px 16px;border-radius:var(--r-sm);font-weight:700}
-.skip:focus{left:12px}
-.top{background:var(--navy);color:var(--on-navy)}
-.top .wrap{padding-block:24px 48px;display:grid;gap:36px}
-.brand{display:flex;align-items:center;gap:12px}
-.brand img{width:44px;height:auto;background:#fff;border-radius:10px;padding:4px}
-.brand b{display:block;font-family:var(--f-display);font-size:16px;color:#fff}
-.brand span{font-size:14px;color:#c9d4ec}
-.top h1{font-size:clamp(40px,7vw,64px);font-weight:800;letter-spacing:-.03em;line-height:1;color:#fff}
-.top p{color:#d6def0;max-width:56ch;font-size:clamp(17px,2vw,19px);margin-top:16px}
-main{padding-block:40px 64px;display:grid;gap:32px}
-.summary{display:flex;flex-wrap:wrap;gap:16px 24px;align-items:center;justify-content:space-between}
-.progress{display:grid;gap:6px;min-width:220px;flex:1 1 260px;max-width:360px;font-size:15px;color:var(--muted)}
-.bar{height:8px;background:var(--tint);border-radius:99px;overflow:hidden;border:1px solid var(--line)}
-.bar i{display:block;height:100%;background:var(--violet);border-radius:99px;transition:width .3s}
-.btn{display:inline-flex;align-items:center;border:1px solid var(--navy);background:var(--navy);color:var(--on-navy);border-radius:999px;padding:8px 22px;min-height:44px;font-weight:700;font-size:16px;text-decoration:none;cursor:pointer;font-family:inherit}
-.btn:hover{background:var(--navy-hover)}
-.units{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
-.units li{border-bottom:1px solid var(--line)}
-.unit{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:16px;align-items:center;padding:20px 4px;color:inherit;text-decoration:none}
-a.unit:hover{background:var(--tint)}
-.num{font-family:var(--f-display);font-weight:800;font-size:40px;line-height:1;color:var(--violet);letter-spacing:-.02em}
-.unit.soon .num{color:var(--muted)}
-.name{font-family:var(--f-display);font-weight:700;font-size:clamp(20px,3vw,26px);color:var(--navy);line-height:1.2}
-.unit.soon .name{color:var(--muted)}
-.state{font-size:15px;color:var(--muted);text-align:right;white-space:nowrap}
-.state.done{color:var(--ok);font-weight:700}
-@media (max-width:520px){.unit{grid-template-columns:48px minmax(0,1fr);}.num{font-size:32px}.state{grid-column:2;text-align:left}}
-.reset{background:none;border:0;color:var(--muted);font:inherit;font-size:15px;text-decoration:underline;cursor:pointer;min-height:44px;padding:0}
-footer{border-top:1px solid var(--line);color:var(--muted);font-size:15px}
-footer .wrap{padding-block:24px 36px}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+/* Inicio: usa los tokens y el header de unidad.css */
+body{min-height:100vh;display:flex;flex-direction:column}
+main.home{display:flex;flex-direction:column;gap:36px;flex:1;width:100%;max-width:1200px;margin:0 auto;padding:40px 48px 48px}
+main.home p,main.home li{text-align:left;hyphens:manual}
+@media (max-width:760px){main.home{padding:24px 16px 36px;gap:28px}}
+.h-hello h1{font-size:clamp(30px,5vw,40px);font-weight:800;letter-spacing:-.02em;line-height:1.1;color:var(--navy)}
+.h-hello p{font-size:17px;color:var(--muted);margin-top:10px}
+.h-h2{font-size:22px;font-weight:700;color:var(--ink)}
+
+/* Color por curso: hex de respaldo y oklch cuando el navegador lo admite */
+.course{--c:#4a62b0;--cs:#e8ecf8;--ct:#34478a}
+.course[data-hue="45"]{--c:#b0642a;--cs:#f8ebe0;--ct:#85431a}
+.course[data-hue="310"]{--c:#9a52a8;--cs:#f4e8f6;--ct:#6e2f7c}
+.course[data-hue="0"]{--c:#b6495a;--cs:#f9e8eb;--ct:#8a2c3c}
+.course[data-hue="175"]{--c:#1f8a7a;--cs:#e0f3ef;--ct:#126052}
+.course[data-hue="85"]{--c:#9a7a1c;--cs:#f6efd8;--ct:#6c5208}
+@supports (color:oklch(0.5 0.1 100)){.course{--c:oklch(0.55 0.13 var(--h));--cs:oklch(0.94 0.035 var(--h));--ct:oklch(0.42 0.13 var(--h))}}
+.stripes{background:repeating-linear-gradient(135deg,var(--cs) 0 14px,color-mix(in srgb,var(--cs) 70%,#fff) 14px 28px)}
+@supports not (color:color-mix(in srgb,red,blue)){.stripes{background:var(--cs)}}
+.pill{display:inline-flex;align-items:center;font-size:12px;font-weight:600;border-radius:99px;padding:3px 12px;background:var(--cs);color:var(--ct);white-space:nowrap;font-family:var(--f-body)}
+.pill.st-curso{background:var(--navy-soft);color:var(--navy)}
+.pill.st-nuevo{background:var(--ok-soft);color:var(--ok)}
+.pill.st-pronto{background:#f0f1f4;color:var(--muted)}
+.mbar{height:5px;border-radius:99px;background:#eceef4;overflow:hidden}
+.mbar i{display:block;height:100%;border-radius:99px;background:var(--c)}
+.mbar.v i{background:var(--violet)}
+
+/* Continuar */
+.cont{display:grid;grid-template-columns:420px minmax(0,1fr);background:var(--bg);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.cont .thumb{min-height:236px}
+.cont .info{padding:32px 36px;display:flex;flex-direction:column;justify-content:center;gap:14px}
+.cont .row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
+.cont h2{font-size:clamp(24px,3vw,30px);font-weight:700;color:var(--navy);line-height:1.15}
+.cont .prog{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--muted)}
+.cont .prog .mbar{width:220px;flex:none}
+.cont .go{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.cta{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:13px 26px;border-radius:12px;background:var(--navy);color:#fff;font-weight:600;font-size:16px;text-decoration:none}
+.cta:hover{background:var(--navy-hover)}
+.cont .next{font-size:14px;color:var(--muted)}
+@media (max-width:900px){.cont{grid-template-columns:minmax(0,1fr)}.cont .thumb{min-height:120px}.cont .info{padding:22px 20px}.cont .prog .mbar{width:min(220px,40vw)}}
+
+/* Cursos */
+.head{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.filters button{min-height:44px;padding:6px 14px;border-radius:99px;border:1px solid var(--line);background:var(--bg);color:#3b4462;font-size:14px;cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff;font-weight:600}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:18px;list-style:none;padding:0}
+@media (max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.grid{grid-template-columns:minmax(0,1fr)}}
+.card{display:flex;flex-direction:column;background:var(--bg);border:1px solid var(--line);border-radius:16px;overflow:hidden;color:inherit;text-decoration:none;height:100%;padding:0;gap:0}
+a.card:hover{border-color:var(--c);box-shadow:var(--lift)}
+.card.soon{opacity:.7}
+.card .cover{position:relative;height:120px}
+.card .cover .pill{position:absolute;right:12px;bottom:12px}
+.card .body{padding:16px 18px 18px;display:grid;gap:10px}
+.card .nm{display:flex;align-items:center;gap:10px;font-family:var(--f-display);font-size:19px;font-weight:700;color:var(--ink)}
+.card .nm::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--c);flex:none}
+.card .meta{font-size:14px;color:var(--muted)}
+.card .lab-s{font-size:13px;color:var(--muted)}
+.empty{color:var(--muted);padding:18px 0}
+
+/* Variante «lista de rutas» (?v=lista) */
+.band{background:linear-gradient(#142a57,#1e3a73);color:#fff;padding:28px 48px 32px}
+.band .in{max-width:1104px;margin:0 auto;display:grid;gap:10px;justify-items:start}
+.band .eyebrow{font-size:12px;font-weight:600;color:#b9a6d8;letter-spacing:.08em;text-transform:uppercase}
+.band h1{font-size:clamp(24px,4vw,32px);font-weight:800;color:#fff}
+.band p{font-size:15px;color:#c4cce2}
+.band .cta{background:#fff;color:var(--navy);margin-top:8px}
+.band .cta:hover{background:var(--navy-soft)}
+@media (max-width:760px){.band{padding:22px 16px 26px}}
+.routes{display:grid;gap:12px;margin-top:18px;list-style:none;padding:0}
+.route{display:grid;grid-template-columns:56px minmax(0,1fr) 200px 130px;gap:18px;align-items:center;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:16px 18px;color:inherit;text-decoration:none}
+a.route:hover{border-color:var(--c)}
+.route.soon{opacity:.7}
+.plate{width:56px;height:56px;border-radius:12px;background:var(--cs);color:var(--c);display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:24px}
+.route .nm{font-family:var(--f-display);font-size:18px;font-weight:700;color:var(--ink)}
+.route .meta{font-size:14px;color:var(--muted)}
+.rbtn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 18px;border-radius:12px;font-weight:600;font-size:15px;border:1px solid var(--line-strong);background:var(--bg);color:var(--navy)}
+.rbtn.solid{background:var(--navy);border-color:var(--navy);color:#fff}
+.rbtn.off{color:var(--muted);border-style:dashed}
+@media (max-width:760px){.route{grid-template-columns:56px minmax(0,1fr);gap:12px 14px}.route .mbar,.route .rbtn{grid-column:1/-1}}
 </style>
 </head>
 <body>
-<a class="skip" href="#unidades">Saltar a las unidades</a>
-<header class="top">
-  <div class="wrap">
-    <div class="brand"><img alt="Logo Ministerio de Alabanza" src="logo.png"><div><b>Academia de Música</b><span>Ministerio de Alabanza – Iglesia Vida Abundante</span></div></div>
-    <div>
-      <h1>Índice del curso</h1>
-      <p>Siete unidades, una a la vez. Avanza a tu ritmo: tu progreso se guarda en este dispositivo.</p>
-    </div>
-  </div>
-</header>
-<main class="wrap" id="unidades">
-  <div class="summary">
-    <div class="progress"><span id="count"></span><div class="bar"><i id="barFill" style="width:0"></i></div></div>
-    <a class="btn" id="resume" href="#" hidden></a>
-  </div>
-  <ol class="units" id="units"></ol>
-  <div><button type="button" class="reset" id="reset" hidden>Borrar mi progreso</button></div>
-</main>
-<footer><div class="wrap">Material de la Academia de Música – Ministerio de Alabanza, Iglesia Vida Abundante</div></footer>
+<a class="skip" href="#cursos">Saltar a los cursos</a>
+<header class="top" id="top"></header>
+<div id="hero"></div>
+<main class="home" id="inicio"></main>
+<footer><div class="wrap">Ministerio de Alabanza – Iglesia Vida Abundante</div></footer>
 <script src="curso.js"></script>
 <script>
 (function(){
 const C=window.CURSO,$=s=>document.querySelector(s);
-function render(){
-  const done=C.done();
-  $('#units').innerHTML=C.units.map(u=>{
-    const d=done.includes(u.n),num=String(u.n).padStart(2,'0');
-    const inner=`<span class="num" aria-hidden="true">${num}</span><span class="name">Unidad ${num} – ${u.title}</span><span class="state${d?' done':''}">${d?'✓ Terminada':u.ready?'Disponible':'Próximamente'}</span>`;
-    return `<li>${u.ready?`<a class="unit" href="${u.file}">${inner}</a>`:`<div class="unit soon">${inner}</div>`}</li>`}).join('');
-  const n=done.filter(x=>C.unit(x)).length;
-  $('#count').textContent=`${n} de ${C.units.length} unidades terminadas`;
-  $('#barFill').style.width=Math.round(n/C.units.length*100)+'%';
-  const next=C.units.find(u=>u.ready&&!done.includes(u.n)),r=$('#resume');
-  if(next){r.hidden=false;r.href=next.file;r.textContent=(n?'Continuar con la ':'Empezar la ')+'Unidad '+String(next.n).padStart(2,'0')}else r.hidden=true;
-  $('#reset').hidden=!n;
+C.header('inicio');
+const lista=new URLSearchParams(location.search).get('v')==='lista';
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let filter='todos';
+
+function state(c){
+  const done=c.id==='teoria'?C.done().length:0;
+  const started=c.id==='teoria'&&(done>0||C.resume().started);
+  return{done,total:c.units.length,started,status:!c.ready?'pronto':started?'curso':'nuevo'};
 }
-$('#reset').onclick=()=>{if(confirm('¿Borrar las unidades marcadas como terminadas en este dispositivo?')){C.reset();render()}};
+const STATUS={curso:'En curso',nuevo:'Nuevo',pronto:'Próximamente'};
+const num=n=>String(n).padStart(2,'0');
+const href=l=>`${l.unit.file}#${l.id}`;
+const unitsWord=n=>`${n} ${n===1?'unidad':'unidades'}`;
+
+function resumeInfo(){
+  const r=C.resume(),l=r.lesson,t=C.courses[0];
+  if(!l)return{done:true,t,href:C.units[0].file,r};
+  const u=l.unit,seen=C.seenCount(u.n);
+  return{t,l,u,r,seen,total:u.lessons.length,href:href(l),label:r.started?'Continuar ▸':'Empezar',next:r.next};
+}
+
+function continueCard(){
+  const i=resumeInfo();
+  if(i.done)return `<section class="cont course" data-hue="${i.t.hue}" style="--h:${i.t.hue}" aria-labelledby="cTitle"><div class="thumb stripes" aria-hidden="true"></div><div class="info"><div class="row"><span class="pill">${esc(i.t.name)}</span></div><h2 id="cTitle">¡Terminaste el curso!</h2><p class="meta">Puedes repasar cualquier unidad cuando quieras.</p><div class="go"><a class="cta" href="${i.href}">Repasar desde 1.1</a></div></div></section>`;
+  const pct=Math.round(i.seen/i.total*100),sub=i.r.started?(i.seen?`${i.seen} de ${i.total} lecciones de esta unidad`:'Aún sin lecciones completadas en esta unidad'):'Empieza por la primera lección';
+  return `<section class="cont course" data-hue="${i.t.hue}" style="--h:${i.t.hue}" aria-labelledby="cTitle"><div class="thumb stripes" aria-hidden="true"></div><div class="info">
+    <div class="row"><span class="pill">${esc(i.t.name)}</span><span>Unidad ${num(i.u.n)} – ${esc(i.u.title)}</span></div>
+    <h2 id="cTitle">${i.l.k} ${esc(i.l.title)}</h2>
+    <div class="prog"><div class="mbar v" role="progressbar" aria-label="Avance de la unidad" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pct}"><i style="width:${pct}%"></i></div><span>${sub}</span></div>
+    <div class="go"><a class="cta" href="${i.href}">${i.label}</a>${i.next?`<span class="next">Después: ${i.next.k} ${esc(i.next.title)}</span>`:''}</div></div></section>`;
+}
+
+function courseCard(c){
+  const s=state(c),pct=s.total?Math.round(s.done/s.total*100):0;
+  const meta=c.ready?`${unitsWord(s.total)} – ${esc(c.meta)}`:esc(c.meta);
+  const foot=c.ready?`<div class="mbar" role="progressbar" aria-label="Unidades terminadas" aria-valuemin="0" aria-valuemax="${s.total}" aria-valuenow="${s.done}"><i style="width:${pct}%"></i></div><span class="lab-s">${s.done} de ${s.total} unidades</span>`:`<span class="lab-s">Muy pronto</span>`;
+  const inner=`<div class="cover stripes" aria-hidden="true"><span class="pill st-${s.status}">${STATUS[s.status]}</span></div><div class="body"><div class="nm">${esc(c.name)}</div><div class="meta">${meta}</div>${foot}</div>`;
+  const attrs=`class="card course${c.ready?'':' soon'}" data-hue="${c.hue}" style="--h:${c.hue}"`;
+  return c.ready?`<a ${attrs} href="${href(C.resume().lesson||{unit:C.units[0],id:C.units[0].lessons[0].id})}">${inner}</a>`:`<div ${attrs}>${inner}</div>`;
+}
+
+function routeRow(c){
+  const s=state(c),pct=s.total?Math.round(s.done/s.total*100):0;
+  const meta=c.ready?`${unitsWord(s.total)} – ${esc(c.meta)}`:esc(c.meta);
+  const btn=!c.ready?`<span class="rbtn off">Muy pronto</span>`:`<span class="rbtn${s.started?' solid':''}">${s.started?'Continuar':'Empezar'}</span>`;
+  const bar=c.ready?`<div class="mbar" role="progressbar" aria-label="Unidades terminadas" aria-valuemin="0" aria-valuemax="${s.total}" aria-valuenow="${s.done}"><i style="width:${pct}%"></i></div>`:`<div class="mbar" aria-hidden="true"></div>`;
+  const inner=`<span class="plate" aria-hidden="true">${esc(c.short)}</span><div><div class="nm">${esc(c.name)}</div><div class="meta">${meta}</div></div>${bar}${btn}`;
+  const attrs=`class="route course${c.ready?'':' soon'}" data-hue="${c.hue}" style="--h:${c.hue}"`;
+  return c.ready?`<a ${attrs} href="${href(C.resume().lesson||{unit:C.units[0],id:C.units[0].lessons[0].id})}">${inner}</a>`:`<div ${attrs}>${inner}</div>`;
+}
+
+function visible(c){
+  const s=state(c);
+  return filter==='todos'||(filter==='curso'&&s.status==='curso')||(filter==='instrumentos'&&c.id!=='teoria')||(filter==='teoria'&&c.id==='teoria');
+}
+const FILTERS=[['todos','Todos'],['curso','En curso'],['instrumentos','Instrumentos'],['teoria','Teoría']];
+
+function catalog(){
+  const list=C.courses.filter(visible),tag=lista?'routes':'grid',card=lista?routeRow:courseCard;
+  return `<section id="cursos" aria-labelledby="cursosH" style="scroll-margin-top:16px"><div class="head"><h2 class="h-h2" id="cursosH">${lista?'Rutas de aprendizaje':'Cursos'}</h2><div class="filters" role="group" aria-label="Filtrar cursos">${FILTERS.map(([k,t])=>`<button type="button" data-f="${k}" aria-pressed="${k===filter}">${t}</button>`).join('')}</div></div>${list.length?`<ul class="${tag}">${list.map(c=>`<li>${card(c)}</li>`).join('')}</ul>`:`<p class="empty">Aún no has empezado ningún curso. Elige uno para comenzar.</p>`}</section>`;
+}
+
+function render(){
+  const i=resumeInfo();
+  if(lista){
+    $('#hero').innerHTML=i.done?`<section class="band" aria-label="Continuar"><div class="in"><p class="eyebrow">Continúa en ${esc(i.t.name)}</p><h1>¡Terminaste el curso!</h1><a class="cta" href="${i.href}">Repasar desde 1.1</a></div></section>`
+      :`<section class="band" aria-label="Continuar"><div class="in"><p class="eyebrow">Continúa en ${esc(i.t.name)}</p><h1>${i.l.k} ${esc(i.l.title)}</h1><p>Unidad ${num(i.u.n)} – ${esc(i.u.title)} – lección ${i.u.lessons.findIndex(x=>x.id===i.l.id)+1} de ${i.total}</p><a class="cta" href="${i.href}">${i.label}</a></div></section>`;
+    $('#inicio').innerHTML=catalog();
+  }else{
+    $('#inicio').innerHTML=`<div class="h-hello"><h1>Hola</h1><p>Sigue donde lo dejaste o empieza un instrumento nuevo.</p></div>${continueCard()}${catalog()}`;
+  }
+  document.querySelectorAll('.filters button').forEach(b=>b.onclick=()=>{filter=b.dataset.f;render();const nb=document.querySelector(`.filters [data-f="${filter}"]`);if(nb)nb.focus({preventScroll:true})});
+}
 render();
 })();
 </script>

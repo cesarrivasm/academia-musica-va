@@ -388,6 +388,6 @@ body.drawer-on{overflow:hidden}
 .crumbs li+li::before{content:"›";margin-right:8px;opacity:.7}
 .crumbs a{color:var(--muted);text-underline-offset:3px;display:inline-flex;align-items:center;min-height:44px}
 .crumbs li[aria-current]{color:var(--ink);font-weight:600;display:inline-flex;align-items:center;min-height:44px}
-footer{background:var(--bg);color:#7a82a0;font-size:13px}
+footer{background:var(--bg);color:var(--muted);font-size:13px}
 footer .wrap{padding-block:20px;max-width:none;padding-inline:max(48px,env(safe-area-inset-left,0px))}
 @media (max-width:760px){footer .wrap{padding-inline:max(16px,env(safe-area-inset-left,0px))}}
