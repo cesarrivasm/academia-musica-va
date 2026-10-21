@@ -137,7 +137,7 @@ function keyQuiz({root,id,title='Práctica con el instrumento',total=8,make,octa
 
 function course(ME){
   const C=window.CURSO;if(!C)return;const done=C.done(),cur=C.unit(ME),num=String(ME).padStart(2,'0');
-  const cr=$('#crumbs');if(cr)cr.innerHTML=`<li><a href="index.html">Curso</a></li><li aria-current="page">Unidad ${num} · ${cur.title}</li>`;
+  const cr=$('#crumbs');if(cr)cr.innerHTML=`<li><a href="index.html">Curso</a></li><li aria-current="page">Unidad ${num} – ${cur.title}</li>`;
   const ml=$('#menuList'),mb=$('#menuBtn');
   if(ml){ml.innerHTML=`<p class="lbl">Unidades del curso</p><ul><li><a class="mi" href="index.html"><span class="num">⌂</span><span>Índice del curso</span><span></span></a></li>${C.units.map(u=>{const n=String(u.n).padStart(2,'0'),d=done.includes(u.n),st=d?'<span class="st ok" role="img" aria-label="terminada">✓</span>':!u.ready?'<span class="st">Pronto</span>':'<span></span>',inner=`<span class="num">${n}</span><span>${u.title}</span>${st}`;
       return u.n===ME?`<li><a class="mi cur" href="${u.file}" aria-current="page">${inner}</a></li>`:u.ready?`<li><a class="mi" href="${u.file}">${inner}</a></li>`:`<li><span class="mi off">${inner}</span></li>`}).join('')}</ul>`;
@@ -145,7 +145,7 @@ function course(ME){
       mb.onclick=()=>{const o=ml.hidden;ml.hidden=!o;mb.setAttribute('aria-expanded',String(o));if(o){const f=ml.querySelector('a');if(f)f.focus()}};
       document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!ml.hidden)close(true)});
       document.addEventListener('click',e=>{if(!ml.hidden&&!e.target.closest('.menu'))close(false)})}}
-  const PG=$('#pager'),side=(u,dir)=>{if(!u)return `<span class="pg ${dir} off"></span>`;const lab=dir==='prev'?'← Anterior':'Siguiente →',t=`Unidad ${String(u.n).padStart(2,'0')} · ${u.title}`;
+  const PG=$('#pager'),side=(u,dir)=>{if(!u)return `<span class="pg ${dir} off"></span>`;const lab=dir==='prev'?'← Anterior':'Siguiente →',t=`Unidad ${String(u.n).padStart(2,'0')} – ${u.title}`;
     return u.ready?`<a class="pg ${dir}" href="${u.file}"><small>${lab}</small><b>${t}</b></a>`:`<span class="pg ${dir} off"><small>${lab}</small><b>${t}</b><small>Próximamente</small></span>`};
   const d=C.isDone(ME);
   PG.innerHTML=`${side(C.unit(ME-1),'prev')}<div class="pager-mid"><button type="button" class="pbtn" id="markDone" aria-pressed="${d}">${d?'✓ Unidad terminada':'Marcar unidad como terminada'}</button><a class="linkbtn" href="index.html">Índice del curso</a></div>${side(C.unit(ME+1),'next')}`;

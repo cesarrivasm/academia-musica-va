@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Academia de Música · Ministerio de Alabanza, Iglesia Vida Abundante. Índice del curso.">
-<title>Índice del curso · Academia de Música</title>
+<meta name="description" content="Academia de Música – Ministerio de Alabanza, Iglesia Vida Abundante. Índice del curso.">
+<title>Índice del curso – Academia de Música</title>
 <link rel="icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -62,7 +62,7 @@ footer .wrap{padding-block:24px 36px}
 <a class="skip" href="#unidades">Saltar a las unidades</a>
 <header class="top">
   <div class="wrap">
-    <div class="brand"><img alt="Logo Ministerio de Alabanza" src="logo.png"><div><b>Academia de Música</b><span>Ministerio de Alabanza · Iglesia Vida Abundante</span></div></div>
+    <div class="brand"><img alt="Logo Ministerio de Alabanza" src="logo.png"><div><b>Academia de Música</b><span>Ministerio de Alabanza – Iglesia Vida Abundante</span></div></div>
     <div>
       <h1>Índice del curso</h1>
       <p>Siete unidades, una a la vez. Avanza a tu ritmo: tu progreso se guarda en este dispositivo.</p>
@@ -77,7 +77,7 @@ footer .wrap{padding-block:24px 36px}
   <ol class="units" id="units"></ol>
   <div><button type="button" class="reset" id="reset" hidden>Borrar mi progreso</button></div>
 </main>
-<footer><div class="wrap">Material de la Academia de Música · Ministerio de Alabanza, Iglesia Vida Abundante</div></footer>
+<footer><div class="wrap">Material de la Academia de Música – Ministerio de Alabanza, Iglesia Vida Abundante</div></footer>
 <script src="curso.js"></script>
 <script>
 (function(){
@@ -86,7 +86,7 @@ function render(){
   const done=C.done();
   $('#units').innerHTML=C.units.map(u=>{
     const d=done.includes(u.n),num=String(u.n).padStart(2,'0');
-    const inner=`<span class="num" aria-hidden="true">${num}</span><span class="name">Unidad ${num} · ${u.title}</span><span class="state${d?' done':''}">${d?'✓ Terminada':u.ready?'Disponible':'Próximamente'}</span>`;
+    const inner=`<span class="num" aria-hidden="true">${num}</span><span class="name">Unidad ${num} – ${u.title}</span><span class="state${d?' done':''}">${d?'✓ Terminada':u.ready?'Disponible':'Próximamente'}</span>`;
     return `<li>${u.ready?`<a class="unit" href="${u.file}">${inner}</a>`:`<div class="unit soon">${inner}</div>`}</li>`}).join('');
   const n=done.filter(x=>C.unit(x)).length;
   $('#count').textContent=`${n} de ${C.units.length} unidades terminadas`;

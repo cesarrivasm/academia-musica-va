@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Academia de Música · Ministerio de Alabanza, Iglesia Vida Abundante. Unidad 01: Teoría musical.">
-<title>Unidad 01 · Teoría musical · Academia de Música</title>
+<meta name="description" content="Academia de Música – Ministerio de Alabanza, Iglesia Vida Abundante. Unidad 01: Teoría musical.">
+<title>Unidad 01 – Teoría musical – Academia de Música</title>
 <link rel="icon" href="logo.png">
-<meta property="og:title" content="Unidad 01 · Teoría musical">
+<meta property="og:title" content="Unidad 01 – Teoría musical">
 <meta property="og:description" content="Qué es el sonido, cuáles son sus propiedades y los elementos básicos de la música.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +19,7 @@
   <div class="wrap">
     <div class="toprow"><div class="brand">
       <img alt="" src="logo.png">
-      <div><b>Academia de Música</b><span>Ministerio de Alabanza · Iglesia Vida Abundante</span></div>
+      <div><b>Academia de Música</b><span>Ministerio de Alabanza – Iglesia Vida Abundante</span></div>
     </div>
     <div class="menu"><button type="button" class="kebab" id="menuBtn" aria-expanded="false" aria-controls="menuList" aria-label="Menú de unidades" title="Unidades del curso"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg></button><div class="menu-list" id="menuList" hidden></div></div></div>
     <div class="hero">
@@ -33,11 +33,11 @@
 <div class="wrap page">
   <nav class="toc" aria-label="En esta unidad">
     <button type="button" class="toc-toggle" id="tocToggle" aria-expanded="false" aria-label="Mostrar los títulos de los temas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.6 6L15 12l-6.4 6-1.4-1.4 5-4.6-5-4.6z"/></svg><span class="t">Temas</span></button>
-    <a href="#sonido" aria-label="1.1 Sonido y ruido (Básico)" title="Sonido y ruido · Básico"><span class="n">1.1</span><span class="t">Sonido y ruido</span></a>
-    <a href="#propiedades" aria-label="1.2 Propiedades del sonido (Básico)" title="Propiedades del sonido · Básico"><span class="n">1.2</span><span class="t">Propiedades del sonido</span></a>
-    <a href="#musica" aria-label="1.3 Qué es la música (Básico)" title="Qué es la música · Básico"><span class="n">1.3</span><span class="t">Qué es la música</span></a>
-    <a href="#pulso" aria-label="1.4 Pulso y tempo (Básico)" title="Pulso y tempo · Básico"><span class="n">1.4</span><span class="t">Pulso y tempo</span></a>
-    <a href="#practica" aria-label="1.5 Práctica (Básico)" title="Práctica · Básico"><span class="n">1.5</span><span class="t">Práctica</span></a>
+    <a href="#sonido" aria-label="1.1 Sonido y ruido (Básico)" title="Sonido y ruido – Básico"><span class="n">1.1</span><span class="t">Sonido y ruido</span></a>
+    <a href="#propiedades" aria-label="1.2 Propiedades del sonido (Básico)" title="Propiedades del sonido – Básico"><span class="n">1.2</span><span class="t">Propiedades del sonido</span></a>
+    <a href="#musica" aria-label="1.3 Qué es la música (Básico)" title="Qué es la música – Básico"><span class="n">1.3</span><span class="t">Qué es la música</span></a>
+    <a href="#pulso" aria-label="1.4 Pulso y tempo (Básico)" title="Pulso y tempo – Básico"><span class="n">1.4</span><span class="t">Pulso y tempo</span></a>
+    <a href="#practica" aria-label="1.5 Práctica (Básico)" title="Práctica – Básico"><span class="n">1.5</span><span class="t">Práctica</span></a>
   </nav>
 
   <main>
@@ -123,8 +123,8 @@
 
 <footer>
   <div class="wrap">
-    <span>Material de la Academia de Música · Ministerio de Alabanza, Iglesia Vida Abundante</span>
-    <span>Unidad 01 · Teoría musical</span>
+    <span>Material de la Academia de Música – Ministerio de Alabanza, Iglesia Vida Abundante</span>
+    <span>Unidad 01 – Teoría musical</span>
   </div>
 </footer>
 
@@ -156,13 +156,13 @@ function drawLab(){const f=+fq.value,v=+vol.value/100,type=tim.value,cyc=2+(f-10
   const s=wsvg((W,Hh,p)=>{for(let i=0;i<=W;i+=1.5){const ph=(i/W*cyc)%1;let y;
     if(type==='sine')y=Math.sin(ph*Math.PI*2);else if(type==='triangle')y=ph<.25?ph*4:ph<.75?2-ph*4:ph*4-4;else if(type==='square')y=ph<.5?1:-1;else y=ph*2-1;
     p(i,Hh/2-y*A,i)}});s.setAttribute('aria-label','Onda del sonido que armaste');const w=$('#wLab');w.innerHTML='';w.appendChild(s);
-  $('#fqOut').textContent=f+' Hz';$('#fqNote').textContent=`Se parece a la nota ${noteName(f)}. Más Hz = más agudo. Volumen ${Math.round(v*100)} % · duración ${dur<1?'corta':dur<2?'media':'larga'}.`}
+  $('#fqOut').textContent=f+' Hz';$('#fqNote').textContent=`Se parece a la nota ${noteName(f)}. Más Hz = más agudo. Volumen ${Math.round(v*100)} % – duración ${dur<1?'corta':dur<2?'media':'larga'}.`}
 [fq,vol,tim].forEach(e=>e.oninput=drawLab);
 document.querySelectorAll('#durSeg button').forEach(b=>b.onclick=()=>{dur=+b.dataset.d;document.querySelectorAll('#durSeg button').forEach(x=>x.setAttribute('aria-pressed',x===b));drawLab()});
 $('#tplay').onclick=()=>tone(+fq.value,dur,.35*(+vol.value/100),tim.value);drawLab();
 /* Metrónomo */
 let beats=4;const bpm=$('#bpm');
-function tempoName(b){return b<66?'Más lento que Adagio':b<=76?'Adagio · lento y majestuoso':b<=108?'Andante · al paso, tranquilo':b<110?'Entre Andante y Allegro':b<=168?'Allegro · animado y rápido':'Más rápido que Allegro'}
+function tempoName(b){return b<66?'Más lento que Adagio':b<=76?'Adagio – lento y majestuoso':b<=108?'Andante – al paso, tranquilo':b<110?'Entre Andante y Allegro':b<=168?'Allegro – animado y rápido':'Más rápido que Allegro'}
 function drawBeats(){$('#beats').innerHTML=Array.from({length:beats},(_,i)=>`<span class="beat${i?'':' acc'}"></span>`).join('')}
 const m=metro({bpm:()=>+bpm.value,beats:()=>beats,onBeat:i=>{document.querySelectorAll('.beat').forEach((x,j)=>x.classList.toggle('on',j===i))}});
 bpm.oninput=()=>{$('#bpmOut').textContent=bpm.value;$('#bpmName').textContent=tempoName(+bpm.value)};bpm.oninput();
@@ -182,7 +182,7 @@ const POOL=[
  ['Cuando marcas con el pie al escuchar una canción, estás siguiendo…',['El pulso','El timbre','La melodía','La armonía'],0,'El pulso es la unidad básica para medir el tiempo.'],
  ['¿En qué se mide el pulso?',['Pulsaciones por minuto','Hercios','Decibeles','Compases por segundo'],0,'Igual que el ritmo cardíaco: pulsaciones por minuto.'],
  ['A la velocidad del pulso la llamamos…',['Tempo','Timbre','Compás','Altura'],0,'El tempo puede indicarse con un número o con un término italiano.'],
- ['¿Qué tempo es “animado y rápido” (110 – 168 ppm)?',['Allegro','Adagio','Andante','Lento'],0,'Adagio 66–76 · Andante 76–108 · Allegro 110–168.'],
+ ['¿Qué tempo es “animado y rápido” (110 – 168 ppm)?',['Allegro','Adagio','Andante','Lento'],0,'Adagio 66–76 – Andante 76–108 – Allegro 110–168.'],
  ['¿Qué tempo es “lento y majestuoso”?',['Adagio','Allegro','Andante','Vivace'],0,'Adagio: entre 66 y 76 pulsaciones por minuto.']];
 mcq({root:'#quiz',id:'av-u1',total:8,make:n=>pick(POOL,n).map(([q,opts,ans,why])=>({q,opts,ans,why}))});
 

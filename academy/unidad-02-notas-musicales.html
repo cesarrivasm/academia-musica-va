@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Academia de Música · Ministerio de Alabanza, Iglesia Vida Abundante. Unidad 02: Notas musicales.">
-<title>Unidad 02 · Notas musicales · Academia de Música</title>
+<meta name="description" content="Academia de Música – Ministerio de Alabanza, Iglesia Vida Abundante. Unidad 02: Notas musicales.">
+<title>Unidad 02 – Notas musicales – Academia de Música</title>
 <link rel="icon" href="logo.png">
-<meta property="og:title" content="Unidad 02 · Notas musicales">
+<meta property="og:title" content="Unidad 02 – Notas musicales">
 <meta property="og:description" content="Los doce sonidos, sus nombres y el cifrado americano.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +19,7 @@
   <div class="wrap">
     <div class="toprow"><div class="brand">
       <img alt="" src="logo.png">
-      <div><b>Academia de Música</b><span>Ministerio de Alabanza · Iglesia Vida Abundante</span></div>
+      <div><b>Academia de Música</b><span>Ministerio de Alabanza – Iglesia Vida Abundante</span></div>
     </div>
     <div class="menu"><button type="button" class="kebab" id="menuBtn" aria-expanded="false" aria-controls="menuList" aria-label="Menú de unidades" title="Unidades del curso"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg></button><div class="menu-list" id="menuList" hidden></div></div></div>
     <div class="hero">
@@ -33,11 +33,11 @@
 <div class="wrap page">
   <nav class="toc" aria-label="En esta unidad">
     <button type="button" class="toc-toggle" id="tocToggle" aria-expanded="false" aria-label="Mostrar los títulos de los temas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.6 6L15 12l-6.4 6-1.4-1.4 5-4.6-5-4.6z"/></svg><span class="t">Temas</span></button>
-    <a href="#doce" aria-label="2.1 Los doce sonidos (Básico)" title="Los doce sonidos · Básico"><span class="n">2.1</span><span class="t">Los doce sonidos</span></a>
-    <a href="#cifrado" aria-label="2.2 Cifrado americano (Básico)" title="Cifrado americano · Básico"><span class="n">2.2</span><span class="t">Cifrado americano</span></a>
-    <a href="#lectura" aria-label="2.3 Lee un cifrado (Intermedio)" title="Lee un cifrado · Intermedio"><span class="n">2.3</span><span class="t">Lee un cifrado</span></a>
-    <a href="#digitacion" aria-label="2.4 Digitación en el piano (Básico)" title="Digitación en el piano · Básico"><span class="n">2.4</span><span class="t">Digitación en el piano</span></a>
-    <a href="#practica" aria-label="2.5 Práctica (Básico)" title="Práctica · Básico"><span class="n">2.5</span><span class="t">Práctica</span></a>
+    <a href="#doce" aria-label="2.1 Los doce sonidos (Básico)" title="Los doce sonidos – Básico"><span class="n">2.1</span><span class="t">Los doce sonidos</span></a>
+    <a href="#cifrado" aria-label="2.2 Cifrado americano (Básico)" title="Cifrado americano – Básico"><span class="n">2.2</span><span class="t">Cifrado americano</span></a>
+    <a href="#lectura" aria-label="2.3 Lee un cifrado (Intermedio)" title="Lee un cifrado – Intermedio"><span class="n">2.3</span><span class="t">Lee un cifrado</span></a>
+    <a href="#digitacion" aria-label="2.4 Digitación en el piano (Básico)" title="Digitación en el piano – Básico"><span class="n">2.4</span><span class="t">Digitación en el piano</span></a>
+    <a href="#practica" aria-label="2.5 Práctica (Básico)" title="Práctica – Básico"><span class="n">2.5</span><span class="t">Práctica</span></a>
   </nav>
 
   <main>
@@ -112,8 +112,8 @@
 
 <footer>
   <div class="wrap">
-    <span>Material de la Academia de Música · Ministerio de Alabanza, Iglesia Vida Abundante</span>
-    <span>Unidad 02 · Notas musicales</span>
+    <span>Material de la Academia de Música – Ministerio de Alabanza, Iglesia Vida Abundante</span>
+    <span>Unidad 02 – Notas musicales</span>
   </div>
 </footer>
 
@@ -129,7 +129,7 @@ const es=n=>ES[n[0]]+(n[1]==='#'?'♯':n[1]==='b'?'♭':'');
 const en=n=>n[0]+(n[1]==='#'?'♯':n[1]==='b'?'♭':'');
 const esLong=n=>ES[n[0]]+(n[1]==='#'?' sostenido':n[1]==='b'?' bemol':'');
 let mode='es',sel=0,inst='piano',fbo=null,fbMode=null;
-const label=n=>mode==='es'?es(n):mode==='en'?en(n):es(n)+' · '+en(n);
+const label=n=>mode==='es'?es(n):mode==='en'?en(n):es(n)+' – '+en(n);
 function withNames(svg,octaves,W,H,pad){const vb=svg.getAttribute('viewBox').split(' ').map(Number);svg.setAttribute('viewBox',`0 0 ${vb[2]} ${vb[3]+22}`);
   for(let i=0;i<octaves*7;i++){const n=['C','D','E','F','G','A','B'][i%7];svg.appendChild(svgEl('text',{x:pad+i*W+W/2,y:vb[3]+16,'text-anchor':'middle','font-size':12,'font-family':'Instrument Sans, sans-serif',fill:'var(--muted)','pointer-events':'none'},mode==='es'?ES[n]:mode==='en'?n:ES[n]+'/'+n))}}
 function drawKbd(){
@@ -139,9 +139,9 @@ function drawKbd(){
   withNames(svg,2,34,130,2);const box=$('#kbd');box.innerHTML='';box.appendChild(svg)}
 function render(){
   const s=SH[sel],f=FL[sel],alt=s!==f;
-  $('#sym').textContent=alt?(mode==='en'?`${en(s)} · ${en(f)}`:`${es(s)} · ${es(f)}`):(mode==='en'?en(s):es(s));
+  $('#sym').textContent=alt?(mode==='en'?`${en(s)} / ${en(f)}`:`${es(s)} / ${es(f)}`):(mode==='en'?en(s):es(s));
   $('#sym').style.fontSize='56px';
-  $('#alt').innerHTML=mode==='both'?`<span class="tone"><b>${alt?en(s)+' · '+en(f):en(s)}</b><i>cifrado</i></span>`:`<span class="tone"><b>${mode==='es'?(alt?en(s)+' · '+en(f):en(s)):(alt?es(s)+' · '+es(f):es(s))}</b><i>${mode==='es'?'cifrado':'nombre'}</i></span>`;
+  $('#alt').innerHTML=mode==='both'?`<span class="tone"><b>${alt?en(s)+' / '+en(f):en(s)}</b><i>cifrado</i></span>`:`<span class="tone"><b>${mode==='es'?(alt?en(s)+' / '+en(f):en(s)):(alt?es(s)+' / '+es(f):es(s))}</b><i>${mode==='es'?'cifrado':'nombre'}</i></span>`;
   $('#exp').innerHTML=alt?`<div class="ex-name"><h3>Nota alterada</h3></div><p>Es una nota alterada (la tecla negra en el piano), entre ${es(SH[sel-1])} y ${es(SH[sel+1])}. Con sostenido se llama ${es(s)}; con bemol, ${es(f)}. Es el mismo sonido con dos nombres.</p>`:`<div class="ex-name"><h3>Nota natural</h3></div><p>Es una de las siete notas naturales (las teclas blancas en el piano). En el cifrado americano se escribe <b>${s}</b>.</p>`;
   drawKbd();drawGtr();drawFing()}
 function drawGtr(){if(!fbo||fbMode!==mode){fbMode=mode;fbo=U.fretboard($('#gfb'),{labelFn:n=>mode==='en'?en(n):es(n),label:'Diapasón con las doce notas',onPlay:({pc})=>{sel=pc;render()}})}
