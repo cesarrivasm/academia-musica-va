@@ -15,20 +15,7 @@
 </head>
 <body>
 <a class="skip" href="#por-que">Saltar al contenido</a>
-<header class="top">
-  <div class="wrap">
-    <div class="toprow"><div class="brand">
-      <img alt="" src="logo.png">
-      <div><b>Academia de Música</b><span>Ministerio de Alabanza – Iglesia Vida Abundante</span></div>
-    </div>
-    <div class="menu"><button type="button" class="kebab" id="menuBtn" aria-expanded="false" aria-controls="menuList" aria-label="Menú de unidades" title="Unidades del curso"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg></button><div class="menu-list" id="menuList" hidden></div></div></div>
-    <div class="hero">
-      <nav class="crumbs" aria-label="Ruta de navegación"><ol id="crumbs"></ol></nav>
-      <h1>Transposiciones</h1>
-      <p>Cómo llevar una canción a otra tonalidad sin perder su sonoridad, usando el círculo de quintas y los grados de la escala.</p>
-    </div>
-  </div>
-</header>
+<header class="top" id="top"></header>
 
 <div class="wrap page">
   <nav class="toc" aria-label="En esta unidad">
@@ -41,6 +28,12 @@
   </nav>
 
   <main>
+    <div class="unit-intro">
+      <nav class="crumbs" aria-label="Ruta de navegación"><ol id="crumbs"></ol></nav>
+      <h1>Transposiciones</h1>
+      <p>Cómo llevar una canción a otra tonalidad sin perder su sonoridad, usando el círculo de quintas y los grados de la escala.</p>
+    </div>
+
     <section id="por-que">
       <div class="sec-head"><span class="k">7.1</span><h2>Qué es transportar</h2><span class="lvl lvl-2">Intermedio</span></div>
       <div class="prose">
@@ -116,10 +109,7 @@
 <nav class="pager" aria-label="Navegación del curso"><div class="wrap" id="pager"></div></nav>
 
 <footer>
-  <div class="wrap">
-    <span>Material de la Academia de Música – Ministerio de Alabanza, Iglesia Vida Abundante</span>
-    <span>Unidad 07 – Transposiciones</span>
-  </div>
+  <div class="wrap">Ministerio de Alabanza – Iglesia Vida Abundante</div>
 </footer>
 
 <script src="curso.js"></script>

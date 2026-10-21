@@ -15,20 +15,7 @@
 </head>
 <body>
 <a class="skip" href="#semitono">Saltar al contenido</a>
-<header class="top">
-  <div class="wrap">
-    <div class="toprow"><div class="brand">
-      <img alt="" src="logo.png">
-      <div><b>Academia de Música</b><span>Ministerio de Alabanza – Iglesia Vida Abundante</span></div>
-    </div>
-    <div class="menu"><button type="button" class="kebab" id="menuBtn" aria-expanded="false" aria-controls="menuList" aria-label="Menú de unidades" title="Unidades del curso"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg></button><div class="menu-list" id="menuList" hidden></div></div></div>
-    <div class="hero">
-      <nav class="crumbs" aria-label="Ruta de navegación"><ol id="crumbs"></ol></nav>
-      <h1>Tonos y semitonos</h1>
-      <p>La distancia mínima entre dos notas, cómo medir tonos y semitonos, y qué hacen los sostenidos, bemoles y becuadros.</p>
-    </div>
-  </div>
-</header>
+<header class="top" id="top"></header>
 
 <div class="wrap page">
   <nav class="toc" aria-label="En esta unidad">
@@ -40,6 +27,12 @@
   </nav>
 
   <main>
+    <div class="unit-intro">
+      <nav class="crumbs" aria-label="Ruta de navegación"><ol id="crumbs"></ol></nav>
+      <h1>Tonos y semitonos</h1>
+      <p>La distancia mínima entre dos notas, cómo medir tonos y semitonos, y qué hacen los sostenidos, bemoles y becuadros.</p>
+    </div>
+
     <section id="semitono">
       <div class="sec-head"><span class="k">4.1</span><h2>El semitono y el tono</h2><span class="lvl lvl-1">Básico</span></div>
       <div class="prose">
@@ -93,10 +86,7 @@
 <nav class="pager" aria-label="Navegación del curso"><div class="wrap" id="pager"></div></nav>
 
 <footer>
-  <div class="wrap">
-    <span>Material de la Academia de Música – Ministerio de Alabanza, Iglesia Vida Abundante</span>
-    <span>Unidad 04 – Tonos y semitonos</span>
-  </div>
+  <div class="wrap">Ministerio de Alabanza – Iglesia Vida Abundante</div>
 </footer>
 
 <script src="curso.js"></script>

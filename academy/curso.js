@@ -72,7 +72,37 @@ function resume(){
   const idx=cur?all.indexOf(cur):-1;
   return{lesson:cur,next:idx>=0?all[idx+1]||null:null,started};
 }
+
+/* Panel deslizable accesible: foco atrapado, Esc, velo y retorno del foco al botón */
+let lastOpen=null;
+function drawer({id,title,html,opener}){
+  const veil=document.createElement('div');veil.className='veil';veil.hidden=true;
+  const el=document.createElement('aside');el.className='drawer';el.id=id;el.hidden=true;el.setAttribute('role','dialog');el.setAttribute('aria-modal','true');el.setAttribute('aria-label',title);
+  el.innerHTML=`<div class="drawer-head"><h2>${title}</h2><button type="button" class="drawer-x" aria-label="Cerrar">×</button></div><div class="drawer-body">${html}</div>`;
+  document.body.append(veil,el);
+  const reduce=()=>matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const focusables=()=>[...el.querySelectorAll('a[href],button:not([disabled])')];
+  function open(){if(!el.hidden)return;lastOpen=document.activeElement;veil.hidden=false;el.hidden=false;void el.offsetWidth;veil.classList.add('open');el.classList.add('open');document.body.classList.add('drawer-on');
+    if(opener)opener.setAttribute('aria-expanded','true');const f=el.querySelector('[aria-current]')||el.querySelector('.drawer-x');f.focus({preventScroll:true});document.addEventListener('keydown',key)}
+  function close(){if(el.hidden)return;veil.classList.remove('open');el.classList.remove('open');document.body.classList.remove('drawer-on');document.removeEventListener('keydown',key);
+    if(opener){opener.setAttribute('aria-expanded','false');opener.focus()}
+    const fin=()=>{veil.hidden=true;el.hidden=true};reduce()?fin():setTimeout(fin,230)}
+  function key(e){if(e.key==='Escape'){e.preventDefault();close()}else if(e.key==='Tab'){const f=focusables();if(!f.length)return;const a=f[0],z=f[f.length-1];
+    if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}else if(!el.contains(document.activeElement)){e.preventDefault();a.focus()}}}
+  veil.onclick=close;el.querySelector('.drawer-x').onclick=close;
+  if(opener){opener.setAttribute('aria-controls',id);opener.setAttribute('aria-expanded','false');opener.addEventListener('click',()=>el.hidden?open():close())}
+  return{open,close,el,body:el.querySelector('.drawer-body')};
+}
+const NAV=[['inicio','Inicio','index.html'],['cursos','Cursos','index.html#cursos'],['progreso','Mi progreso','progreso.html']];
+/* Header compacto: activo = 'inicio' | 'cursos' | 'progreso'. Se inyecta en <header class="top"> */
+function header(active){
+  const host=document.querySelector('header.top');if(!host||host.dataset.w)return;host.dataset.w='1';
+  const links=cls=>NAV.map(([k,t,h])=>`<a href="${h}"${k===active?' aria-current="page"':''}>${t}</a>`).join('');
+  host.innerHTML=`<div class="hd"><a class="hd-brand" href="index.html"><img alt="" src="logo.png"><span>Academia de Música</span></a><nav class="hd-nav" aria-label="Principal">${links()}</nav><button type="button" class="hd-menu" id="hdMenu" aria-label="Abrir el menú"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg></button></div>`;
+  drawer({id:'navDrawer',title:'Menú',html:`<nav class="drawer-nav" aria-label="Principal">${links()}</nav>`,opener:host.querySelector('#hdMenu')});
+}
 window.CURSO={
+  header,drawer,
   units:UNITS,courses:COURSES,
   unit,
   done:()=>UNITS.filter(u=>isDone(u.n)).map(u=>u.n),

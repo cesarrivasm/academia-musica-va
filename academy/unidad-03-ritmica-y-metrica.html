@@ -15,20 +15,7 @@
 </head>
 <body>
 <a class="skip" href="#pentagrama">Saltar al contenido</a>
-<header class="top">
-  <div class="wrap">
-    <div class="toprow"><div class="brand">
-      <img alt="" src="logo.png">
-      <div><b>Academia de Música</b><span>Ministerio de Alabanza – Iglesia Vida Abundante</span></div>
-    </div>
-    <div class="menu"><button type="button" class="kebab" id="menuBtn" aria-expanded="false" aria-controls="menuList" aria-label="Menú de unidades" title="Unidades del curso"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg></button><div class="menu-list" id="menuList" hidden></div></div></div>
-    <div class="hero">
-      <nav class="crumbs" aria-label="Ruta de navegación"><ol id="crumbs"></ol></nav>
-      <h1>Rítmica y métrica</h1>
-      <p>Cómo se escribe la música: el pentagrama, las figuras que dan duración a las notas, las claves, el compás y la ligadura.</p>
-    </div>
-  </div>
-</header>
+<header class="top" id="top"></header>
 
 <div class="wrap page">
   <nav class="toc" aria-label="En esta unidad">
@@ -42,6 +29,12 @@
   </nav>
 
   <main>
+    <div class="unit-intro">
+      <nav class="crumbs" aria-label="Ruta de navegación"><ol id="crumbs"></ol></nav>
+      <h1>Rítmica y métrica</h1>
+      <p>Cómo se escribe la música: el pentagrama, las figuras que dan duración a las notas, las claves, el compás y la ligadura.</p>
+    </div>
+
     <section id="pentagrama">
       <div class="sec-head"><span class="k">3.1</span><h2>El pentagrama</h2><span class="lvl lvl-1">Básico</span></div>
       <div class="prose">
@@ -118,10 +111,7 @@
 <nav class="pager" aria-label="Navegación del curso"><div class="wrap" id="pager"></div></nav>
 
 <footer>
-  <div class="wrap">
-    <span>Material de la Academia de Música – Ministerio de Alabanza, Iglesia Vida Abundante</span>
-    <span>Unidad 03 – Rítmica y métrica</span>
-  </div>
+  <div class="wrap">Ministerio de Alabanza – Iglesia Vida Abundante</div>
 </footer>
 
 <script src="curso.js"></script>

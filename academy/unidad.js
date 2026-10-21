@@ -137,7 +137,8 @@ function keyQuiz({root,id,title='Práctica con el instrumento',total=8,make,octa
 
 function course(ME){
   const C=window.CURSO;if(!C)return;const done=C.done(),cur=C.unit(ME),num=String(ME).padStart(2,'0');
-  const cr=$('#crumbs');if(cr)cr.innerHTML=`<li><a href="index.html">Curso</a></li><li aria-current="page">Unidad ${num} – ${cur.title}</li>`;
+  C.header('cursos');
+  const cr=$('#crumbs');if(cr)cr.innerHTML=`<li><a href="index.html#cursos">Teoría musical</a></li><li aria-current="page">Unidad ${num} – ${cur.title}</li>`;
   const ml=$('#menuList'),mb=$('#menuBtn');
   if(ml){ml.innerHTML=`<p class="lbl">Unidades del curso</p><ul><li><a class="mi" href="index.html"><span class="num">⌂</span><span>Índice del curso</span><span></span></a></li>${C.units.map(u=>{const n=String(u.n).padStart(2,'0'),d=done.includes(u.n),st=d?'<span class="st ok" role="img" aria-label="terminada">✓</span>':!u.ready?'<span class="st">Pronto</span>':'<span></span>',inner=`<span class="num">${n}</span><span>${u.title}</span>${st}`;
       return u.n===ME?`<li><a class="mi cur" href="${u.file}" aria-current="page">${inner}</a></li>`:u.ready?`<li><a class="mi" href="${u.file}">${inner}</a></li>`:`<li><span class="mi off">${inner}</span></li>`}).join('')}</ul>`;
@@ -253,5 +254,5 @@ function fretboard(host,{frets=12,flat=false,marks=null,onPlay=null,label='Diapa
   const box=document.createElement('div');box.className='fb-scroll';box.appendChild(svg);const hint=document.createElement('p');hint.className='cap';hint.hidden=true;hint.textContent='Desliza para ver todos los trastes →';
   host.innerHTML='';host.append(box,hint);const upd=()=>{hint.hidden=!(box.scrollWidth>box.clientWidth+2)};requestAnimationFrame(upd);window.addEventListener('resize',upd);
   return{svg,setPcs(m){hl.clear();if(m)m.forEach((v,k)=>hl.set(k,v));cells.forEach(paint)},setPicked(s,r){rootMidi=r==null?null:r;picked.clear();if(s)s.forEach(x=>picked.add(x));cells.forEach(paint)}}}
-window.U={fretboard,pluck,OPEN_MIDI,setPlaying,hold,reg,carousel,store,$,svgEl,keyboard,actx,note,playSet,stopAll,out:()=>{actx();return master},LET,LPC,nm,ES,esName,pretty,parseNote,scale,triads,ROMAN,DEG_NAMES,shuffle,pick,rnd,R12S,mcq,keyQuiz,course,metro,ICON_SPK,ACC};
+window.U={header:n=>window.CURSO&&window.CURSO.header(n),fretboard,pluck,OPEN_MIDI,setPlaying,hold,reg,carousel,store,$,svgEl,keyboard,actx,note,playSet,stopAll,out:()=>{actx();return master},LET,LPC,nm,ES,esName,pretty,parseNote,scale,triads,ROMAN,DEG_NAMES,shuffle,pick,rnd,R12S,mcq,keyQuiz,course,metro,ICON_SPK,ACC};
 })();
