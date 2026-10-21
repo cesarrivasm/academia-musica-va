@@ -26,7 +26,7 @@ function keyboard({octaves=2,marks=new Map(),clickable=false,onKey=null,W=24,H=1
   const svg=svgEl('svg',{viewBox:`0 0 ${nW*W+pad*2} ${H+pad*2}`,role:clickable?'group':'img'});
   if(clickable)svg.style.minWidth=(nW*minKey)+'px';
   const g=svgEl('g',{transform:`translate(${pad},${pad})`});svg.appendChild(g);const desc=[],keys=[];
-  const mono='JetBrains Mono, monospace';
+  const mono='Instrument Sans, sans-serif';
   for(let i=0;i<nW;i++){const abs=Math.floor(i/7)*12+WHITE_PC[i%7],m=marks.get(abs);
     const r=svgEl('rect',{x:i*W,y:0,width:W,height:H,rx:3,fill:m?(m.root?'var(--violet)':'var(--navy)'):'var(--key-white)',stroke:'var(--key-edge)','stroke-width':1});
     if(clickable){r.setAttribute('class','k');r.dataset.abs=abs;keys.push({abs,el:r,m})}g.appendChild(r);
@@ -225,7 +225,7 @@ function fretboard(host,{frets=12,flat=false,marks=null,onPlay=null,label='Diapa
   const X0=46,FW=48,Y0=34,RH=30,W=X0+frets*FW+14,H=Y0+5*RH+40,SHn=['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'],FLn=['C','Db','D','Eb','E','F','Gb','G','Ab','A','Bb','B'];
   const svg=svgEl('svg',{viewBox:`0 0 ${W} ${H}`,role:'group','aria-label':`${label}. Seis cuerdas y ${frets} trastes. Flechas para moverte, Enter para tocar una nota.`});
   svg.style.minWidth=(frets*38+60)+'px';
-  const xf=f=>f===0?X0/2-3:X0+(f-.5)*FW,yr=r=>Y0+r*RH,mono='JetBrains Mono, monospace',fmt=labelFn||pretty;
+  const xf=f=>f===0?X0/2-3:X0+(f-.5)*FW,yr=r=>Y0+r*RH,mono='Instrument Sans, sans-serif',fmt=labelFn||pretty;
   [3,5,7,9].forEach(f=>svg.appendChild(svgEl('circle',{cx:xf(f),cy:yr(2.5),r:7,fill:'var(--line)'})));
   if(frets>=12)[1.5,3.5].forEach(k=>svg.appendChild(svgEl('circle',{cx:xf(12),cy:yr(k),r:7,fill:'var(--line)'})));
   for(let k=1;k<=frets;k++)svg.appendChild(svgEl('line',{x1:X0+k*FW,y1:yr(0)-6,x2:X0+k*FW,y2:yr(5)+6,stroke:'var(--line-strong)','stroke-width':1.4}));

@@ -10,7 +10,7 @@
 <meta property="og:description" content="Los doce sonidos, sus nombres y el cifrado americano.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;600;700;800&family=Instrument+Sans:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="unidad.css">
 </head>
 <body>
@@ -131,7 +131,7 @@ const esLong=n=>ES[n[0]]+(n[1]==='#'?' sostenido':n[1]==='b'?' bemol':'');
 let mode='es',sel=0,inst='piano',fbo=null,fbMode=null;
 const label=n=>mode==='es'?es(n):mode==='en'?en(n):es(n)+' · '+en(n);
 function withNames(svg,octaves,W,H,pad){const vb=svg.getAttribute('viewBox').split(' ').map(Number);svg.setAttribute('viewBox',`0 0 ${vb[2]} ${vb[3]+22}`);
-  for(let i=0;i<octaves*7;i++){const n=['C','D','E','F','G','A','B'][i%7];svg.appendChild(svgEl('text',{x:pad+i*W+W/2,y:vb[3]+16,'text-anchor':'middle','font-size':12,'font-family':'JetBrains Mono, monospace',fill:'var(--muted)','pointer-events':'none'},mode==='es'?ES[n]:mode==='en'?n:ES[n]+'/'+n))}}
+  for(let i=0;i<octaves*7;i++){const n=['C','D','E','F','G','A','B'][i%7];svg.appendChild(svgEl('text',{x:pad+i*W+W/2,y:vb[3]+16,'text-anchor':'middle','font-size':12,'font-family':'Instrument Sans, sans-serif',fill:'var(--muted)','pointer-events':'none'},mode==='es'?ES[n]:mode==='en'?n:ES[n]+'/'+n))}}
 function drawKbd(){
   const marks=new Map([[sel,{label:'',root:true}],[sel+12,{label:'',root:true}]]);
   const svg=keyboard({octaves:2,marks,clickable:true,W:34,H:130,minKey:30,ctx:'#kbd',onKey:abs=>{sel=abs%12;const c=actx();if(c)note(abs+12,c.currentTime+.01,1.4,.32);render()}});

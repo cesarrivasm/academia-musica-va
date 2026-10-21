@@ -10,7 +10,7 @@
 <meta property="og:description" content="El círculo de quintas, los grados de una tonalidad y cómo llevar una canción a otro tono.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;600;700;800&family=Instrument+Sans:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="unidad.css">
 </head>
 <body>
@@ -142,7 +142,7 @@ let ci=0,cmin=false;const nodes={maj:[],min:[]};
 {const W=420,svg=svgEl('svg',{viewBox:`0 0 ${W} ${W}`,role:'group','aria-label':'Círculo de quintas. Flechas para moverte, Enter para elegir.'}),c=W/2;
   svg.appendChild(svgEl('circle',{cx:c,cy:c,r:168,fill:'var(--tint)',stroke:'var(--line)'}));svg.appendChild(svgEl('circle',{cx:c,cy:c,r:112,fill:'var(--bg)',stroke:'var(--line)'}));
   for(let i=0;i<12;i++){const a=(-90+i*30)*Math.PI/180,P=(r)=>[c+r*Math.cos(a),c+r*Math.sin(a)];
-    const [sx,sy]=P(196);svg.appendChild(svgEl('text',{x:sx,y:sy+4,'text-anchor':'middle','font-size':12,'font-family':'JetBrains Mono, monospace',fill:'var(--muted)'},SHORT[i]));
+    const [sx,sy]=P(196);svg.appendChild(svgEl('text',{x:sx,y:sy+4,'text-anchor':'middle','font-size':12,'font-family':'Instrument Sans, sans-serif',fill:'var(--muted)'},SHORT[i]));
     [['maj',140,25,MAJ[i],18],['min',86,18,MIN[i]+'m',13]].forEach(([k,r,rad,label,fs])=>{const [x,y]=P(r),g=svgEl('g',{class:'seg-k',role:'button',tabindex:'-1','data-i':i,'data-k':k});
       const cir=svgEl('circle',{cx:x,cy:y,r:rad,stroke:'var(--line-strong)','stroke-width':1.5});const tx=svgEl('text',{x,y:y+fs*.35,'text-anchor':'middle','font-size':fs,'font-family':'var(--f-display)','font-weight':800},sp(i===6&&k==='maj'?'F#':label));
       g.append(cir,tx);g.addEventListener('click',()=>pickKey(i,k==='min'));g.addEventListener('keydown',e=>{const d=e.key==='ArrowRight'||e.key==='ArrowDown'?1:e.key==='ArrowLeft'||e.key==='ArrowUp'?-1:0;
