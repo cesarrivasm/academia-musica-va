@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<script>try{var t=localStorage.getItem("av-tema");if(t==="claro")document.documentElement.dataset.theme="light";else if(t==="oscuro")document.documentElement.dataset.theme="dark"}catch(e){}</script>
+<script>try{var t=localStorage.getItem("av-tema");if(t==="claro")document.documentElement.dataset.theme="light";else if(t==="oscuro")document.documentElement.dataset.theme="dark";var f=localStorage.getItem("av-fuente");if(f)document.documentElement.dataset.fuente=f;if(localStorage.getItem("av-alinear")==="izquierda")document.documentElement.dataset.alinear="izquierda"}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Academia de Música – Ministerio de Alabanza, Iglesia Vida Abundante. Unidad 02: Notas musicales.">
 <title>Unidad 02 – Notas musicales – Academia de Música</title>
@@ -30,15 +30,13 @@
     <section id="doce">
       <div class="sec-head"><span class="k">2.1</span><h2>Los doce sonidos</h2></div>
       <div class="prose">
-        <p>En la música occidental se usan <strong>doce sonidos</strong>. Siete son <strong>naturales</strong> (Do – Re – Mi – Fa – Sol – La – Si) y cinco son <strong>alterados</strong>: Do♯ (Re♭), Re♯ (Mi♭), Fa♯ (Sol♭), Sol♯ (La♭) y La♯ (Si♭). Al llegar a los doce, los sonidos se repiten en el mismo orden, pero más agudos o más graves: de un Do al siguiente Do hay una <strong>octava</strong>, y así se repite a lo largo del registro de cada instrumento.</p>
+        <p>Cada himno, cada coro y cada canción que has cantado está hecho con los mismos <strong>doce sonidos</strong>. Ni uno más.</p>
+        <p>Siete son <strong>naturales</strong> (Do – Re – Mi – Fa – Sol – La – Si) y cinco son <strong>alterados</strong>: Do♯ (Re♭), Re♯ (Mi♭), Fa♯ (Sol♭), Sol♯ (La♭) y La♯ (Si♭). Después del doceavo, todo vuelve a empezar en el mismo orden, más agudo o más grave: de un Do al siguiente Do hay una <strong>octava</strong>, y así se repite a lo largo del registro de cada instrumento.</p>
         <p>En el piano se ve fácil: las teclas blancas son las naturales y las negras, las alteradas. Fíjate en que entre Mi y Fa, y entre Si y Do, <em>no</em> hay tecla negra; esos pares de notas están pegados.</p>
         <p>Las notas alteradas tienen dos nombres: con sostenido (♯), que sube la nota un poco, o con bemol (♭), que la baja. Do♯ y Re♭ son el mismo sonido con dos nombres. Profundizaremos en esto en la Unidad 04.</p>
       </div>
       <div class="note"><b>Truco en el piano:</b> la nota <b>Do</b> (C) es la tecla blanca que está justo antes del grupo de <b>2 teclas negras</b>. <b>En la guitarra:</b> Do está en la 5.ª cuerda, traste 3.</div>
       <div class="lab" id="lab">
-        <div class="a-controls">
-          <div class="field"><span class="lbl">Ver nombres</span><div class="seg" id="modeSeg" role="group" aria-label="Sistema de nombres"><button type="button" data-m="es" aria-pressed="true">Do Re Mi</button><button type="button" data-m="en" aria-pressed="false">C D E</button><button type="button" data-m="both" aria-pressed="false">Ambos</button></div></div>
-        </div>
         <div class="a-readout"><div class="sym" id="sym" aria-live="polite">Do</div><div class="tones" id="alt"></div></div>
         <div class="a-viz"><div class="viz-head"><div class="tabs" role="group" aria-label="Instrumento"><button type="button" data-inst="piano" aria-pressed="true">Piano</button><button type="button" data-inst="guitar" aria-pressed="false">Guitarra</button></div></div><div class="kbd-box" id="kbd"></div><div id="gfb" hidden></div><p class="cap" id="vcap">Toca una tecla para escuchar la nota y ver sus nombres. Con teclado: flechas y Enter.</p></div>
         <div class="a-explain" id="exp"></div>
@@ -114,15 +112,13 @@ const ES={C:'Do',D:'Re',E:'Mi',F:'Fa',G:'Sol',A:'La',B:'Si'};
 const es=n=>ES[n[0]]+(n[1]==='#'?'♯':n[1]==='b'?'♭':'');
 const en=n=>n[0]+(n[1]==='#'?'♯':n[1]==='b'?'♭':'');
 const esLong=n=>ES[n[0]]+(n[1]==='#'?' sostenido':n[1]==='b'?' bemol':'');
-let mode='es',sel=0,inst='piano',fbo=null,fbMode=null;
+let mode='both',sel=0,inst='piano',fbo=null,fbMode=null;
 const label=n=>mode==='es'?es(n):mode==='en'?en(n):es(n)+' – '+en(n);
-function withNames(svg,octaves,W,H,pad){const vb=svg.getAttribute('viewBox').split(' ').map(Number);svg.setAttribute('viewBox',`0 0 ${vb[2]} ${vb[3]+22}`);
-  for(let i=0;i<octaves*7;i++){const n=['C','D','E','F','G','A','B'][i%7];svg.appendChild(svgEl('text',{x:pad+i*W+W/2,y:vb[3]+16,'text-anchor':'middle','font-size':12,'font-family':'Instrument Sans, sans-serif',fill:'var(--muted)','pointer-events':'none'},mode==='es'?ES[n]:mode==='en'?n:ES[n]+'/'+n))}}
 function drawKbd(){
-  const marks=new Map([[sel,{label:'',root:true}],[sel+12,{label:'',root:true}]]);
-  const svg=keyboard({octaves:2,marks,clickable:true,W:34,H:130,minKey:30,ctx:'#kbd',onKey:abs=>{sel=abs%12;const c=actx();if(c)note(abs+12,c.currentTime+.01,1.4,.32);render()}});
-  svg.removeAttribute('aria-label');svg.setAttribute('aria-label','Teclado de dos octavas. Flechas para moverte, Enter para tocar.');
-  withNames(svg,2,34,130,2);const box=$('#kbd');box.innerHTML='';box.appendChild(svg)}
+  const marks=new Map([[sel,{label:'',root:true}]]);
+  const svg=keyboard({octaves:1,marks,clickable:true,W:34,H:130,minKey:30,ctx:'#kbd',onKey:abs=>{sel=abs%12;const c=actx();if(c)note(abs+12,c.currentTime+.01,1.4,.32);render()}});
+  svg.removeAttribute('aria-label');svg.setAttribute('aria-label','Teclado de una octava. Flechas para moverte, Enter para tocar.');
+  const box=$('#kbd');box.style.maxWidth='360px';box.innerHTML='';box.appendChild(svg)}
 function render(){
   const s=SH[sel],f=FL[sel],alt=s!==f;
   $('#sym').textContent=alt?(mode==='en'?`${en(s)} / ${en(f)}`:`${es(s)} / ${es(f)}`):(mode==='en'?en(s):es(s));
@@ -133,7 +129,6 @@ function render(){
 function drawGtr(){if(!fbo||fbMode!==mode){fbMode=mode;fbo=U.fretboard($('#gfb'),{labelFn:n=>mode==='en'?en(n):es(n),label:'Diapasón con las doce notas',onPlay:({pc})=>{sel=pc;render()}})}
   fbo.setPcs(new Map([[sel,{root:true}]]))}
 document.querySelectorAll('#lab [data-inst]').forEach(b=>b.onclick=()=>{inst=b.dataset.inst;document.querySelectorAll('#lab [data-inst]').forEach(x=>x.setAttribute('aria-pressed',x===b));$('#kbd').hidden=inst!=='piano';$('#gfb').hidden=inst!=='guitar';$('#vcap').textContent=inst==='piano'?'Toca una tecla para escuchar la nota y ver sus nombres. Con teclado: flechas y Enter.':'Toca una nota del diapasón: se iluminan todas las posiciones de esa nota en la guitarra.';window.dispatchEvent(new Event('resize'))});
-document.querySelectorAll('#modeSeg button').forEach(b=>b.onclick=()=>{mode=b.dataset.m;document.querySelectorAll('#modeSeg button').forEach(x=>x.setAttribute('aria-pressed',x===b));render()});
 function drawFing(){const m=new Map();[[0,5],[2,4],[4,3],[5,2],[7,1]].forEach(([a,f])=>m.set(a,{label:es(SH[a%12]),deg:String(f),root:true}));[[12,1],[14,2],[16,3],[17,4],[19,5]].forEach(([a,f])=>m.set(a,{label:es(SH[a%12]),deg:String(f),root:true}));
   const svg=keyboard({octaves:2,marks:m,W:40,H:140});svg.setAttribute('aria-label','Posición de cinco dedos: mano izquierda Do a Sol con dedos 5 a 1, mano derecha Do a Sol con dedos 1 a 5');const b=$('#fing');b.innerHTML='';b.appendChild(svg)}
 /* Lectura de cifrados */

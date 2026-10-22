@@ -1,3 +1,7 @@
+@font-face{font-family:"Source Serif 4";font-style:normal;font-weight:200 900;font-display:swap;src:url(fonts/source-serif-4.woff2) format("woff2")}
+@font-face{font-family:"Source Serif 4";font-style:italic;font-weight:200 900;font-display:swap;src:url(fonts/source-serif-4-italic.woff2) format("woff2")}
+@font-face{font-family:"Newsreader";font-style:normal;font-weight:200 800;font-display:swap;src:url(fonts/newsreader.woff2) format("woff2")}
+@font-face{font-family:"Newsreader";font-style:italic;font-weight:200 800;font-display:swap;src:url(fonts/newsreader-italic.woff2) format("woff2")}
 @font-face{font-family:"Instrument Sans";font-style:normal;font-weight:400 700;font-display:swap;src:url(fonts/instrument-sans.woff2) format("woff2")}
 @font-face{font-family:"Schibsted Grotesk";font-style:normal;font-weight:500 800;font-display:swap;src:url(fonts/schibsted-grotesk.woff2) format("woff2")}
 /* Estilos compartidos de las unidades (mismo diseño que la Unidad 06). */
@@ -13,6 +17,7 @@ body{margin:0}img{max-width:100%}[hidden]{display:none!important}
   --lift:0 1px 2px rgba(22,26,51,.06),0 2px 8px rgba(36,66,122,.08);
   --f-display:"Schibsted Grotesk","Avenir Next","Segoe UI",sans-serif;
   --f-body:"Instrument Sans","Segoe UI",system-ui,sans-serif;
+  --f-read:Charter,"Bitstream Charter","Iowan Old Style","Sitka Text",Georgia,serif;
   --r:12px; --r-sm:10px;
   color-scheme:light;
 }
@@ -114,7 +119,7 @@ section{display:grid;gap:20px;min-width:0;scroll-margin-top:72px}
 .tone i{font-style:normal;font-size:13px;color:var(--muted);font-family:var(--f-body);font-variant-numeric:tabular-nums}
 .tools{display:flex;gap:8px;align-items:center}
 .viz-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.kbd-box{max-width:680px;overflow-x:auto}
+.kbd-box{width:100%;max-width:680px;overflow-x:auto}
 .kbd-box svg{width:100%;height:auto;display:block;touch-action:pan-x pan-y}
 .kbd-box .k{cursor:pointer}
 .k:focus,.k:focus-visible{outline:none}
@@ -178,6 +183,7 @@ section{display:grid;gap:20px;min-width:0;scroll-margin-top:72px}
 .pad svg{width:100%;height:auto;display:block;touch-action:pan-x pan-y}
 .pad .k{cursor:pointer}
 .qactions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.qcenter{justify-content:center}
 .feedback{font-size:15px;font-weight:700}
 .feedback.ok{color:var(--ok)} .feedback.err{color:var(--err)}
 .done{display:grid;gap:12px;justify-items:start}
@@ -295,6 +301,7 @@ h1,h2,h3,.sec-head,.qtext,.lbl,.ex-name{text-align:left;hyphens:manual}
 .circ svg,.fb-scroll svg,.qvis svg{touch-action:manipulation}
 .big,.beats,.pin .cap,.a-viz .cap,.qbody .cap,.pad .cap,.pin>p#itxt,.pin>p#atxt{text-align:center}
 .beats,.outchords,.inchords,.tones{justify-content:center}
+.a-readout .tones{justify-content:flex-start}
 .pin>.big,.pin>.beats{justify-self:center}
 .chords{justify-content:center}
 @media print{main p{text-align:left}}
@@ -335,8 +342,20 @@ main>section{width:100%;max-width:920px;margin-inline:auto}
 .hd-nav a[aria-current]{background:var(--navy-soft);color:var(--navy);font-weight:600}
 .hd-menu{display:none;margin-left:auto;width:44px;height:44px;border:1px solid var(--line-strong);border-radius:10px;background:var(--bg);color:var(--navy);place-items:center;cursor:pointer}
 .hd-menu svg{width:22px;height:22px;fill:currentColor}
-.hd-theme{margin-left:auto;display:grid;width:44px;height:44px;border:1px solid var(--line-strong);border-radius:10px;background:var(--bg);color:var(--navy);place-items:center;cursor:pointer}
+.hd-pref{margin-left:auto;position:relative}
+.hd-theme{display:grid;width:44px;height:44px;border:1px solid var(--line-strong);border-radius:10px;background:var(--bg);color:var(--navy);place-items:center;cursor:pointer}
 .hd-theme:hover{background:var(--navy-soft)}
+.pref{position:absolute;top:calc(100% + 8px);right:0;z-index:62;width:min(300px,calc(100vw - 32px));background:var(--bg);border:1px solid var(--line-strong);border-radius:14px;box-shadow:var(--shadow);padding:16px;display:grid;gap:16px}
+.pref-h{font-family:var(--f-display);font-size:18px;font-weight:700;color:var(--ink)}
+.pref-link{display:flex;align-items:center;min-height:44px;margin:-8px 0;padding:0 12px;border-radius:10px;color:var(--navy);text-decoration:none;font-weight:600;background:var(--navy-soft)}
+.pref-opts{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:8px;margin-top:8px}
+.pref-opts button{display:grid;justify-items:center;align-content:center;gap:4px;min-height:64px;padding:8px 4px;border:1px solid var(--line-strong);border-radius:10px;background:var(--bg);color:var(--body);font-size:14px;cursor:pointer}
+.pref-opts button:hover{background:var(--navy-soft)}
+.pref-opts button[aria-pressed="true"]{border-color:var(--navy);background:var(--navy-soft);color:var(--navy);font-weight:600}
+.pref-opts svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.pref-aa{font-size:22px;line-height:22px;color:var(--ink)}.pref-serif{font-family:Charter,"Iowan Old Style",Georgia,serif}.pref-source{font-family:"Source Serif 4",Georgia,serif}.pref-newsreader{font-family:Newsreader,Georgia,serif}
+.pref-opts.wrap2{grid-auto-flow:row;grid-template-columns:1fr 1fr}
+.pref-opts button svg.al{stroke-width:1.8}
 .hd-theme svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 @media (max-width:760px){.hd{gap:12px;padding:0 max(16px,env(safe-area-inset-left,0px))}.hd-nav{display:none}.hd-menu{display:grid;margin-left:0}}
 .drawer-nav{display:grid;gap:4px}
@@ -416,7 +435,7 @@ body{font-size:17px;line-height:1.65}
 /* Escritorio: número y título en la misma línea (el número ya no es una insignia) */
 @media (min-width:1024px){
   .sec-head{align-items:baseline;gap:6px 14px}
-  .sec-head .k{font-family:var(--f-display);font-size:clamp(28px,3.6vw,40px);line-height:1.1;font-weight:800;letter-spacing:-.02em;color:var(--violet);background:none;border-radius:0;padding:0}
+  .sec-head .k{font-family:var(--f-display);font-size:clamp(28px,3.6vw,40px);line-height:1.1;font-weight:800;letter-spacing:-.02em;color:var(--violet);background:none;border-radius:0;padding:0;font-variant-numeric:normal}
   .sec-head h2{order:2;flex:0 1 auto;margin-top:0}
 }
 
@@ -566,3 +585,12 @@ body{font-size:17px;line-height:1.65}
 :root[data-theme="dark"] .course[data-hue="0"]{--c:#e0788a;--cs:#361f25;--ct:#f0a5b2}
 :root[data-theme="dark"] .course[data-hue="175"]{--c:#4fc0ae;--cs:#172e2b;--ct:#8fdccf}
 :root[data-theme="dark"] .course[data-hue="85"]{--c:#cfae48;--cs:#2e2814;--ct:#e4cb7a}
+
+/* Fuente de lectura (estilo editorial): solo el texto corrido; widgets, etiquetas y títulos conservan la tipografía moderna */
+:root[data-fuente]{--f-read:Charter,"Bitstream Charter","Iowan Old Style","Sitka Text",Georgia,serif}
+:root[data-fuente="source"]{--f-read:"Source Serif 4",Georgia,serif}
+:root[data-fuente="newsreader"]{--f-read:Newsreader,Georgia,serif}
+:root[data-fuente] main p,:root[data-fuente] main li,:root[data-fuente] .unit-intro p{font-family:var(--f-read);font-size:19px;line-height:1.7}
+:root[data-fuente="newsreader"] main p,:root[data-fuente="newsreader"] main li,:root[data-fuente="newsreader"] .unit-intro p{font-size:20px}
+/* Alineación del texto corrido */
+:root[data-alinear="izquierda"] main p,:root[data-alinear="izquierda"] main li{text-align:left;hyphens:manual;-webkit-hyphens:manual}
