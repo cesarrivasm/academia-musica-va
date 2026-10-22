@@ -101,7 +101,8 @@ function mcq({root,id,title='Práctica',total=8,make}){
     if(q.vis)sh.body.querySelector('.qvis').appendChild(typeof q.vis==='function'?q.vis():q.vis);
     const h=sh.body.querySelector('#qhear');if(h)h.onclick=()=>playList(q);
     const box=sh.body.querySelector('.opts');
-    q.opts.forEach((t,k)=>{const b=document.createElement('button');b.type='button';b.className='opt'+(t.replace(/<[^>]*>/g,'').length<=6?' big':'');b.innerHTML=t;b.onclick=()=>{
+    const allShort=q.opts.every(t=>t.replace(/<[^>]*>/g,'').length<=6);
+    q.opts.forEach((t,k)=>{const b=document.createElement('button');b.type='button';b.className='opt'+(allShort?' big':'');b.innerHTML=t;b.onclick=()=>{
       box.querySelectorAll('.opt').forEach((x,j)=>{x.disabled=true;if(j===q.ans)x.classList.add('good')});
       const ok=k===q.ans;if(!ok)b.classList.add('bad');if(ok)st.score++;else if(st.full&&!st.missed.includes(q))st.missed.push(q);
       const fb=sh.body.querySelector('#qfb');fb.className='feedback '+(ok?'ok':'err');fb.textContent=ok?'¡Correcto!':'Casi: la respuesta correcta está en verde.';
