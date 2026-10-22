@@ -5,9 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Curso – Academia de Música</title>
 <link rel="icon" href="logo.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;600;700;800&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<link rel="preload" href="fonts/instrument-sans.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/schibsted-grotesk.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="unidad.css">
 <style>
 body{min-height:100vh;display:flex;flex-direction:column}
@@ -17,7 +16,7 @@ main.cur>section{max-width:none;margin-inline:0}
 @media (max-width:760px){main.cur{padding:20px 16px 36px;gap:24px}}
 .hero-c{display:grid;grid-template-columns:minmax(0,1fr) 300px;background:var(--bg);border:1px solid var(--line);border-radius:18px;overflow:hidden}
 .hero-c .in{padding:32px 36px;display:grid;gap:14px;align-content:center;justify-items:start}
-.hero-c .art{background:repeating-linear-gradient(135deg,var(--cs) 0 14px,color-mix(in srgb,var(--cs) 70%,#fff) 14px 28px)}
+.hero-c .art{background:repeating-linear-gradient(135deg,var(--cs) 0 14px,color-mix(in srgb,var(--cs) 70%,var(--bg)) 14px 28px)}
 @supports not (color:color-mix(in srgb,red,blue)){.hero-c .art{background:var(--cs)}}
 .cpill{display:inline-flex;font-size:12px;font-weight:600;border-radius:99px;padding:3px 12px;background:var(--cs);color:var(--ct)}
 .hero-c h1{font-size:clamp(30px,5vw,40px);font-weight:800;letter-spacing:-.02em;line-height:1.1;color:var(--navy)}
@@ -25,10 +24,10 @@ main.cur>section{max-width:none;margin-inline:0}
 .facts{display:flex;gap:8px 20px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
 .facts b{color:var(--ink)}
 .prog{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--muted);flex-wrap:wrap}
-.rbar{height:6px;border-radius:99px;background:#eceef4;overflow:hidden}
+.rbar{height:6px;border-radius:99px;background:var(--track);overflow:hidden}
 .rbar i{display:block;height:100%;border-radius:99px;background:var(--c)}
 .prog .rbar{width:220px;max-width:100%}
-.go{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 26px;border-radius:12px;background:var(--navy);color:#fff;font-weight:600;font-size:16px;text-decoration:none}
+.go{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 26px;border-radius:12px;background:var(--navy);color:var(--on-navy);font-weight:600;font-size:16px;text-decoration:none}
 .go:hover{background:var(--navy-hover)}
 @media (max-width:900px){.hero-c{grid-template-columns:minmax(0,1fr)}.hero-c .art{display:none}.hero-c .in{padding:24px 20px}}
 .c-h2{font-size:22px;font-weight:700;color:var(--ink);margin-bottom:16px}
