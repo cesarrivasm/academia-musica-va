@@ -33,7 +33,9 @@ main.home>section{max-width:none;margin-inline:0}
 
 /* Continuar */
 .cont{display:grid;grid-template-columns:420px minmax(0,1fr);background:var(--bg);border:1px solid var(--line);border-radius:18px;overflow:hidden}
-.cont .thumb{min-height:236px}
+.cont .thumb{min-height:236px;position:relative;overflow:hidden}
+.cont .thumb:not(.stripes){background:#fafcfe}
+.cont .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
 .cont .info{padding:32px 36px;display:flex;flex-direction:column;justify-content:center;gap:14px}
 .cont .row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
 .cont h2{font-size:clamp(24px,3vw,30px);font-weight:700;color:var(--navy);line-height:1.15}
@@ -57,6 +59,8 @@ main.home>section{max-width:none;margin-inline:0}
 a.card:hover{border-color:var(--c);box-shadow:var(--lift)}
 .card.soon{opacity:.7}
 .card .cover{position:relative;height:120px}
+.card .cover{background:#fafcfe}
+.card .cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
 .card .cover .pill{position:absolute;right:12px;bottom:12px}
 .card .body{padding:16px 18px 18px;display:grid;gap:10px}
 .card .nm{display:flex;align-items:center;gap:10px;font-family:var(--f-display);font-size:19px;font-weight:700;color:var(--ink)}
@@ -121,9 +125,9 @@ function resumeInfo(){
 
 function continueCard(){
   const i=resumeInfo();
-  if(i.done)return `<section class="cont course" data-hue="${i.t.hue}" style="--h:${i.t.hue}" aria-labelledby="cTitle"><div class="thumb stripes" aria-hidden="true"></div><div class="info"><div class="row"><span class="pill">${esc(i.t.name)}</span></div><h2 id="cTitle">¡Terminaste el curso!</h2><p class="meta">Puedes repasar cualquier unidad cuando quieras.</p><div class="go"><a class="cta" href="${i.href}">Repasar desde 1.1</a></div></div></section>`;
+  if(i.done)return `<section class="cont course" data-hue="${i.t.hue}" style="--h:${i.t.hue}" aria-labelledby="cTitle"><div class="thumb${i.t.img?'':' stripes'}" aria-hidden="true">${i.t.img?`<img src="${i.t.img}" alt="">`:''}</div><div class="info"><div class="row"><span class="pill">${esc(i.t.name)}</span></div><h2 id="cTitle">¡Terminaste el curso!</h2><p class="meta">Puedes repasar cualquier unidad cuando quieras.</p><div class="go"><a class="cta" href="${i.href}">Repasar desde 1.1</a></div></div></section>`;
   const pct=Math.round(i.seen/i.total*100),sub=i.r.started?(i.seen?`${i.seen} de ${i.total} lecciones de esta unidad`:'Aún sin lecciones completadas en esta unidad'):'Empieza por la primera lección';
-  return `<section class="cont course" data-hue="${i.t.hue}" style="--h:${i.t.hue}" aria-labelledby="cTitle"><div class="thumb stripes" aria-hidden="true"></div><div class="info">
+  return `<section class="cont course" data-hue="${i.t.hue}" style="--h:${i.t.hue}" aria-labelledby="cTitle"><div class="thumb${i.t.img?'':' stripes'}" aria-hidden="true">${i.t.img?`<img src="${i.t.img}" alt="">`:''}</div><div class="info">
     <div class="row"><span class="pill">${esc(i.t.name)}</span><span>Unidad ${num(i.u.n)} – ${esc(i.u.title)}</span></div>
     <h2 id="cTitle">${i.l.k} ${esc(i.l.title)}</h2>
     <div class="prog"><div class="mbar v" role="progressbar" aria-label="Avance de la unidad" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pct}"><i style="width:${pct}%"></i></div><span>${sub}</span></div>
@@ -134,7 +138,7 @@ function courseCard(c){
   const s=state(c),pct=s.total?Math.round(s.done/s.total*100):0;
   const meta=c.ready?`${unitsWord(s.total)} – ${esc(c.meta)}`:esc(c.meta);
   const foot=c.ready?`<div class="mbar" role="progressbar" aria-label="Unidades terminadas" aria-valuemin="0" aria-valuemax="${s.total}" aria-valuenow="${s.done}"><i style="width:${pct}%"></i></div><span class="lab-s">${s.done} de ${s.total} unidades</span>`:`<span class="lab-s">Muy pronto</span>`;
-  const inner=`<div class="cover stripes" aria-hidden="true"><span class="pill st-${s.status}">${STATUS[s.status]}</span></div><div class="body"><div class="nm">${esc(c.name)}</div><div class="meta">${meta}</div>${foot}</div>`;
+  const inner=`<div class="cover${c.img?'':' stripes'}" aria-hidden="true">${c.img?`<img src="${c.img}" alt="" loading="lazy">`:''}<span class="pill st-${s.status}">${STATUS[s.status]}</span></div><div class="body"><div class="nm">${esc(c.name)}</div><div class="meta">${meta}</div>${foot}</div>`;
   const attrs=`class="card course${c.ready?'':' soon'}" data-hue="${c.hue}" style="--h:${c.hue}"`;
   return c.ready?`<a ${attrs} href="curso.html?c=${c.id}">${inner}</a>`:`<div ${attrs}>${inner}</div>`;
 }

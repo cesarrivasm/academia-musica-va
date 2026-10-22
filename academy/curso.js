@@ -45,7 +45,7 @@ const UNITS=[
     {id:'practica',k:'7.5',title:'Práctica',lvl:3}]}
 ];
 const COURSES=[
-  {id:'teoria',name:'Teoría musical',short:'T',hue:265,meta:'Para todos los instrumentos',ready:true,units:UNITS},
+  {id:'teoria',name:'Teoría musical',short:'T',hue:265,meta:'Para todos los instrumentos',img:'portada-teoria.jpg',ready:true,units:UNITS},
   {id:'guitarra',name:'Guitarra',short:'G',hue:45,meta:'Desde cero',ready:false,units:[]},
   {id:'piano',name:'Piano',short:'P',hue:310,meta:'Desde cero',ready:false,units:[]},
   {id:'voz',name:'Voz',short:'V',hue:0,meta:'Desde cero',ready:false,units:[]},
