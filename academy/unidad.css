@@ -464,7 +464,6 @@ body{font-size:17px;line-height:1.65}
   .fb-pos{font-size:14px;color:var(--muted);text-align:center}
   .fb-next{min-height:48px;padding:0 24px;border:0;border-radius:12px;background:var(--navy);color:#fff;font-weight:600;font-size:15px;cursor:pointer}
   .fb-next:hover{background:var(--navy-hover)}
-  .opts{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
 }
 @media (max-width:760px){
   .fbar{height:56px;padding:0 max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px));gap:8px}
@@ -495,7 +494,12 @@ body{font-size:17px;line-height:1.65}
 
 /* Cuestionario: opciones (también las cortas, como notas) */
 .opt{border-width:2px;border-radius:14px;min-height:56px}
-.opt.big{min-height:84px;font-family:var(--f-display);font-size:30px;font-weight:700;color:var(--navy);text-align:center}
+.opts{grid-template-columns:minmax(0,1fr);max-width:640px}
+.opt{display:flex;align-items:center;gap:14px}
+.opt .ol{flex:none;width:30px;height:30px;border-radius:50%;border:2px solid var(--line-strong);display:grid;place-items:center;font-size:14px;font-weight:700;color:var(--muted)}
+.opt .ot{min-width:0}
+.opt.good .ol{border-color:var(--ok);color:var(--ok)}
+.opt.bad .ol{border-color:var(--err);color:var(--err)}
 .opt.good{background:var(--ok-soft)}
 .opt.bad{background:var(--err-soft)}
 

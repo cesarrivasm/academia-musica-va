@@ -89,7 +89,7 @@ function finish(sh,id,score,total,again,missedN,review){
   sh.body.querySelector('#qagain').onclick=again;const r=sh.body.querySelector('#qrev');if(r)r.onclick=review}
 function playList(q){if(q.play&&q.play.length)playSet(q.play.slice(),!!q.arp)}
 /* Práctica de opción múltiple. make(n) devuelve [{q,vis?,opts,ans,why,play?}] */
-function mcq({root,id,title='Práctica',total=8,make}){
+function mcq({root,id,title='Cuestionario',total=8,make}){
   const el=typeof root==='string'?$(root):root,sh=quizShell(el,title),b0=store.get(id+'-best',null);
   if(b0!=null)sh.best.textContent=`Tu mejor resultado: ${b0} de ${total}`;
   let st;
@@ -101,8 +101,7 @@ function mcq({root,id,title='Práctica',total=8,make}){
     if(q.vis)sh.body.querySelector('.qvis').appendChild(typeof q.vis==='function'?q.vis():q.vis);
     const h=sh.body.querySelector('#qhear');if(h)h.onclick=()=>playList(q);
     const box=sh.body.querySelector('.opts');
-    const allShort=q.opts.every(t=>t.replace(/<[^>]*>/g,'').length<=6);
-    q.opts.forEach((t,k)=>{const b=document.createElement('button');b.type='button';b.className='opt'+(allShort?' big':'');b.innerHTML=t;b.onclick=()=>{
+    q.opts.forEach((t,k)=>{const b=document.createElement('button');b.type='button';b.className='opt';b.innerHTML=`<span class="ol" aria-hidden="true">${'ABCD'[k]}</span><span class="ot">${t}</span>`;b.onclick=()=>{
       box.querySelectorAll('.opt').forEach((x,j)=>{x.disabled=true;if(j===q.ans)x.classList.add('good')});
       const ok=k===q.ans;if(!ok)b.classList.add('bad');if(ok)st.score++;else if(st.full&&!st.missed.includes(q))st.missed.push(q);
       const fb=sh.body.querySelector('#qfb');fb.className='feedback '+(ok?'ok':'err');fb.textContent=ok?'¡Correcto!':'Casi: la respuesta correcta está en verde.';
@@ -205,7 +204,7 @@ function course(ME){
     s.dataset.active=first;s.appendChild(body);
     if(present.length>1){
       const tl=document.createElement('div');tl.className='seg-tabs';tl.setAttribute('role','tablist');tl.setAttribute('aria-label','Contenido de la lección');
-      tl.innerHTML=present.map(([k,t])=>`<button type="button" role="tab" id="t-${s.id}-${k}" data-t="${k}" aria-controls="p-${s.id}" aria-selected="${k===first}" tabindex="${k===first?0:-1}">${t}</button>`).join('');
+      tl.innerHTML=present.map(([k,t])=>`<button type="button" role="tab" id="t-${s.id}-${k}" data-t="${k}" aria-controls="p-${s.id}" aria-selected="${k===first}" tabindex="${k===first?0:-1}">${s.id==='practica'&&k==='practicar'?'Cuestionario':t}</button>`).join('');
       head.after(tl);body.setAttribute('role','tabpanel');body.setAttribute('aria-labelledby',`t-${s.id}-${first}`);
       const tabs=[...tl.querySelectorAll('button')];
       const set=(k,f)=>{s.dataset.active=k;tabs.forEach(b=>{const on=b.dataset.t===k;b.setAttribute('aria-selected',on);b.tabIndex=on?0:-1;if(on&&f)b.focus()});body.setAttribute('aria-labelledby',`t-${s.id}-${k}`);window.dispatchEvent(new Event('resize'))};
