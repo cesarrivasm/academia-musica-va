@@ -96,11 +96,25 @@ function drawer({id,title,html,opener}){
   return{open,close,el,body:el.querySelector('.drawer-body')};
 }
 const NAV=[['inicio','Inicio','index.html'],['cursos','Cursos','index.html#cursos'],['progreso','Mi progreso','progreso.html']];
+/* Tema: 'sistema' (por defecto), 'claro' u 'oscuro'. Se guarda en av-tema y se aplica con html[data-theme] */
+const THEMES=['sistema','claro','oscuro'];
+const THEME_ICON={
+  sistema:'<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/>',
+  claro:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+  oscuro:'<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/>'};
+function theme(){try{const t=localStorage.getItem('av-tema');return THEMES.includes(t)?t:'sistema'}catch(e){return 'sistema'}}
+function applyTheme(t){const r=document.documentElement;if(t==='claro')r.dataset.theme='light';else if(t==='oscuro')r.dataset.theme='dark';else delete r.dataset.theme}
+function setTheme(t){try{t==='sistema'?localStorage.removeItem('av-tema'):localStorage.setItem('av-tema',t)}catch(e){}applyTheme(t)}
+applyTheme(theme());
+
 /* Header compacto: activo = 'inicio' | 'cursos' | 'progreso'. Se inyecta en <header class="top"> */
 function header(active){
   const host=document.querySelector('header.top');if(!host||host.dataset.w)return;host.dataset.w='1';
   const links=()=>NAV.map(([k,t,h])=>`<a href="${h}"${k===active?' aria-current="page"':''}>${t}</a>`).join('');
-  host.innerHTML=`<div class="hd"><a class="hd-brand" href="index.html"><img alt="" src="logo.png"><span>Academia de Música</span></a><nav class="hd-nav" aria-label="Principal">${links()}</nav><button type="button" class="hd-menu" id="hdMenu" aria-label="Abrir el menú"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg></button></div>`;
+  host.innerHTML=`<div class="hd"><a class="hd-brand" href="index.html"><img alt="" src="logo.png"><span>Academia de Música</span></a><nav class="hd-nav" aria-label="Principal">${links()}</nav><button type="button" class="hd-theme" id="hdTheme"></button><button type="button" class="hd-menu" id="hdMenu" aria-label="Abrir el menú"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg></button></div>`;
+  const tb=host.querySelector('#hdTheme');
+  const paint=()=>{const t=theme(),next=THEMES[(THEMES.indexOf(t)+1)%3];tb.innerHTML=`<svg viewBox="0 0 24 24" aria-hidden="true">${THEME_ICON[t]}</svg>`;tb.setAttribute('aria-label',`Tema: ${t}. Cambiar a ${next}`);tb.title=`Tema: ${t}`};
+  tb.onclick=()=>{setTheme(THEMES[(THEMES.indexOf(theme())+1)%3]);paint()};paint();
   drawer({id:'navDrawer',title:'Menú',html:`<nav class="drawer-nav" aria-label="Principal">${links()}</nav>`,opener:host.querySelector('#hdMenu')});
 }
 window.CURSO={
