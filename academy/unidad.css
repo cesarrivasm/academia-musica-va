@@ -355,14 +355,14 @@ body.drawer-on{overflow:hidden}
 .crumbs li+li::before{content:"›";margin-right:8px;opacity:.7}
 .crumbs a{color:var(--muted);text-underline-offset:3px;display:inline-flex;align-items:center;min-height:44px}
 .crumbs li[aria-current]{color:var(--ink);font-weight:600;display:inline-flex;align-items:center;min-height:44px}
-footer{background:var(--bg);color:var(--muted);font-size:13px}
+footer{position:relative;z-index:2;background:var(--bg);color:var(--muted);font-size:13px}
 footer .wrap{padding-block:20px;max-width:none;padding-inline:max(48px,env(safe-area-inset-left,0px))}
 @media (max-width:760px){footer .wrap{padding-inline:max(16px,env(safe-area-inset-left,0px))}}
 
 /* ===== Lección ===== */
 /* Escritorio (≥1024 px): temario fijo + scroll continuo */
 .page{display:grid;grid-template-columns:310px minmax(0,1fr);align-items:start}
-.syl{position:sticky;top:0;height:100vh;overflow:auto;background:var(--bg);border-right:1px solid var(--line);padding:22px 16px;display:grid;gap:10px;align-content:start}
+.syl{position:sticky;top:0;height:100vh;margin-bottom:-100vh;overflow:auto;background:var(--bg);border-right:1px solid var(--line);padding:22px 16px;display:grid;gap:10px;align-content:start}
 .syl-head{display:flex;align-items:center;gap:10px}
 .syl-head b{font-family:var(--f-display);font-size:17px;font-weight:700;color:var(--ink)}
 .syl-head a{margin-left:auto;font-size:14px;color:var(--navy);display:inline-flex;align-items:center;min-height:44px}
