@@ -3,50 +3,35 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Academia de Música · Ministerio de Alabanza, Iglesia Vida Abundante. Unidad 03: Rítmica y métrica.">
-<title>Unidad 03 · Rítmica y métrica · Academia de Música</title>
+<meta name="description" content="Academia de Música – Ministerio de Alabanza, Iglesia Vida Abundante. Unidad 03: Rítmica y métrica.">
+<title>Unidad 03 – Rítmica y métrica – Academia de Música</title>
 <link rel="icon" href="logo.png">
-<meta property="og:title" content="Unidad 03 · Rítmica y métrica">
+<meta property="og:title" content="Unidad 03 – Rítmica y métrica">
 <meta property="og:description" content="El pentagrama, las figuras, las claves, el compás y la ligadura.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;600;700;800&family=Instrument+Sans:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="unidad.css">
 </head>
-<body>
+<body class="lesson">
 <a class="skip" href="#pentagrama">Saltar al contenido</a>
-<header class="top">
-  <div class="wrap">
-    <div class="toprow"><div class="brand">
-      <img alt="" src="logo.png">
-      <div><b>Academia de Música</b><span>Ministerio de Alabanza · Iglesia Vida Abundante</span></div>
-    </div>
-    <div class="menu"><button type="button" class="kebab" id="menuBtn" aria-expanded="false" aria-controls="menuList" aria-label="Menú de unidades" title="Unidades del curso"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg></button><div class="menu-list" id="menuList" hidden></div></div></div>
-    <div class="hero">
+<header class="top" id="top"></header>
+
+<div class="page">
+  <aside class="syl" id="syl" aria-label="Temario"></aside>
+
+  <main>
+    <div class="unit-intro">
       <nav class="crumbs" aria-label="Ruta de navegación"><ol id="crumbs"></ol></nav>
       <h1>Rítmica y métrica</h1>
       <p>Cómo se escribe la música: el pentagrama, las figuras que dan duración a las notas, las claves, el compás y la ligadura.</p>
     </div>
-  </div>
-</header>
 
-<div class="wrap page">
-  <nav class="toc" aria-label="En esta unidad">
-    <button type="button" class="toc-toggle" id="tocToggle" aria-expanded="false" aria-label="Mostrar los títulos de los temas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.6 6L15 12l-6.4 6-1.4-1.4 5-4.6-5-4.6z"/></svg><span class="t">Temas</span></button>
-    <a href="#pentagrama" aria-label="3.1 El pentagrama (Básico)" title="El pentagrama · Básico"><span class="n">3.1</span><span class="t">El pentagrama</span></a>
-    <a href="#figuras" aria-label="3.2 Figuras rítmicas (Básico)" title="Figuras rítmicas · Básico"><span class="n">3.2</span><span class="t">Figuras rítmicas</span></a>
-    <a href="#claves" aria-label="3.3 Las claves (Intermedio)" title="Las claves · Intermedio"><span class="n">3.3</span><span class="t">Las claves</span></a>
-    <a href="#compas" aria-label="3.4 El compás (Intermedio)" title="El compás · Intermedio"><span class="n">3.4</span><span class="t">El compás</span></a>
-    <a href="#ligadura" aria-label="3.5 La ligadura (Intermedio)" title="La ligadura · Intermedio"><span class="n">3.5</span><span class="t">La ligadura</span></a>
-    <a href="#practica" aria-label="3.6 Práctica (Intermedio)" title="Práctica · Intermedio"><span class="n">3.6</span><span class="t">Práctica</span></a>
-  </nav>
-
-  <main>
     <section id="pentagrama">
-      <div class="sec-head"><span class="k">3.1</span><h2>El pentagrama</h2><span class="lvl lvl-1">Básico</span></div>
+      <div class="sec-head"><span class="k">3.1</span><h2>El pentagrama</h2></div>
       <div class="prose">
-        <p>El <strong>pentagrama</strong> son 5 líneas (penta) y 4 espacios que sirven para escribir (grama) las notas y los signos musicales. Las líneas y los espacios se cuentan de abajo hacia arriba.</p>
-        <p>Las notas agudas se escriben hacia arriba y las graves hacia abajo. Entre líneas y espacios solo caben 9 notas; para más usamos <strong>líneas adicionales</strong>, hasta un máximo de 3 arriba o abajo.</p>
+        <p>El <strong>pentagrama</strong> son 5 líneas (penta) y 4 espacios que sirven para escribir (grama) las notas y los signos musicales. Las líneas y los espacios se cuentan de abajo hacia arriba: la 1.ª línea es la de más abajo. Una nota puede escribirse <em>sobre</em> una línea (la línea la atraviesa) o <em>en</em> un espacio (queda entre dos líneas).</p>
+        <p>Las notas agudas se escriben hacia arriba y las graves hacia abajo. Entre líneas y espacios solo caben 9 notas; para más usamos <strong>líneas adicionales</strong>, pequeñas rayitas que prolongan el pentagrama hacia arriba o hacia abajo, hasta un máximo de 3. Cada línea o espacio siguiente es la siguiente nota de la escala (Do, Re, Mi…); qué nota es cada una lo define la clave, que verás en 3.3.</p>
       </div>
       <div class="cards">
         <div class="card"><h3>Líneas y espacios</h3><div id="stA"></div></div>
@@ -55,25 +40,27 @@
     </section>
 
     <section id="figuras">
-      <div class="sec-head"><span class="k">3.2</span><h2>Figuras rítmicas</h2><span class="lvl lvl-1">Básico</span></div>
+      <div class="sec-head"><span class="k">3.2</span><h2>Figuras rítmicas</h2></div>
       <div class="prose">
-        <p>Con el pentagrama damos altura a las notas (hacia arriba o abajo); con las <strong>figuras rítmicas</strong> les damos <strong>duración</strong> (en horizontal). Su valor se mide en pulsos: cuatro negras forman una redonda, la figura más larga que usamos aquí.</p>
+        <p>Con el pentagrama damos altura a las notas (hacia arriba o abajo); con las <strong>figuras rítmicas</strong> les damos <strong>duración</strong> (en horizontal). Su valor se mide en pulsos, tomando la <strong>negra</strong> como un pulso (como en 4/4): cuatro negras forman una redonda, la figura más larga que usamos aquí. Pulsa el altavoz de cada figura para escuchar cuántas caben en 4 pulsos.</p>
+        <p>Cada figura tiene también su <strong>silencio</strong>, un signo que indica el mismo tiempo de pausa. En la música el silencio cuenta igual que una nota: se marca el pulso y no se toca.</p>
       </div>
       <div class="figs" id="figs"></div>
       <div class="note"><b>Cada figura vale la mitad de la anterior:</b> 1 redonda = 2 blancas = 4 negras = 8 corcheas = 16 semicorcheas.</div>
     </section>
 
     <section id="claves">
-      <div class="sec-head"><span class="k">3.3</span><h2>Las claves</h2><span class="lvl lvl-2">Intermedio</span></div>
-      <div class="prose"><p>Las <strong>claves</strong> definen qué nota es cada línea del pentagrama. Existen tres: de Sol, de Fa y de Do. Cada una marca una línea de referencia; a partir de ella se leen todas las demás.</p></div>
+      <div class="sec-head"><span class="k">3.3</span><h2>Las claves</h2></div>
+      <div class="prose"><p>Las <strong>claves</strong> son un signo al inicio del pentagrama que define qué nota es cada línea. Existen tres: de Sol, de Fa y de Do. Cada una marca una línea de referencia (la que atraviesa su espiral, o la que rodean sus dos puntos en la de Fa); a partir de ella se leen todas las demás, subiendo o bajando una nota por cada línea o espacio.</p></div>
       <div class="cards" id="clefs" data-carousel="Las tres claves"></div>
       <div class="note">La más usada en alabanza es la <b>clave de Sol</b> (voces, melodías, mano derecha del piano y guitarra). La <b>clave de Fa</b> escribe los sonidos graves: mano izquierda del piano y bajo.</div>
+      <div class="note"><b>Truco para leer en clave de Sol:</b> las 5 líneas, de abajo hacia arriba, son <b>Mi – Sol – Si – Re – Fa</b>, y los 4 espacios son <b>Fa – La – Do – Mi</b>. Aprende estas dos tiras y podrás ubicar cualquier nota del pentagrama.</div>
     </section>
 
     <section id="compas">
-      <div class="sec-head"><span class="k">3.4</span><h2>El compás</h2><span class="lvl lvl-2">Intermedio</span></div>
+      <div class="sec-head"><span class="k">3.4</span><h2>El compás</h2></div>
       <div class="prose">
-        <p>El <strong>compás</strong> son dos números, uno encima del otro, al inicio del pentagrama. Indican dónde acentuar la música. El número de arriba dice <strong>cuántos pulsos</strong> hay en cada compás; el de abajo, <strong>qué figura vale un pulso</strong> (el 4 significa negra).</p>
+        <p>El <strong>compás</strong> son dos números, uno encima del otro, al inicio del pentagrama. Organizan los pulsos en grupos iguales y dicen dónde cae el acento: el primer pulso de cada compás se siente más fuerte. El número de arriba dice <strong>cuántos pulsos</strong> hay en cada compás; el de abajo, <strong>qué figura vale un pulso</strong> (el 4 significa negra). Así, 3/4 se lee “tres cuartos”: tres negras por compás.</p>
         <p>Cada compás se separa del siguiente con una <strong>barra de compás</strong> (una línea vertical). La <strong>doble barra</strong> son dos líneas juntas: avisa que algo va a cambiar en lo que sigue.</p>
       </div>
       <div class="panel">
@@ -85,16 +72,16 @@
         <div class="pin"><div id="mstaff" class="qvis" style="max-width:560px"></div><p class="cap" id="mcap"></p></div>
       </div>
       <div class="cards" data-carousel="Compases más comunes">
-        <div class="card"><h3>2/4</h3><p>Dos pulsos por compás. Marcha: <span class="mono">1 2 · 1 2</span>.</p></div>
-        <div class="card"><h3>3/4</h3><p>Tres pulsos, con gran acento en el primero: el vals, <span class="mono">1 2 3 · 1 2 3</span>.</p></div>
-        <div class="card"><h3>4/4</h3><p>Cuatro pulsos. Es el compás de un bolero, la salsa y la mayoría de las canciones de alabanza.</p></div>
+        <div class="card"><h3>2/4</h3><p>Dos pulsos por compás. Marcha: <span class="mono">1 2 – 1 2</span>.</p></div>
+        <div class="card"><h3>3/4</h3><p>Tres pulsos, con gran acento en el primero: el vals, <span class="mono">1 2 3 – 1 2 3</span>.</p></div>
+        <div class="card"><h3>4/4</h3><p>Cuatro pulsos, con el primero más fuerte y un acento suave en el tercero. Es el compás del pop, el rock y la mayoría de las canciones de alabanza. También se escribe con una <b>C</b>.</p></div>
       </div>
     </section>
 
     <section id="ligadura">
-      <div class="sec-head"><span class="k">3.5</span><h2>La ligadura</h2><span class="lvl lvl-2">Intermedio</span></div>
+      <div class="sec-head"><span class="k">3.5</span><h2>La ligadura</h2></div>
       <div class="prose">
-        <p>La <strong>ligadura de valor</strong> es una línea curva que une dos o más notas <strong>de la misma altura</strong> (en el mismo lugar del pentagrama). Solo se toca la primera nota y se le suma el valor de las demás. Sirve para que un sonido dure 5, 6, 7 o más tiempos, incluso pasando de un compás a otro.</p>
+        <p>La <strong>ligadura de valor</strong> es una línea curva que une dos o más notas <strong>de la misma altura</strong> (en el mismo lugar del pentagrama). Solo se toca la primera nota y se le suma el valor de las demás. Sirve para que un sonido dure 5, 6, 7 o más tiempos, incluso pasando de un compás a otro. No la confundas con la ligadura de expresión, que une notas de <em>distinta</em> altura para tocarlas suaves y seguidas.</p>
         <p>Elige dos figuras y mira cuánto dura el sonido:</p>
       </div>
       <div class="panel">
@@ -108,20 +95,16 @@
     </section>
 
     <section id="practica">
-      <div class="sec-head"><span class="k">3.6</span><h2>Práctica</h2><span class="lvl lvl-2">Intermedio</span></div>
+      <div class="sec-head"><span class="k">3.6</span><h2>Práctica</h2></div>
       <p class="prose">Lee notas en clave de Sol, recuerda el valor de las figuras y completa compases.</p>
       <div id="quiz"></div>
     </section>
   </main>
 </div>
 
-<nav class="pager" aria-label="Navegación del curso"><div class="wrap" id="pager"></div></nav>
 
 <footer>
-  <div class="wrap">
-    <span>Material de la Academia de Música · Ministerio de Alabanza, Iglesia Vida Abundante</span>
-    <span>Unidad 03 · Rítmica y métrica</span>
-  </div>
+  <div class="wrap">Ministerio de Alabanza – Iglesia Vida Abundante</div>
 </footer>
 
 <script src="curso.js"></script>

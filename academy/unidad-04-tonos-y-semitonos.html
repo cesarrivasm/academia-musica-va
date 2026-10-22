@@ -3,53 +3,41 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Academia de Música · Ministerio de Alabanza, Iglesia Vida Abundante. Unidad 04: Tonos y semitonos.">
-<title>Unidad 04 · Tonos y semitonos · Academia de Música</title>
+<meta name="description" content="Academia de Música – Ministerio de Alabanza, Iglesia Vida Abundante. Unidad 04: Tonos y semitonos.">
+<title>Unidad 04 – Tonos y semitonos – Academia de Música</title>
 <link rel="icon" href="logo.png">
-<meta property="og:title" content="Unidad 04 · Tonos y semitonos">
+<meta property="og:title" content="Unidad 04 – Tonos y semitonos">
 <meta property="og:description" content="La distancia entre notas, sostenidos, bemoles y becuadros.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;600;700;800&family=Instrument+Sans:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="unidad.css">
 </head>
-<body>
+<body class="lesson">
 <a class="skip" href="#semitono">Saltar al contenido</a>
-<header class="top">
-  <div class="wrap">
-    <div class="toprow"><div class="brand">
-      <img alt="" src="logo.png">
-      <div><b>Academia de Música</b><span>Ministerio de Alabanza · Iglesia Vida Abundante</span></div>
-    </div>
-    <div class="menu"><button type="button" class="kebab" id="menuBtn" aria-expanded="false" aria-controls="menuList" aria-label="Menú de unidades" title="Unidades del curso"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg></button><div class="menu-list" id="menuList" hidden></div></div></div>
-    <div class="hero">
+<header class="top" id="top"></header>
+
+<div class="page">
+  <aside class="syl" id="syl" aria-label="Temario"></aside>
+
+  <main>
+    <div class="unit-intro">
       <nav class="crumbs" aria-label="Ruta de navegación"><ol id="crumbs"></ol></nav>
       <h1>Tonos y semitonos</h1>
       <p>La distancia mínima entre dos notas, cómo medir tonos y semitonos, y qué hacen los sostenidos, bemoles y becuadros.</p>
     </div>
-  </div>
-</header>
 
-<div class="wrap page">
-  <nav class="toc" aria-label="En esta unidad">
-    <button type="button" class="toc-toggle" id="tocToggle" aria-expanded="false" aria-label="Mostrar los títulos de los temas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.6 6L15 12l-6.4 6-1.4-1.4 5-4.6-5-4.6z"/></svg><span class="t">Temas</span></button>
-    <a href="#semitono" aria-label="4.1 El semitono y el tono (Básico)" title="El semitono y el tono · Básico"><span class="n">4.1</span><span class="t">El semitono y el tono</span></a>
-    <a href="#distancias" aria-label="4.2 Medir distancias (Intermedio)" title="Medir distancias · Intermedio"><span class="n">4.2</span><span class="t">Medir distancias</span></a>
-    <a href="#alteraciones" aria-label="4.3 Sostenidos, bemoles y becuadros (Básico)" title="Sostenidos, bemoles y becuadros · Básico"><span class="n">4.3</span><span class="t">Sostenidos, bemoles y becuadros</span></a>
-    <a href="#practica" aria-label="4.4 Práctica (Intermedio)" title="Práctica · Intermedio"><span class="n">4.4</span><span class="t">Práctica</span></a>
-  </nav>
-
-  <main>
     <section id="semitono">
-      <div class="sec-head"><span class="k">4.1</span><h2>El semitono y el tono</h2><span class="lvl lvl-1">Básico</span></div>
+      <div class="sec-head"><span class="k">4.1</span><h2>El semitono y el tono</h2></div>
       <div class="prose">
-        <p>Entre una nota musical y la siguiente hay una distancia (un <strong>intervalo</strong>) que clasificamos en <strong>tonos</strong> y <strong>semitonos</strong>. Si escribimos seguidas las 12 notas obtenemos:</p>
+        <p>Entre una nota musical y la siguiente hay una distancia (un <strong>intervalo</strong>) que clasificamos en <strong>tonos</strong> y <strong>semitonos</strong>. Si escribimos seguidas las 12 notas obtenemos lo siguiente (usamos las letras del cifrado americano de la unidad 2: C = Do, D = Re, E = Mi, F = Fa, G = Sol, A = La, B = Si). La primera línea sube con sostenidos y la segunda baja con bemoles:</p>
       </div>
       <div class="note"><span class="mono">C ⇾ C♯ ⇾ D ⇾ D♯ ⇾ E ⇾ F ⇾ F♯ ⇾ G ⇾ G♯ ⇾ A ⇾ A♯ ⇾ B ⇾ C</span><br><span class="mono">C ⇽ D♭ ⇽ D ⇽ E♭ ⇽ E ⇽ F ⇽ G♭ ⇽ G ⇽ A♭ ⇽ A ⇽ B♭ ⇽ B ⇽ C</span></div>
       <div class="prose">
-        <p>El <strong>semitono</strong> es la distancia mínima entre dos notas. En el piano es la distancia entre una tecla y la que tiene justo al lado, sea blanca o negra. En la guitarra, la distancia entre un traste y el siguiente (o entre la cuerda al aire y el primer traste).</p>
-        <p>Dos semitonos forman un <strong>tono</strong>: C a C♯ es ½ tono; C a D es 1 tono (½ + ½); C a E son 2 tonos; C a F son 2 tonos y medio.</p>
-        <p>Hacia la derecha del piano (o más trastes en la guitarra) <strong>subes</strong> medios tonos o tonos: los sonidos son más agudos. Hacia la izquierda <strong>bajas</strong>: más graves. Por eso F es más agudo que D, y E es más grave que B.</p>
+        <p>El <strong>semitono</strong> es la distancia mínima entre dos notas. En el piano es la distancia entre una tecla y la que tiene justo al lado, sea blanca o negra. En la guitarra, la distancia entre un traste y el siguiente (o entre la cuerda al aire y el primer traste). Es el «paso» más pequeño que usa la música occidental.</p>
+        <p>Dos semitonos forman un <strong>tono</strong>: C a C♯ es ½ tono; C a D es 1 tono (½ + ½); C a E son 2 tonos; C a F son 2 tonos y medio. Observa que E a F es solo ½ tono, porque no hay tecla negra entre ellas; lo mismo ocurre de B a C. Por eso no todos los pasos entre notas vecinas valen un tono.</p>
+        <p>Hacia la derecha del piano (o más trastes en la guitarra) <strong>subes</strong> medios tonos o tonos: los sonidos son más agudos. Hacia la izquierda <strong>bajas</strong>: más graves. Por eso F es más agudo que D, y E es más grave que B (dentro de la misma octava).</p>
+        <p><strong>Cómo contar:</strong> empieza en la primera nota sin contarla y suma un semitono por cada tecla (o traste) hasta llegar a la segunda. Luego agrupa de dos en dos para saber cuántos tonos son.</p>
       </div>
       <div class="panel">
         <div class="pbar"><div class="field"><span class="lbl">Nombres</span><div class="seg" id="fnSeg" role="group" aria-label="Nombres de las notas"><button type="button" data-f="sharp" aria-pressed="true">Sostenidos ♯</button><button type="button" data-f="flat" aria-pressed="false">Bemoles ♭</button></div></div></div>
@@ -58,7 +46,7 @@
     </section>
 
     <section id="distancias">
-      <div class="sec-head"><span class="k">4.2</span><h2>Medir distancias</h2><span class="lvl lvl-2">Intermedio</span></div>
+      <div class="sec-head"><span class="k">4.2</span><h2>Medir distancias</h2></div>
       <p class="prose">Toca una nota de partida y luego otra de llegada, en el piano o en la guitarra. Si tocas una tercera vez, empiezas de nuevo.</p>
       <div class="lab" id="lab">
         <div class="a-readout"><div class="sym" id="dsym" aria-live="polite">—</div><p id="dtxt" class="cap" style="min-height:6.4em">Elige la primera tecla.</p></div>
@@ -67,10 +55,11 @@
     </section>
 
     <section id="alteraciones">
-      <div class="sec-head"><span class="k">4.3</span><h2>Sostenidos, bemoles y becuadros</h2><span class="lvl lvl-1">Básico</span></div>
+      <div class="sec-head"><span class="k">4.3</span><h2>Sostenidos, bemoles y becuadros</h2></div>
       <div class="prose">
         <p>Un <strong>sostenido (♯)</strong> sube la nota un semitono. Un <strong>bemol (♭)</strong> la baja un semitono. Por eso cada nota alterada (la tecla negra en el piano) tiene dos nombres: C♯ = D♭, D♯ = E♭, F♯ = G♭, G♯ = A♭, A♯ = B♭. Un <strong>becuadro (♮)</strong> anula cualquier alteración previa y la nota vuelve a su altura original.</p>
-        <p>Importante: <strong>entre E y F, y entre B y C, no hay nota alterada</strong> (en el piano no hay tecla negra entre ellas). Están a un solo semitono, así que el sostenido de E es F, y el bemol de F es E. Lo mismo pasa con B y C.</p>
+        <p>En una partitura, el signo se escribe <em>antes</em> de la nota y vale para todo el compás en esa misma línea o espacio; el becuadro sirve para cancelarlo. Con el cifrado, la alteración va después de la letra: F♯ o F#, B♭ o Bb.</p>
+        <p>Importante: <strong>entre E y F, y entre B y C, no hay nota alterada</strong> (en el piano no hay tecla negra entre ellas). Están a un solo semitono, así que el sostenido de E es F, y el bemol de F es E. Lo mismo pasa con B y C: el sostenido de B es C, y el bemol de C es B. Cuando dos nombres suenan igual, como C♯ y D♭, se llaman <strong>enarmónicos</strong>. Elige el nombre a partir de la tonalidad de la canción, como verás en la unidad 5.</p>
       </div>
       <div class="panel">
         <div class="pbar">
@@ -82,21 +71,17 @@
     </section>
 
     <section id="practica">
-      <div class="sec-head"><span class="k">4.4</span><h2>Práctica</h2><span class="lvl lvl-2">Intermedio</span></div>
-      <p class="prose">Empieza con distancias entre pares de notas (D–F, G–A, C♯–F♯, E–B, G♭–D♭) y sigue con más combinaciones al azar.</p>
+      <div class="sec-head"><span class="k">4.4</span><h2>Práctica</h2></div>
+      <p class="prose">Consejo: ten el piano o el diapasón a la vista y cuenta los semitonos. Empieza con distancias entre pares de notas (D–F, G–A, C♯–F♯, E–B, G♭–D♭) y sigue con más combinaciones al azar.</p>
       <div id="q1"></div>
       <div id="q2"></div>
     </section>
   </main>
 </div>
 
-<nav class="pager" aria-label="Navegación del curso"><div class="wrap" id="pager"></div></nav>
 
 <footer>
-  <div class="wrap">
-    <span>Material de la Academia de Música · Ministerio de Alabanza, Iglesia Vida Abundante</span>
-    <span>Unidad 04 · Tonos y semitonos</span>
-  </div>
+  <div class="wrap">Ministerio de Alabanza – Iglesia Vida Abundante</div>
 </footer>
 
 <script src="curso.js"></script>

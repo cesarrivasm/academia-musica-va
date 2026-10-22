@@ -3,49 +3,36 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Academia de Música · Ministerio de Alabanza, Iglesia Vida Abundante. Unidad 05: Escalas.">
-<title>Unidad 05 · Escalas · Academia de Música</title>
+<meta name="description" content="Academia de Música – Ministerio de Alabanza, Iglesia Vida Abundante. Unidad 05: Escalas.">
+<title>Unidad 05 – Escalas – Academia de Música</title>
 <link rel="icon" href="logo.png">
-<meta property="og:title" content="Unidad 05 · Escalas">
+<meta property="og:title" content="Unidad 05 – Escalas">
 <meta property="og:description" content="Intervalos y las escalas mayores y menores.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;600;700;800&family=Instrument+Sans:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="unidad.css">
 </head>
-<body>
+<body class="lesson">
 <a class="skip" href="#intervalos">Saltar al contenido</a>
-<header class="top">
-  <div class="wrap">
-    <div class="toprow"><div class="brand">
-      <img alt="" src="logo.png">
-      <div><b>Academia de Música</b><span>Ministerio de Alabanza · Iglesia Vida Abundante</span></div>
-    </div>
-    <div class="menu"><button type="button" class="kebab" id="menuBtn" aria-expanded="false" aria-controls="menuList" aria-label="Menú de unidades" title="Unidades del curso"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg></button><div class="menu-list" id="menuList" hidden></div></div></div>
-    <div class="hero">
+<header class="top" id="top"></header>
+
+<div class="page">
+  <aside class="syl" id="syl" aria-label="Temario"></aside>
+
+  <main>
+    <div class="unit-intro">
       <nav class="crumbs" aria-label="Ruta de navegación"><ol id="crumbs"></ol></nav>
       <h1>Escalas</h1>
       <p>Cómo medir la distancia entre notas con intervalos y cómo construir cualquier escala mayor o menor con su fórmula.</p>
     </div>
-  </div>
-</header>
 
-<div class="wrap page">
-  <nav class="toc" aria-label="En esta unidad">
-    <button type="button" class="toc-toggle" id="tocToggle" aria-expanded="false" aria-label="Mostrar los títulos de los temas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.6 6L15 12l-6.4 6-1.4-1.4 5-4.6-5-4.6z"/></svg><span class="t">Temas</span></button>
-    <a href="#intervalos" aria-label="5.1 Intervalos (Intermedio)" title="Intervalos · Intermedio"><span class="n">5.1</span><span class="t">Intervalos</span></a>
-    <a href="#mayores" aria-label="5.2 Escalas mayores (Intermedio)" title="Escalas mayores · Intermedio"><span class="n">5.2</span><span class="t">Escalas mayores</span></a>
-    <a href="#menores" aria-label="5.3 Escalas menores (Intermedio)" title="Escalas menores · Intermedio"><span class="n">5.3</span><span class="t">Escalas menores</span></a>
-    <a href="#laboratorio" aria-label="5.4 Laboratorio de escalas (Intermedio)" title="Laboratorio de escalas · Intermedio"><span class="n">5.4</span><span class="t">Laboratorio de escalas</span></a>
-    <a href="#practica" aria-label="5.5 Práctica (Avanzado)" title="Práctica · Avanzado"><span class="n">5.5</span><span class="t">Práctica</span></a>
-  </nav>
-
-  <main>
     <section id="intervalos">
-      <div class="sec-head"><span class="k">5.1</span><h2>Intervalos</h2><span class="lvl lvl-2">Intermedio</span></div>
+      <div class="sec-head"><span class="k">5.1</span><h2>Intervalos</h2></div>
       <div class="prose">
         <p>Un <strong>intervalo</strong> es la distancia entre dos sonidos. Para nombrarlo se dice primero el <strong>número</strong>, que sale de contar las notas entre una y otra (incluyendo ambas), y luego la <strong>clasificación</strong>, que sale de sumar tonos y semitonos.</p>
         <p>Ejemplos: entre C y E hay tres notas (C – D – E): es una <strong>tercera</strong>. Entre E y A hay cuatro (E – F – G – A): es una <strong>cuarta</strong>.</p>
+        <p>El número solo no basta, porque la misma «tercera» puede tener distinto tamaño. Por eso se añade la clasificación: <strong>menor</strong> (más pequeño) o <strong>mayor</strong> (un semitono más grande) para segundas, terceras, sextas y séptimas; <strong>justa</strong> para cuartas, quintas y octavas; y <strong>aumentada</strong> o <strong>disminuida</strong> cuando se agranda o se achica un semitono más. Si miras la tabla, C a E (tercera mayor) tiene 4 semitonos y C a E♭ (tercera menor) tiene 3. Las terceras son importantes porque definen si un acorde suena mayor o menor.</p>
       </div>
       <div class="tblwrap"><table class="tbl" id="ivTbl"><thead><tr><th>Intervalo</th><th>Distancia</th><th>Semitonos</th></tr></thead><tbody></tbody></table></div>
       <div class="prose"><p>Pruébalo: elige una nota y un intervalo, y mira a dónde llegas.</p></div>
@@ -60,28 +47,30 @@
     </section>
 
     <section id="mayores">
-      <div class="sec-head"><span class="k">5.2</span><h2>Escalas mayores</h2><span class="lvl lvl-2">Intermedio</span></div>
+      <div class="sec-head"><span class="k">5.2</span><h2>Escalas mayores</h2></div>
       <div class="prose">
-        <p>Una <strong>escala</strong> es un grupo de notas ordenadas por altura. La mayoría usa siete notas más la repetición de la primera, que es la <strong>octava</strong>. Cada tipo de escala tiene un patrón propio de tonos y semitonos.</p>
+        <p>Una <strong>escala</strong> es un grupo de notas ordenadas por altura. La mayoría usa siete notas más la repetición de la primera, que es la <strong>octava</strong>. Cada tipo de escala tiene un patrón propio de tonos y semitonos. La primera nota se llama <strong>raíz</strong> o tónica: es la «nota casa» sobre la que se construye la escala y a la que la melodía suele volver para descansar. Cada nota de la escala es un <strong>grado</strong>, numerado del 1 al 7.</p>
         <p>Para la escala <strong>mayor</strong> el patrón es:</p>
       </div>
-      <div class="note"><span class="mono">R – T – T – ½T – T – T – T – ½T</span> &nbsp;·&nbsp; R = raíz · T = 1 tono · ½T = semitono. Es decir, los semitonos caen entre los grados 3–4 y 7–8.</div>
-      <div class="prose"><p>Aplicado a tres raíces:</p></div>
+      <div class="note"><span class="mono">R – T – T – ½T – T – T – T – ½T</span>  –  R = raíz – T = 1 tono – ½T = semitono. Es decir, los semitonos caen entre los grados 3–4 y 7–8.</div>
+      <div class="prose"><p>Cómo se usa: partiendo de la raíz, avanzas un tono o un semitono según el patrón. En C mayor: C →(T) D →(T) E →(½) F →(T) G →(T) A →(T) B →(½) C, sin ninguna alteración. En G mayor: G →(T) A →(T) B →(½) C →(T) D →(T) E →(T) <b>F♯</b> →(½) G; el semitono entre los grados 7 y 8 exige F♯ y no F.</p>
+        <p>Aplicado a tres raíces:</p></div>
       <div class="cards" id="exMaj" data-carousel="Escalas mayores de ejemplo"></div>
     </section>
 
     <section id="menores">
-      <div class="sec-head"><span class="k">5.3</span><h2>Escalas menores</h2><span class="lvl lvl-2">Intermedio</span></div>
-      <div class="prose"><p>Para la escala <strong>menor natural</strong> el patrón es distinto:</p></div>
-      <div class="note"><span class="mono">R – T – ½T – T – T – ½T – T – T</span> &nbsp;·&nbsp; Los semitonos caen entre los grados 2–3 y 5–6.</div>
+      <div class="sec-head"><span class="k">5.3</span><h2>Escalas menores</h2></div>
+      <div class="prose"><p>Para la escala <strong>menor natural</strong> el patrón es distinto. Suena más seria o melancólica que la mayor, y su diferencia principal está en la tercera, que es menor (3 semitonos desde la raíz).</p></div>
+      <div class="note"><span class="mono">R – T – ½T – T – T – ½T – T – T</span>  –  Los semitonos caen entre los grados 2–3 y 5–6.</div>
       <div class="prose"><p>Aplicado a las mismas raíces:</p></div>
       <div class="cards" id="exMin" data-carousel="Escalas menores de ejemplo"></div>
-      <div class="note">Las notas pueden tener dos nombres (por ejemplo D♯ = E♭). La regla es no repetir letras: en cada escala aparece cada letra una sola vez, y por eso a veces se escribe <b>E♭ – F – G – A♭</b> en lugar de <b>D♯ – F – G – G♯</b>.</div>
+      <div class="note"><b>Notas relativas:</b> cada escala mayor comparte sus notas con una menor que empieza en su sexto grado. Por ejemplo, C mayor y A menor tienen las mismas siete notas, solo cambia la «nota casa».</div>
+      <div class="note"><b>Cómo escribir las notas:</b> las notas pueden tener dos nombres (por ejemplo D♯ = E♭). La regla es no repetir letras: en cada escala aparece cada letra una sola vez. En E♭ mayor se escribe <b>E♭ – F – G – A♭ – B♭ – C – D</b>; si usáramos D♯ y G♯ quedaría <b>D♯ – F – G – G♯</b>, con la G repetida y sin ninguna A.</div>
     </section>
 
     <section id="laboratorio">
-      <div class="sec-head"><span class="k">5.4</span><h2>Laboratorio de escalas</h2><span class="lvl lvl-2">Intermedio</span></div>
-      <p class="prose">Elige la raíz y el tipo de escala. Verás sus notas, los tonos y semitonos que las separan, y dónde están en el piano y en la guitarra. Toca cualquier nota para escucharla.</p>
+      <div class="sec-head"><span class="k">5.4</span><h2>Laboratorio de escalas</h2></div>
+      <p class="prose">Elige la raíz y el tipo de escala. Verás sus notas, los tonos y semitonos que las separan (T = tono, ½ = semitono), y dónde están en el piano y en la guitarra. Toca cualquier nota para escucharla, o usa el altavoz para oír la escala completa subiendo. Compara una escala mayor con la menor de la misma raíz: notarás que cambian la 3.ª, la 6.ª y la 7.ª.</p>
       <div class="lab one" id="lab">
         <div class="a-controls">
           <div class="field"><label class="lbl" for="sr">Raíz</label><span class="select"><select id="sr"></select><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8l7 8 7-8z"/></svg></span></div>
@@ -94,7 +83,7 @@
     </section>
 
     <section id="practica">
-      <div class="sec-head"><span class="k">5.5</span><h2>Práctica</h2><span class="lvl lvl-3">Avanzado</span></div>
+      <div class="sec-head"><span class="k">5.5</span><h2>Práctica</h2></div>
       <p class="prose">Primero arma escalas en el piano o la guitarra; después identifica intervalos y notas.</p>
       <div id="kq"></div>
       <div id="mq"></div>
@@ -102,13 +91,9 @@
   </main>
 </div>
 
-<nav class="pager" aria-label="Navegación del curso"><div class="wrap" id="pager"></div></nav>
 
 <footer>
-  <div class="wrap">
-    <span>Material de la Academia de Música · Ministerio de Alabanza, Iglesia Vida Abundante</span>
-    <span>Unidad 05 · Escalas</span>
-  </div>
+  <div class="wrap">Ministerio de Alabanza – Iglesia Vida Abundante</div>
 </footer>
 
 <script src="curso.js"></script>

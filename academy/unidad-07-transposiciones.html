@@ -3,58 +3,46 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Academia de Música · Ministerio de Alabanza, Iglesia Vida Abundante. Unidad 07: Transposiciones.">
-<title>Unidad 07 · Transposiciones · Academia de Música</title>
+<meta name="description" content="Academia de Música – Ministerio de Alabanza, Iglesia Vida Abundante. Unidad 07: Transposiciones.">
+<title>Unidad 07 – Transposiciones – Academia de Música</title>
 <link rel="icon" href="logo.png">
-<meta property="og:title" content="Unidad 07 · Transposiciones">
+<meta property="og:title" content="Unidad 07 – Transposiciones">
 <meta property="og:description" content="El círculo de quintas, los grados de una tonalidad y cómo llevar una canción a otro tono.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;600;700;800&family=Instrument+Sans:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="unidad.css">
 </head>
-<body>
+<body class="lesson">
 <a class="skip" href="#por-que">Saltar al contenido</a>
-<header class="top">
-  <div class="wrap">
-    <div class="toprow"><div class="brand">
-      <img alt="" src="logo.png">
-      <div><b>Academia de Música</b><span>Ministerio de Alabanza · Iglesia Vida Abundante</span></div>
-    </div>
-    <div class="menu"><button type="button" class="kebab" id="menuBtn" aria-expanded="false" aria-controls="menuList" aria-label="Menú de unidades" title="Unidades del curso"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg></button><div class="menu-list" id="menuList" hidden></div></div></div>
-    <div class="hero">
+<header class="top" id="top"></header>
+
+<div class="page">
+  <aside class="syl" id="syl" aria-label="Temario"></aside>
+
+  <main>
+    <div class="unit-intro">
       <nav class="crumbs" aria-label="Ruta de navegación"><ol id="crumbs"></ol></nav>
       <h1>Transposiciones</h1>
       <p>Cómo llevar una canción a otra tonalidad sin perder su sonoridad, usando el círculo de quintas y los grados de la escala.</p>
     </div>
-  </div>
-</header>
 
-<div class="wrap page">
-  <nav class="toc" aria-label="En esta unidad">
-    <button type="button" class="toc-toggle" id="tocToggle" aria-expanded="false" aria-label="Mostrar los títulos de los temas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.6 6L15 12l-6.4 6-1.4-1.4 5-4.6-5-4.6z"/></svg><span class="t">Temas</span></button>
-    <a href="#por-que" aria-label="7.1 Qué es transportar (Intermedio)" title="Qué es transportar · Intermedio"><span class="n">7.1</span><span class="t">Qué es transportar</span></a>
-    <a href="#circulo" aria-label="7.2 Círculo de quintas (Avanzado)" title="Círculo de quintas · Avanzado"><span class="n">7.2</span><span class="t">Círculo de quintas</span></a>
-    <a href="#grados" aria-label="7.3 Grados y acordes de una tonalidad (Avanzado)" title="Grados y acordes de una tonalidad · Avanzado"><span class="n">7.3</span><span class="t">Grados y acordes de una tonalidad</span></a>
-    <a href="#transponer" aria-label="7.4 Transponer una canción (Avanzado)" title="Transponer una canción · Avanzado"><span class="n">7.4</span><span class="t">Transponer una canción</span></a>
-    <a href="#practica" aria-label="7.5 Práctica (Avanzado)" title="Práctica · Avanzado"><span class="n">7.5</span><span class="t">Práctica</span></a>
-  </nav>
-
-  <main>
     <section id="por-que">
-      <div class="sec-head"><span class="k">7.1</span><h2>Qué es transportar</h2><span class="lvl lvl-2">Intermedio</span></div>
+      <div class="sec-head"><span class="k">7.1</span><h2>Qué es transportar</h2></div>
       <div class="prose">
-        <p><strong>Transportar</strong> un tema es llevarlo a cualquiera de las once tonalidades restantes, conservando exactamente su sonoridad pero en un registro más alto o más bajo. Para lograrlo hay que mantener la <strong>relación de distancias</strong> entre las notas originales y las nuevas.</p>
+        <p>La <strong>tonalidad</strong> de una canción es su «nota casa» (la tónica) junto con la escala mayor o menor que se construye sobre ella; por ejemplo, «en G mayor». <strong>Transportar</strong> un tema es llevarlo a cualquiera de las once tonalidades restantes, conservando exactamente su sonoridad pero en un registro más alto o más bajo. Para lograrlo hay que mantener la <strong>relación de distancias</strong> entre las notas originales y las nuevas.</p>
         <p>Se transporta por varios motivos:</p>
-        <ul style="margin:0;padding-left:22px;display:grid;gap:6px"><li>Para que un cantante pueda hacer el tema en la tonalidad que le corresponde a su registro.</li><li>Para facilitar la ejecución de algún instrumento.</li></ul>
+        <ul style="margin:0;padding-left:22px;display:grid;gap:6px"><li>Para que un cantante pueda hacer el tema en la tonalidad que le corresponde a su registro.</li><li>Para facilitar la ejecución de algún instrumento: algunos acordes son más cómodos en la guitarra o el piano en ciertas tonalidades.</li><li>Para que toda la congregación pueda cantar sin forzar la voz: las notas muy agudas o muy graves cansan.</li><li>Para tocar junto a otros instrumentos o con una pista que está en otra tonalidad.</li></ul>
+        <p>Una ayuda en la guitarra es el <strong>capo</strong> (cejilla móvil): se coloca en un traste y sube todos los acordes de golpe un semitono por traste, sin cambiar las posiciones que ya conoces.</p>
       </div>
       <div class="note"><b>Antes de empezar</b> conviene dominar la Unidad 04 (tonos y semitonos), la Unidad 05 (escalas) y la Unidad 06 (acordes): aquí las usamos todas.</div>
     </section>
 
     <section id="circulo">
-      <div class="sec-head"><span class="k">7.2</span><h2>Círculo de quintas</h2><span class="lvl lvl-3">Avanzado</span></div>
+      <div class="sec-head"><span class="k">7.2</span><h2>Círculo de quintas</h2></div>
       <div class="prose">
-        <p>El <strong>círculo de quintas</strong> muestra todas las tonalidades mayores (círculo exterior) y sus <strong>relativas menores</strong> (círculo interior). Cada nombre puede representar una nota o un acorde. Al lado de cada una aparece su <strong>armadura</strong>: cuántos sostenidos (♯) o bemoles (♭) lleva.</p>
+        <p>El <strong>círculo de quintas</strong> muestra todas las tonalidades mayores (círculo exterior) y sus <strong>relativas menores</strong> (círculo interior). Cada nombre puede representar una nota o un acorde. Al lado de cada una aparece su <strong>armadura</strong>: cuántos sostenidos (♯) o bemoles (♭) lleva en la partitura.</p>
+        <p>Se llama círculo de <em>quintas</em> porque, al avanzar hacia la derecha, cada tonalidad está una quinta (7 semitonos) por encima de la anterior: C → G → D → A… Cada paso agrega un sostenido; hacia la izquierda se agrega un bemol por paso. Es una ayuda para saber qué tonalidades están emparentadas: las vecinas comparten casi todas sus notas.</p>
         <p>Una tonalidad mayor y su relativa menor comparten la misma armadura: por ejemplo, F mayor y D menor tienen un bemol. Toca una tonalidad:</p>
       </div>
       <div class="panel"><div class="pin">
@@ -65,9 +53,10 @@
     </section>
 
     <section id="grados">
-      <div class="sec-head"><span class="k">7.3</span><h2>Grados y acordes de una tonalidad</h2><span class="lvl lvl-3">Avanzado</span></div>
+      <div class="sec-head"><span class="k">7.3</span><h2>Grados y acordes de una tonalidad</h2></div>
       <div class="prose">
-        <p>Cada nota de la escala es un <strong>grado</strong> (I a VII), y sobre cada grado se forma una tríada. Si quitamos los nombres y dejamos solo la estructura, el esquema es siempre el mismo, en cualquier tonalidad:</p>
+        <p>Cada nota de la escala es un <strong>grado</strong> (I a VII, en números romanos), y sobre cada grado se forma una tríada con las notas de la propia escala. Si quitamos los nombres y dejamos solo la estructura, el esquema es siempre el mismo, en cualquier tonalidad. En la tabla, <b>M</b> es mayor, <b>m</b> es menor y <b>dim</b> es disminuido. Al escribir los grados, el número en mayúscula (IV) indica un acorde mayor y en minúscula (vi), uno menor.</p>
+        <p>Al grado I lo llamamos <strong>tónica</strong>, al IV <strong>subdominante</strong> y al V <strong>dominante</strong>. Son los acordes que más escucharás en las canciones: con solo I, IV y V se pueden armar muchísimos temas.</p>
       </div>
       <div class="tblwrap"><table class="tbl"><thead><tr><th>Grado</th><th>I</th><th>II</th><th>III</th><th>IV</th><th>V</th><th>VI</th><th>VII</th></tr></thead><tbody>
         <tr><td><b>Mayor</b></td><td class="m">M</td><td class="m">m</td><td class="m">m</td><td class="m">M</td><td class="m">M</td><td class="m">m</td><td class="m">dim</td></tr>
@@ -82,11 +71,12 @@
     </section>
 
     <section id="transponer">
-      <div class="sec-head"><span class="k">7.4</span><h2>Transponer una canción</h2><span class="lvl lvl-3">Avanzado</span></div>
+      <div class="sec-head"><span class="k">7.4</span><h2>Transponer una canción</h2></div>
       <div class="prose">
         <p>Para transponer una canción no hace falta cambiar nota por nota. El método es:</p>
         <ol style="margin:0;padding-left:22px;display:grid;gap:6px"><li>Identifica la <strong>tonalidad</strong> de la canción.</li><li>Escribe el <strong>grado</strong> de cada acorde en esa tonalidad.</li><li>Cambia cada grado por el acorde que tiene ese mismo grado en la <strong>nueva tonalidad</strong>.</li></ol>
-        <p>Ejemplo: una canción con solo 4 acordes, <span class="mono">D – A – Bm – G</span>, escrita en D mayor, usa los grados I, V, VI y IV. Pasada a A mayor queda <span class="mono">A – E – F♯m – D</span>. Pruébalo con tus propias progresiones:</p>
+        <p>Ejemplo: una canción con solo 4 acordes, <span class="mono">D – A – Bm – G</span>, escrita en D mayor, usa los grados I, V, VI y IV. Pasada a A mayor queda <span class="mono">A – E – F♯m – D</span>.</p>
+        <p>Una forma de comprobarlo es contar semitonos: de D a A hay 7 semitonos hacia arriba, así que cada acorde sube 7 (D → A, A → E, B → F♯, G → D) y conserva si es mayor o menor. Fíjate en que el grado dice <em>qué</em> acorde toca; la tonalidad nueva dice <em>cuál</em> nota. Pruébalo con tus propias progresiones:</p>
       </div>
       <div class="panel">
         <div class="pbar">
@@ -106,20 +96,16 @@
     </section>
 
     <section id="practica">
-      <div class="sec-head"><span class="k">7.5</span><h2>Práctica</h2><span class="lvl lvl-3">Avanzado</span></div>
+      <div class="sec-head"><span class="k">7.5</span><h2>Práctica</h2></div>
       <p class="prose">Ubica grados y transpón progresiones. Si fallas, el aviso te muestra la escala o el cálculo.</p>
       <div id="quiz"></div>
     </section>
   </main>
 </div>
 
-<nav class="pager" aria-label="Navegación del curso"><div class="wrap" id="pager"></div></nav>
 
 <footer>
-  <div class="wrap">
-    <span>Material de la Academia de Música · Ministerio de Alabanza, Iglesia Vida Abundante</span>
-    <span>Unidad 07 · Transposiciones</span>
-  </div>
+  <div class="wrap">Ministerio de Alabanza – Iglesia Vida Abundante</div>
 </footer>
 
 <script src="curso.js"></script>
@@ -142,7 +128,7 @@ let ci=0,cmin=false;const nodes={maj:[],min:[]};
 {const W=420,svg=svgEl('svg',{viewBox:`0 0 ${W} ${W}`,role:'group','aria-label':'Círculo de quintas. Flechas para moverte, Enter para elegir.'}),c=W/2;
   svg.appendChild(svgEl('circle',{cx:c,cy:c,r:168,fill:'var(--tint)',stroke:'var(--line)'}));svg.appendChild(svgEl('circle',{cx:c,cy:c,r:112,fill:'var(--bg)',stroke:'var(--line)'}));
   for(let i=0;i<12;i++){const a=(-90+i*30)*Math.PI/180,P=(r)=>[c+r*Math.cos(a),c+r*Math.sin(a)];
-    const [sx,sy]=P(196);svg.appendChild(svgEl('text',{x:sx,y:sy+4,'text-anchor':'middle','font-size':12,'font-family':'JetBrains Mono, monospace',fill:'var(--muted)'},SHORT[i]));
+    const [sx,sy]=P(196);svg.appendChild(svgEl('text',{x:sx,y:sy+4,'text-anchor':'middle','font-size':12,'font-family':'Instrument Sans, sans-serif',fill:'var(--muted)'},SHORT[i]));
     [['maj',140,25,MAJ[i],18],['min',86,18,MIN[i]+'m',13]].forEach(([k,r,rad,label,fs])=>{const [x,y]=P(r),g=svgEl('g',{class:'seg-k',role:'button',tabindex:'-1','data-i':i,'data-k':k});
       const cir=svgEl('circle',{cx:x,cy:y,r:rad,stroke:'var(--line-strong)','stroke-width':1.5});const tx=svgEl('text',{x,y:y+fs*.35,'text-anchor':'middle','font-size':fs,'font-family':'var(--f-display)','font-weight':800},sp(i===6&&k==='maj'?'F#':label));
       g.append(cir,tx);g.addEventListener('click',()=>pickKey(i,k==='min'));g.addEventListener('keydown',e=>{const d=e.key==='ArrowRight'||e.key==='ArrowDown'?1:e.key==='ArrowLeft'||e.key==='ArrowUp'?-1:0;

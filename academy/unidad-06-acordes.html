@@ -3,62 +3,49 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Academia de Música · Ministerio de Alabanza, Iglesia Vida Abundante. Unidad 06: Acordes e inversiones.">
+<meta name="description" content="Academia de Música – Ministerio de Alabanza, Iglesia Vida Abundante. Unidad 06: Acordes e inversiones.">
 <style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
-<title>Unidad 06 · Acordes e inversiones · Academia de Música</title>
+<title>Unidad 06 – Acordes e inversiones – Academia de Música</title>
 <link rel="icon" href="logo.png">
-<meta property="og:title" content="Unidad 06 · Acordes e inversiones">
+<meta property="og:title" content="Unidad 06 – Acordes e inversiones">
 <meta property="og:description" content="Cómo se forma cada acorde, por qué suena como suena y cómo reordenar sus notas.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;600;700;800&family=Instrument+Sans:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="unidad.css">
 </head>
-<body>
+<body class="lesson">
 <a class="skip" href="#que-es">Saltar al contenido</a>
-<header class="top">
-  <div class="wrap">
-    <div class="toprow"><div class="brand">
-      <img alt="" src="logo.png">
-      <div><b>Academia de Música</b><span>Ministerio de Alabanza · Iglesia Vida Abundante</span></div>
-    </div>
-    <div class="menu"><button type="button" class="kebab" id="menuBtn" aria-expanded="false" aria-controls="menuList" aria-label="Menú de unidades" title="Unidades del curso"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg></button><div class="menu-list" id="menuList" hidden></div></div></div>
-    <div class="hero">
+<header class="top" id="top"></header>
+
+<div class="page">
+  <aside class="syl" id="syl" aria-label="Temario"></aside>
+
+  <main>
+    <div class="unit-intro">
       <nav class="crumbs" aria-label="Ruta de navegación"><ol id="crumbs"></ol></nav>
       <h1>Acordes e inversiones</h1>
       <p>Cómo se forma cada acorde a partir de la escala, por qué suena como suena y cómo reordenar sus notas sin que deje de ser el mismo acorde.</p>
     </div>
-  </div>
-</header>
 
-<div class="wrap page">
-  <nav class="toc" aria-label="En esta unidad">
-    <button type="button" class="toc-toggle" id="tocToggle" aria-expanded="false" aria-label="Mostrar los títulos de los temas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.6 6L15 12l-6.4 6-1.4-1.4 5-4.6-5-4.6z"/></svg><span class="t">Temas</span></button>
-    <a href="#que-es" aria-label="6.1 Qué es un acorde (Básico)" title="Qué es un acorde · Básico"><span class="n">6.1</span><span class="t">Qué es un acorde</span></a>
-    <a href="#laboratorio" aria-label="6.2 Laboratorio de acordes (Intermedio)" title="Laboratorio de acordes · Intermedio"><span class="n">6.2</span><span class="t">Laboratorio de acordes</span></a>
-    <a href="#inversiones" aria-label="6.3 Inversiones (Intermedio)" title="Inversiones · Intermedio"><span class="n">6.3</span><span class="t">Inversiones</span></a>
-    <a href="#practica" aria-label="6.4 Práctica (Avanzado)" title="Práctica · Avanzado"><span class="n">6.4</span><span class="t">Práctica</span></a>
-  </nav>
-
-  <main>
     <section id="que-es">
-      <div class="sec-head"><span class="k">6.1</span><h2>Qué es un acorde</h2><span class="lvl lvl-1">Básico</span></div>
+      <div class="sec-head"><span class="k">6.1</span><h2>Qué es un acorde</h2></div>
       <div class="prose">
-        <p>Un <strong>acorde</strong> es un grupo de tres o más notas que suenan al mismo tiempo. El más común es la <strong>tríada</strong>: un acorde de tres notas.</p>
-        <p>Para formar una tríada mayor tomamos la <strong>1.ª, 3.ª y 5.ª nota</strong> de la escala mayor que empieza en esa nota. A cada posición dentro de la escala la llamamos <strong>grado</strong>. Recordemos la fórmula de la escala mayor que vimos en la Unidad 05:</p>
+        <p>Un <strong>acorde</strong> es un grupo de tres o más notas que suenan al mismo tiempo. El más común es la <strong>tríada</strong>: un acorde de tres notas apiladas de tercera en tercera (saltando una nota de la escala entre cada una). Es lo que toca la mano izquierda del piano o lo que suena al rasguear una guitarra: varias notas juntas que forman un solo bloque de sonido.</p>
+        <p>Para formar una tríada mayor tomamos la <strong>1.ª, 3.ª y 5.ª nota</strong> de la escala mayor que empieza en esa nota. A cada posición dentro de la escala la llamamos <strong>grado</strong>. Por ejemplo, en C mayor (C – D – E – F – G – A – B) la 1.ª, 3.ª y 5.ª son C – E – G: ese es el acorde de C mayor. Recordemos la fórmula de la escala mayor que vimos en la Unidad 05:</p>
       </div>
       <div class="scale-box">
         <div class="scale" id="scaleStrip"></div>
         <div class="steps" role="group" aria-label="Fórmula de la escala mayor"><span>T</span><span>T</span><span>½</span><span>T</span><span>T</span><span>T</span><span>½</span><span></span></div>
       </div>
-      <div class="note"><b>Truco para contar en el piano:</b> un semitono es la tecla de al lado, sea blanca o negra. Un acorde mayor siempre es <span class="mono">raíz + 4 semitonos + 3 semitonos</span>.</div>
+      <div class="note"><b>Truco para contar en el piano:</b> un semitono es la tecla de al lado, sea blanca o negra. Un acorde mayor siempre es <span class="mono">raíz + 4 semitonos + 3 semitonos</span>: desde C, cuatro semitonos llevan a E y tres más a G. La <strong>raíz</strong> es la nota que da nombre al acorde.</div>
       <div class="prose">
-        <p>Los demás tipos de acorde salen de <strong>modificar estos grados</strong>: bajar la 3.ª medio tono (♭3), subir la 5.ª (♯5), cambiar la 3.ª por otra nota o agregar notas encima. En el laboratorio puedes recorrer cada tipo y ver su receta.</p>
+        <p>Los demás tipos de acorde salen de <strong>modificar estos grados</strong>: bajar la 3.ª medio tono (♭3), subir la 5.ª (♯5), cambiar la 3.ª por otra nota o agregar notas encima. En el laboratorio puedes recorrer cada tipo y ver su receta. Ve de lo simple a lo complejo: primero mayor y menor, luego las demás tríadas, y al final los acordes con séptima.</p>
       </div>
     </section>
 
     <section id="laboratorio">
-      <div class="sec-head"><span class="k">6.2</span><h2>Laboratorio de acordes</h2><span class="lvl lvl-2">Intermedio</span></div>
+      <div class="sec-head"><span class="k">6.2</span><h2>Laboratorio de acordes</h2></div>
       <p class="prose">Elige la raíz y el tipo de acorde. También puedes tocar una tecla del piano para cambiar la raíz; tócala otra vez para quitar el acorde.</p>
       <div class="lab" id="lab">
         <div class="a-controls">
@@ -80,7 +67,7 @@
               <button type="button" data-inst="piano" aria-pressed="true">Piano</button>
               <button type="button" data-inst="guitar" aria-pressed="false">Guitarra</button>
             </div>
-            <div class="tools"><button type="button" class="ibtn solid" id="play" data-restart aria-label="Escuchar acorde" title="1.er toque: acorde · 2.º toque: arpegio y acorde"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9.5v5a1 1 0 0 0 1 1h3.2l4.1 3.6a1 1 0 0 0 1.7-.8V5.7a1 1 0 0 0-1.7-.8L7.2 8.5H4a1 1 0 0 0-1 1z"/><path d="M15.5 8.8a4.5 4.5 0 0 1 0 6.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M18.4 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div>
+            <div class="tools"><button type="button" class="ibtn solid" id="play" data-restart aria-label="Escuchar acorde" title="1.er toque: acorde – 2.º toque: arpegio y acorde"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9.5v5a1 1 0 0 0 1 1h3.2l4.1 3.6a1 1 0 0 0 1.7-.8V5.7a1 1 0 0 0-1.7-.8L7.2 8.5H4a1 1 0 0 0-1 1z"/><path d="M15.5 8.8a4.5 4.5 0 0 1 0 6.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M18.4 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div>
           </div>
           <div class="kbd-box" id="kbdBox"></div>
           <div class="fret-box" id="fretBox" hidden></div>
@@ -93,22 +80,22 @@
     </section>
 
     <section id="inversiones">
-      <div class="sec-head"><span class="k">6.3</span><h2>Inversiones</h2><span class="lvl lvl-2">Intermedio</span></div>
+      <div class="sec-head"><span class="k">6.3</span><h2>Inversiones</h2></div>
       <div class="prose">
-        <p>Las notas de un acorde no tienen que ir siempre en el mismo orden. Si la nota más grave ya no es la raíz, decimos que el acorde está <strong>invertido</strong>. Sigue siendo el mismo acorde: cambia el color y la nota que queda en el bajo.</p>
-        <p>Para invertir, toma la nota más grave y súbela una octava. Una tríada tiene dos inversiones; un acorde de cuatro notas, como C7, tiene tres.</p>
+        <p>Las notas de un acorde no tienen que ir siempre en el mismo orden. Si la nota más grave ya no es la raíz, decimos que el acorde está <strong>invertido</strong>. El <strong>bajo</strong> es la nota más grave que suena. Sigue siendo el mismo acorde: las notas son las mismas, pero cambia el color y la nota que queda en el bajo.</p>
+        <p>Para invertir, toma la nota más grave y súbela una octava. Con C – E – G: en <strong>posición fundamental</strong> el bajo es C; en <strong>1.ª inversión</strong> sube la C y queda E – G – C (bajo E); en <strong>2.ª inversión</strong> sube la E y queda G – C – E (bajo G). Una tríada tiene dos inversiones; un acorde de cuatro notas, como C7, tiene tres. Sirven para que el bajo se mueva suavemente de un acorde al siguiente y para tocar en la zona cómoda del instrumento.</p>
       </div>
       <div class="inv-grid" id="invGrid"></div>
-      <div class="note"><b>En las hojas de acordes del ministerio</b> las inversiones se escriben con una barra: <span class="mono">C/E</span> significa “acorde de C con E en el bajo”. Es muy común en alabanza para que el bajo camine por grados, por ejemplo <span class="mono">C – C/E – F</span>.</div>
+      <div class="note"><b>En los cancioneros y hojas de acordes</b> las inversiones se escriben con una barra: <span class="mono">C/E</span> significa “acorde de C con E en el bajo”. Es muy común en alabanza para que el bajo camine por grados, por ejemplo <span class="mono">C – C/E – F</span>.</div>
       <div class="prose">
-        <p><strong>En la guitarra</strong> lo que define la inversión es la nota que suena en la cuerda más grave que tocas. Cuando un dedo presiona varias cuerdas a la vez se llama <strong>cejilla</strong> o “tendido”.</p>
+        <p><strong>En la guitarra</strong> lo que define la inversión es la nota que suena en la cuerda más grave que tocas. Cuando un dedo presiona varias cuerdas a la vez se llama <strong>cejilla</strong> (o “barré”). Por ejemplo, para C/E se toca un C abierto pero con el bajo en la 6.ª cuerda al aire (E).</p>
       </div>
     </section>
 
     <section id="practica">
-      <div class="sec-head"><span class="k">6.4</span><h2>Práctica</h2><span class="lvl lvl-3">Avanzado</span></div>
+      <div class="sec-head"><span class="k">6.4</span><h2>Práctica</h2></div>
       <p class="prose">Para cada acorde, toca en el teclado la posición normal, la 1.ª y la 2.ª inversión, de la nota más grave a la más aguda. Tu avance se guarda en este dispositivo.</p>
-      <div class="note"><b>Ejemplo resuelto con C:</b> posición normal <span class="mono">C – E – G</span> · 1.ª inversión <span class="mono">E – G – C</span> · 2.ª inversión <span class="mono">G – C – E</span>. En cada fila, la nota más grave va a la izquierda. Si una nota sale con doble sostenido (##) o doble bemol, es otro nombre para una tecla que ya conoces: por ejemplo, G## suena igual que A.</div>
+      <div class="note"><b>Ejemplo resuelto con C:</b> posición normal <span class="mono">C – E – G</span> – 1.ª inversión <span class="mono">E – G – C</span> – 2.ª inversión <span class="mono">G – C – E</span>. En cada fila, la nota más grave va a la izquierda. Si una nota sale con doble sostenido (##) o doble bemol, es otro nombre para una tecla que ya conoces: por ejemplo, G## suena igual que A.</div>
       <div class="quiz" id="quiz">
         <div class="qbar">
           <label class="select"><span class="lbl" style="position:absolute;left:-9999px">Tabla</span>
@@ -125,13 +112,9 @@
   </main>
 </div>
 
-<nav class="pager" aria-label="Navegación del curso"><div class="wrap" id="pager"></div></nav>
 
 <footer>
-  <div class="wrap">
-    <span>Material de la Academia de Música · Ministerio de Alabanza, Iglesia Vida Abundante</span>
-    <span>Unidad 06 · Acordes e inversiones</span>
-  </div>
+  <div class="wrap">Ministerio de Alabanza – Iglesia Vida Abundante</div>
 </footer>
 
 <script src="curso.js"></script>
@@ -232,7 +215,7 @@ function keyboard({octaves=2,marks=new Map(),clickable=false,onKey=null,W=24,H=1
   const svg=svgEl('svg',{viewBox:`0 0 ${nW*W+pad*2} ${H+pad*2}`,role:clickable?'group':'img'});
   if(clickable)svg.style.minWidth=(nW*minKey)+'px';
   const g=svgEl('g',{transform:`translate(${pad},${pad})`});svg.appendChild(g);const desc=[],keys=[];
-  const mono='JetBrains Mono, monospace';
+  const mono='Instrument Sans, sans-serif';
   for(let i=0;i<nW;i++){const abs=Math.floor(i/7)*12+WHITE_PC[i%7],m=marks.get(abs);
     const r=svgEl('rect',{x:i*W,y:0,width:W,height:H,rx:3,fill:m?(m.root?'var(--violet)':'var(--navy)'):'var(--key-white)',stroke:'var(--key-edge)','stroke-width':1});
     if(clickable){r.setAttribute('class','k');r.dataset.abs=abs;keys.push({abs,el:r,m})}g.appendChild(r);
@@ -295,7 +278,7 @@ function chordBox(v,names){
   const W=150,X0=32,SX=19.6,Y0=40,RH=24;
   const fr=v.frets.filter(f=>f!=null&&f>0),start=v.root>0?v.root:1,rows=Math.max(5,(fr.length?Math.max(...fr):0)-start+1);/*rows normally 5*/
   const H=Y0+rows*RH+10,svg=svgEl('svg',{viewBox:`0 0 ${W} ${H}`,role:'img'});
-  const xs=i=>X0+i*SX, mono='JetBrains Mono, monospace', desc=[];
+  const xs=i=>X0+i*SX, mono='Instrument Sans, sans-serif', desc=[];
   for(let r=0;r<=rows;r++)svg.appendChild(svgEl('line',{x1:xs(0),y1:Y0+r*RH,x2:xs(5),y2:Y0+r*RH,stroke:r===0&&start===1?'var(--ink)':'var(--key-edge)','stroke-width':r===0&&start===1?4:1.2}));
   for(let i=0;i<6;i++)svg.appendChild(svgEl('line',{x1:xs(i),y1:Y0,x2:xs(i),y2:Y0+rows*RH,stroke:'var(--muted)','stroke-width':1.2}));
   if(start>1)svg.appendChild(svgEl('text',{x:xs(0)-13,y:Y0+RH/2+4,'text-anchor':'end','font-size':11,fill:'var(--muted)','font-family':mono},start));
@@ -341,7 +324,7 @@ function renderInvs(){const box=$('#invs');box.innerHTML='';const n=TYPES[S.type
   ['Raíz','1.ª','2.ª','3.ª'].slice(0,n).forEach((t,i)=>{const b=document.createElement('button');b.type='button';b.textContent=t;b.disabled=!S.on||S.inst==='guitar';
     b.setAttribute('aria-label',i?`${i}.ª inversión`:'Posición raíz');b.title=i?`${i}.ª inversión`:'Posición raíz';b.setAttribute('aria-pressed',S.on&&i===(S.inst==='guitar'?0:S.inv));b.onclick=()=>{S.inv=i;renderLab()};box.appendChild(b)})}
 function renderExplain(){const t=TYPES[S.type],[rl,ra]=rootOf(S.pc,S.acc),root=nm(rl,ra);
-  $('#explain').innerHTML=`<div class="ex-name"><h3>${t.name}</h3><span>${t.alts.map(a=>root+a).join(' · ')}</span></div><p>${t.how}</p>`}
+  $('#explain').innerHTML=`<div class="ex-name"><h3>${t.name}</h3><span>${t.alts.map(a=>root+a).join(' – ')}</span></div><p>${t.how}</p>`}
 function renderLab(){
   renderPicker();renderInvs();renderExplain();
   const inv=S.inst==='guitar'?0:S.inv;
@@ -373,7 +356,7 @@ function updScroll(){const h=$('#scrollHint'),v=S.inst==='piano'?$('#kbdBox'):$(
 function renderScale(){$('#scaleStrip').innerHTML=[0,1,2,3,4,5,6,0].map((l,i)=>`<div class="${[0,2,4].includes(i)?'hit':''}"><div class="n">${LET[l]}</div><div class="d">${i+1}</div></div>`).join('')}
 function renderInvGrid(){const notes=spell(0,0,'maj');$('#invGrid').innerHTML='';
   ['Posición raíz','1.ª inversión','2.ª inversión'].forEach((label,i)=>{const v=voice(notes,i),el=document.createElement('div');el.className='inv';
-    el.innerHTML=`<b>${label}</b><span class="mono">${v.map(n=>n.name).join(' – ')}</span><div class="mini"></div><span class="cap">Cifrado <span class="slash">${i?`C/${v[0].name}`:'C'}</span> · bajo en ${v[0].name}</span>`;
+    el.innerHTML=`<b>${label}</b><span class="mono">${v.map(n=>n.name).join(' – ')}</span><div class="mini"></div><span class="cap">Cifrado <span class="slash">${i?`C/${v[0].name}`:'C'}</span> – bajo en ${v[0].name}</span>`;
     el.querySelector('.mini').appendChild(keyboard({octaves:2,marks:new Map(v.map(n=>[n.abs,{label:n.name,deg:n.deg,root:n.deg==='1'}])),W:22,H:96}));$('#invGrid').appendChild(el)})}
 /* ---------- Practice ---------- */
 const P=s=>{const m=s.match(/^([A-G])(#|b)?(.*)$/);const map={'':'maj','m':'min','+':'aug','dim':'dim','sus2':'sus2','sus4':'sus4','add2':'add2','add9':'add9','madd2':'madd2','add6':'add6','madd6':'madd6','7':'dom7','m7':'m7','Maj7':'maj7','mMaj7':'mmaj7'};
@@ -409,8 +392,8 @@ function renderQuiz(){
     body.innerHTML=`<div class="done"><b>${Q.score} de ${tot} acordes aprendidos</b><p>${msg}</p><p class="cap">Cuenta como aprendido el acorde cuyas filas salieron bien a la primera.</p><div class="qactions">${Q.missed.length?`<button type="button" class="btn" id="review">Repasar los pendientes (${Q.missed.length})</button>`:''}<button type="button" class="${Q.missed.length?'pbtn':'btn'}" id="again">Repetir tabla</button></div>${nextHtml()}</div>`;
     $('#again').onclick=()=>startSet(Q.set.k);const rv=$('#review');if(rv)rv.onclick=()=>{Q.order=Q.missed.slice();Q.missed=[];Q.i=0;Q.score=0;Q.review=true;resetCard();renderQuiz()};return}
   const c=P(curChord()),n=TYPES[c.type].tones.length,exp=expected(),T=TYPES[c.type];
-  const hintHtml=Q.hint?`<p class="note"><b>Pista:</b> ${T.name} = grados <span class="mono">${T.tones.map(x=>x[2]).join(' – ')}</span> · semitonos desde la raíz <span class="mono">${T.tones.map(x=>x[1]).join(' · ')}</span>. Cada inversión sube una octava la nota más grave.</p>`:'';
-  body.innerHTML=`<div class="qgrid"><div style="display:grid;gap:16px;min-width:0"><div class="qhead"><div><div class="cap">${Q.set.name}${Q.review?' · repaso':''} · ${Q.i+1} de ${Q.order.length}</div><div class="qsym">${chordSym(c.l,c.a,c.type)}</div></div><div class="progress"><span>${Q.score} aprendidos</span><div class="bar"><i style="width:${Math.round(Q.i/Q.order.length*100)}%"></i></div></div></div>
+  const hintHtml=Q.hint?`<p class="note"><b>Pista:</b> ${T.name} = grados <span class="mono">${T.tones.map(x=>x[2]).join(' – ')}</span> – semitonos desde la raíz <span class="mono">${T.tones.map(x=>x[1]).join(' – ')}</span>. Cada inversión sube una octava la nota más grave.</p>`:'';
+  body.innerHTML=`<div class="qgrid"><div style="display:grid;gap:16px;min-width:0"><div class="qhead"><div><div class="cap">${Q.set.name}${Q.review?' – repaso':''} – ${Q.i+1} de ${Q.order.length}</div><div class="qsym">${chordSym(c.l,c.a,c.type)}</div></div><div class="progress"><span>${Q.score} aprendidos</span><div class="bar"><i style="width:${Math.round(Q.i/Q.order.length*100)}%"></i></div></div></div>
     ${hintHtml}<div class="qrows" id="qrows"></div></div><div class="pad"><div id="pad"></div><p class="cap">De la nota más grave a la más aguda. En una inversión, la nota que sube una octava va a la derecha. Toca una nota marcada para quitarla. Con teclado: flechas para moverte y Enter para tocar una nota.</p></div></div>
     <div class="qactions"><button type="button" class="btn" id="qcheck">Revisar</button><button type="button" class="ibtn solid" id="qhear" data-restart aria-label="Escuchar el acorde" title="Escuchar">${ICON_SPK}</button><button type="button" class="pbtn" id="qretry" hidden>Intentar de nuevo</button><button type="button" class="pbtn" id="qskip"${Q.checked?' hidden':''}>Lo repaso después</button><button type="button" class="pbtn" id="qhintbtn"${Q.checked?' hidden':''}>${Q.hint?'Ocultar pista':'Ver pista'}</button><span class="feedback" id="qfb" aria-live="polite"></span></div><p class="cap" id="qhint"></p>`;
   const rows=$('#qrows');
@@ -436,7 +419,7 @@ function renderQuiz(){
 }
 
 const C=window.CURSO,ME=6;
-function nextHtml(){const n=C&&C.unit(ME+1);if(!n)return'';return `<p class="cap">${n.ready?`<a href="${n.file}">Siguiente: Unidad 07 · ${n.title} →</a>`:`Siguiente: Unidad 07 · ${n.title} (próximamente)`}</p>`}
+function nextHtml(){const n=C&&C.unit(ME+1);if(!n)return'';return `<p class="cap">${n.ready?`<a href="${n.file}">Siguiente: Unidad 07 – ${n.title} →</a>`:`Siguiente: Unidad 07 – ${n.title} (próximamente)`}</p>`}
 function renderCourse(){U.course(ME)}
 renderScale();renderInvGrid();U.carousel($('#invGrid'),'Las tres posiciones del acorde de Do');renderLab();renderQuiz();renderCourse();
 
