@@ -96,25 +96,33 @@ function drawer({id,title,html,opener}){
   return{open,close,el,body:el.querySelector('.drawer-body')};
 }
 const NAV=[['inicio','Inicio','index.html'],['cursos','Cursos','index.html#cursos'],['progreso','Mi progreso','progreso.html']];
-/* Tema: 'sistema' (por defecto), 'claro' u 'oscuro'. Se guarda en av-tema y se aplica con html[data-theme] */
-const THEMES=['sistema','claro','oscuro'];
-const THEME_ICON={
-  sistema:'<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/>',
-  claro:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
-  oscuro:'<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/>'};
-function theme(){try{const t=localStorage.getItem('av-tema');return THEMES.includes(t)?t:'sistema'}catch(e){return 'sistema'}}
-function applyTheme(t){const r=document.documentElement;if(t==='claro')r.dataset.theme='light';else if(t==='oscuro')r.dataset.theme='dark';else delete r.dataset.theme}
-function setTheme(t){try{t==='sistema'?localStorage.removeItem('av-tema'):localStorage.setItem('av-tema',t)}catch(e){}applyTheme(t)}
-applyTheme(theme());
+/* Apariencia: tema 'sistema' | 'claro' | 'oscuro' (av-tema) y fuente de lectura 'moderna' | 'serif' (av-fuente), aplicados con html[data-theme] y html[data-fuente] */
+const THEMES=[['sistema','Sistema','<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/>'],
+  ['claro','Claro','<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>'],
+  ['oscuro','Oscuro','<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/>']];
+const FONTS=[['moderna','Moderna'],['serif','Charter'],['source','Source Serif'],['newsreader','Newsreader']];
+const ALIGN=[['justificado','Justificado','<path d="M4 6h16M4 10h16M4 14h16M4 18h16"/>'],['izquierda','Izquierda','<path d="M4 6h16M4 10h10M4 14h16M4 18h12"/>']];
+function pref(key,list){try{const v=localStorage.getItem(key);return list.some(x=>x[0]===v)?v:list[0][0]}catch(e){return list[0][0]}}
+function setPref(key,v,list){try{v===list[0][0]?localStorage.removeItem(key):localStorage.setItem(key,v)}catch(e){}applyPrefs()}
+function applyPrefs(){const r=document.documentElement,t=pref('av-tema',THEMES),f=pref('av-fuente',FONTS),al=pref('av-alinear',ALIGN);
+  if(t==='claro')r.dataset.theme='light';else if(t==='oscuro')r.dataset.theme='dark';else delete r.dataset.theme;
+  if(f!=='moderna')r.dataset.fuente=f;else delete r.dataset.fuente;
+  if(al==='izquierda')r.dataset.alinear='izquierda';else delete r.dataset.alinear}
+applyPrefs();
 
 /* Header compacto: activo = 'inicio' | 'cursos' | 'progreso'. Se inyecta en <header class="top"> */
 function header(active){
   const host=document.querySelector('header.top');if(!host||host.dataset.w)return;host.dataset.w='1';
   const links=()=>NAV.map(([k,t,h])=>`<a href="${h}"${k===active?' aria-current="page"':''}>${t}</a>`).join('');
-  host.innerHTML=`<div class="hd"><a class="hd-brand" href="index.html"><img alt="" src="logo.png"><span>Academia de Música</span></a><nav class="hd-nav" aria-label="Principal">${links()}</nav><button type="button" class="hd-theme" id="hdTheme"></button><button type="button" class="hd-menu" id="hdMenu" aria-label="Abrir el menú"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg></button></div>`;
-  const tb=host.querySelector('#hdTheme');
-  const paint=()=>{const t=theme(),next=THEMES[(THEMES.indexOf(t)+1)%3];tb.innerHTML=`<svg viewBox="0 0 24 24" aria-hidden="true">${THEME_ICON[t]}</svg>`;tb.setAttribute('aria-label',`Tema: ${t}. Cambiar a ${next}`);tb.title=`Tema: ${t}`};
-  tb.onclick=()=>{setTheme(THEMES[(THEMES.indexOf(theme())+1)%3]);paint()};paint();
+  host.innerHTML=`<div class="hd"><a class="hd-brand" href="index.html"><img alt="" src="logo.png"><span>Academia de Música</span></a><nav class="hd-nav" aria-label="Principal">${links()}</nav><div class="hd-pref"><button type="button" class="hd-theme" id="hdTheme" aria-label="Mi perfil" aria-haspopup="true" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1-4 4.2-6 8-6s7 2 8 6"/></svg></button><div class="pref" id="prefMenu" hidden></div></div><button type="button" class="hd-menu" id="hdMenu" aria-label="Abrir el menú"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg></button></div>`;
+  const tb=host.querySelector('#hdTheme'),menu=host.querySelector('#prefMenu');
+  const group=(label,key,list,cur,icons,cls='')=>`<div class="pref-g" role="group" aria-label="${label}"><div class="lbl">${label}</div><div class="pref-opts ${cls}">${list.map(([v,t,x])=>`<button type="button" data-k="${key}" data-v="${v}" aria-pressed="${v===cur}">${icons?`<svg viewBox="0 0 24 24" aria-hidden="true">${x}</svg>`:`<span class="pref-aa pref-${v}" aria-hidden="true">Aa</span>`}${t}</button>`).join('')}</div></div>`;
+  const paint=()=>{menu.innerHTML='<div class="pref-h">Mi perfil</div><a class="pref-link" href="progreso.html">Mi progreso</a>'+group('Tema','av-tema',THEMES,pref('av-tema',THEMES),true)+group('Fuente de lectura','av-fuente',FONTS,pref('av-fuente',FONTS),false,'wrap2')+group('Alineación','av-alinear',ALIGN,pref('av-alinear',ALIGN),true)};
+  const shut=()=>{menu.hidden=true;tb.setAttribute('aria-expanded','false');document.removeEventListener('click',away);document.removeEventListener('keydown',esc)};
+  const away=e=>{if(!menu.contains(e.target)&&!tb.contains(e.target))shut()};
+  const esc=e=>{if(e.key==='Escape'){shut();tb.focus()}};
+  tb.onclick=()=>{if(!menu.hidden)return shut();paint();menu.hidden=false;tb.setAttribute('aria-expanded','true');document.addEventListener('click',away);document.addEventListener('keydown',esc)};
+  menu.onclick=e=>{const b=e.target.closest('button[data-k]');if(!b)return;const list={'av-tema':THEMES,'av-fuente':FONTS,'av-alinear':ALIGN}[b.dataset.k];setPref(b.dataset.k,b.dataset.v,list);paint();menu.querySelector(`[data-k="${b.dataset.k}"][data-v="${b.dataset.v}"]`).focus()};
   drawer({id:'navDrawer',title:'Menú',html:`<nav class="drawer-nav" aria-label="Principal">${links()}</nav>`,opener:host.querySelector('#hdMenu')});
 }
 window.CURSO={

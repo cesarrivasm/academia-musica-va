@@ -97,15 +97,15 @@ function mcq({root,id,title='Cuestionario',total=8,make}){
   function draw(){
     if(st.i>=st.qs.length){if(st.full)finish(sh,id,st.score,st.qs.length,()=>start(),st.missed.length,()=>start(st.missed.map(q=>({...q,fixed:false,opts:q.opts,ans:q.ans}))));else{sh.body.innerHTML=`<div class="done"><b>${st.score} de ${st.qs.length} en el repaso</b><div class="qactions"><button type="button" class="btn" id="qagain">Volver a empezar</button></div></div>`;sh.body.querySelector('#qagain').onclick=()=>start()}return}
     const q=st.qs[st.i];
-    sh.body.innerHTML=`<div class="qhead"><div class="cap">Pregunta ${st.i+1} de ${st.qs.length}</div><div class="progress"><span>${st.score} correctas</span><div class="bar"><i style="width:${Math.round(st.i/st.qs.length*100)}%"></i></div></div></div><div class="qtext" tabindex="-1">${q.q}</div>${q.vis?'<div class="qvis"></div>':''}${q.play?`<div><button type="button" class="ibtn solid" id="qhear" aria-label="Escuchar" title="Escuchar">${ICON_SPK}</button></div>`:''}<div class="opts" role="group" aria-label="Respuestas"></div><div class="qactions"><span class="feedback" id="qfb" aria-live="polite"></span><button type="button" class="btn" id="qnext" hidden>Siguiente</button></div><p class="cap" id="qwhy"></p>`;
+    sh.body.innerHTML=`<div class="qhead"><div class="cap">Pregunta ${st.i+1} de ${st.qs.length}</div><div class="progress"><span>${st.score} correctas</span><div class="bar"><i style="width:${Math.round(st.i/st.qs.length*100)}%"></i></div></div></div><div class="qtext" tabindex="-1">${q.q}</div>${q.vis?'<div class="qvis"></div>':''}${q.play?`<div><button type="button" class="ibtn solid" id="qhear" aria-label="Escuchar" title="Escuchar">${ICON_SPK}</button></div>`:''}<div class="opts" role="group" aria-label="Respuestas"></div><div class="qactions qcenter"><span class="sr" id="qfb" aria-live="polite"></span><button type="button" class="btn" id="qnext" hidden>Siguiente</button></div><p class="cap" id="qwhy"></p>`;
     if(q.vis)sh.body.querySelector('.qvis').appendChild(typeof q.vis==='function'?q.vis():q.vis);
     const h=sh.body.querySelector('#qhear');if(h)h.onclick=()=>playList(q);
     const box=sh.body.querySelector('.opts');
     q.opts.forEach((t,k)=>{const b=document.createElement('button');b.type='button';b.className='opt';b.innerHTML=`<span class="ol" aria-hidden="true">${'ABCD'[k]}</span><span class="ot">${t}</span>`;b.onclick=()=>{
       box.querySelectorAll('.opt').forEach((x,j)=>{x.disabled=true;if(j===q.ans)x.classList.add('good')});
       const ok=k===q.ans;if(!ok)b.classList.add('bad');if(ok)st.score++;else if(st.full&&!st.missed.includes(q))st.missed.push(q);
-      const fb=sh.body.querySelector('#qfb');fb.className='feedback '+(ok?'ok':'err');fb.textContent=ok?'¡Correcto!':'Casi: la respuesta correcta está en verde.';
-      sh.body.querySelector('#qwhy').textContent=q.why||'';const nx=sh.body.querySelector('#qnext');nx.hidden=false;nx.textContent=st.i===st.qs.length-1?'Ver resultado':'Siguiente';nx.onclick=()=>{st.i++;draw();const t=sh.body.querySelector('.qtext');if(t)t.focus({preventScroll:true})};nx.focus({preventScroll:true})};box.appendChild(b)});
+      const fb=sh.body.querySelector('#qfb');fb.textContent=ok?'Correcto':'Incorrecto';
+      sh.body.querySelector('#qwhy').textContent=ok?'':(q.why||'');const nx=sh.body.querySelector('#qnext');nx.hidden=false;nx.textContent=st.i===st.qs.length-1?'Ver resultado':'Siguiente';nx.onclick=()=>{st.i++;draw();const t=sh.body.querySelector('.qtext');if(t)t.focus({preventScroll:true})};nx.focus({preventScroll:true})};box.appendChild(b)});
   }
   start();return{restart:()=>start()}}
 /* Práctica en el piano. make(n) devuelve [{q,targets:[pc],need,why?,play?}]; el orden y la octava no importan */
@@ -322,7 +322,7 @@ function guitarBus(){if(gBus)return gBus;const c=ac;const lp=c.createBiquadFilte
   lp.connect(body);body.connect(air);air.connect(master);gBus=lp;return gBus}
 function pluck(midi,when,amp){const c=actx();if(!c)return;U.hold(when-c.currentTime+2.6);const f=440*Math.pow(2,(midi-69)/12);
   const src=c.createBufferSource();src.buffer=ksBuffer(f);const g=c.createGain();
-  g.gain.setValueAtTime(amp,when);g.gain.setTargetAtTime(amp*.55,when+.05,.6);src.connect(g);g.connect(guitarBus());src.start(when);src.stop(when+2.6);
+  g.gain.setValueAtTime(amp,when);g.gain.setTargetAtTime(0.0001,when+.06,.3);src.connect(g);g.connect(guitarBus());src.start(when);src.stop(when+2.6);
   voices=voices.filter(v=>v.end>c.currentTime);voices.push({g,oscs:[src],end:when+2.6})}
 
 const OPEN_MIDI=[40,45,50,55,59,64];
