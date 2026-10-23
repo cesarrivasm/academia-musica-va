@@ -278,9 +278,10 @@ function carousel(el,label){
   bar.innerHTML=`<button type="button" class="ibtn" aria-label="Anterior">${chev('M15.4 6L9 12l6.4 6 1.4-1.4L11.8 12l5-4.6z')}</button><div class="car-dots">${slides.map((_,i)=>`<button type="button" class="car-dot" aria-label="Ir a ${i+1} de ${N}"></button>`).join('')}</div><span class="car-count" aria-hidden="true"></span><button type="button" class="ibtn" aria-label="Siguiente">${chev('M8.6 6L15 12l-6.4 6-1.4-1.4 5-4.6-5-4.6z')}</button>`;
   car.append(track,bar);el.className='car-host';el.appendChild(car);
   const [pv,nx]=bar.querySelectorAll('.ibtn'),dots=[...bar.querySelectorAll('.car-dot')],cnt=bar.querySelector('.car-count');
-  const cur=()=>{let b=0,m=1e9;slides.forEach((s,i)=>{const d=Math.abs(s.offsetLeft-track.offsetLeft-track.scrollLeft);if(d<m){m=d;b=i}});return b};
+  const off=s=>s.getBoundingClientRect().left-track.getBoundingClientRect().left;
+  const cur=()=>{let b=0,m=1e9;slides.forEach((s,i)=>{const d=Math.abs(off(s));if(d<m){m=d;b=i}});return b};
   const upd=()=>{const i=cur();dots.forEach((d,j)=>j===i?d.setAttribute('aria-current','true'):d.removeAttribute('aria-current'));cnt.textContent=`${i+1} / ${N}`;pv.disabled=i===0;nx.disabled=i===N-1};
-  const go=i=>{i=Math.max(0,Math.min(N-1,i));track.scrollTo({left:slides[i].offsetLeft-track.offsetLeft,behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'})};
+  const go=i=>{i=Math.max(0,Math.min(N-1,i));track.scrollTo({left:track.scrollLeft+off(slides[i]),behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'})};
   pv.onclick=()=>go(cur()-1);nx.onclick=()=>go(cur()+1);dots.forEach((d,i)=>d.onclick=()=>go(i));
   track.addEventListener('scroll',()=>{clearTimeout(track._t);track._t=setTimeout(upd,60)},{passive:true});
   track.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();go(cur()+1)}else if(e.key==='ArrowLeft'){e.preventDefault();go(cur()-1)}});
